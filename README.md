@@ -3,8 +3,8 @@
 Dashboard de Agencia Lima Retail para controlar la inversion publicitaria de Rekluta
 
 
-Version actual: `v1.9.2`. El tablero es un clon del proyecto de Amador; comparte codigo base y
-numeracion de version.
+Version actual: `v1.9.2`. El tablero reutiliza el codigo base de otro tablero de la agencia; de ahi
+viene la numeracion de version.
 
 ## Versionado
 
@@ -43,7 +43,7 @@ el JSON a mano.
 ## Proyecciones
 
 El modulo Proyecciones lee los datos del modulo Gasto publicitario a traves de
-`window.TPObjectives.snapshot()` y proyecta el cierre del mes en curso.
+`window.RKObjectives.snapshot()` y proyecta el cierre del mes en curso.
 
 - El mes proyectado es el que corresponde a la fecha de corte (`cutoff`); si no tiene gasto, se usa
   el ultimo mes con datos.
@@ -61,7 +61,7 @@ Estos valores estan vacios a proposito y hay que cargarlos antes de publicar:
 | Que | Donde |
 | --- | --- |
 | ID del Google Sheet | `js/objectives.js` (`SHEET_ID`) y `scripts/google-sheets-sync.gs` (`SPREADSHEET_ID`) |
-| Carpeta de Drive de reportes | `index.html` (`reports-folder-link`) y `data/rk-drive-reports.json` |
+| Catalogo de reportes de Drive | `data/rk-drive-reports.json` (`files`); la carpeta ya esta enlazada |
 | Contrasena de acceso | `index.html`, al final (`AuthLogin.init`) |
 | Logo | `assets/logo-rekluta.png` |
 | Favicon | `assets/favicon.png` |
