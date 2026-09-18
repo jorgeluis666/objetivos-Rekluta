@@ -25,7 +25,7 @@
     'view-reports': {
       title: 'Archivo de Reportes',
       caption: 'Documentos en Google Drive',
-      status: 'Catalogo al 17 de septiembre',
+      status: 'Catalogo al 18 de septiembre',
       source: 'Fuente: Carpeta compartida Reportes Rekluta / Google Drive',
       footer: 'Vista previa y descarga directa desde Drive',
     },

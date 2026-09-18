@@ -5,6 +5,79 @@
     "url": "https://drive.google.com/drive/folders/1wmPgJICrSiPyy8X_SA6UD5VSq8N8tIBJ",
     "owner": ""
   },
-  "syncedAt": null,
-  "files": []
+  "syncedAt": "2026-09-18",
+  "files": [
+    {
+      "id": "1msoK5YPEaQEvhAC5pTxpczl-Ku0NxK4LtWGOzx705d4",
+      "title": "Rekluta | Reporte Anual | 2025",
+      "mimeType": "application/vnd.google-apps.presentation",
+      "sizeBytes": 3525047,
+      "modifiedTime": "2026-09-18T22:58:54.974Z",
+      "createdTime": "2025-12-18T23:59:08.217Z"
+    },
+    {
+      "id": "1j7RAceAiHUVTblrm3aUooKxy2qWkHlLL",
+      "title": "Reporte_Rekluta_Enero_2026.pdf",
+      "mimeType": "application/pdf",
+      "sizeBytes": 317688,
+      "modifiedTime": "2026-09-03T02:20:08Z",
+      "createdTime": "2026-09-03T02:20:47.750Z"
+    },
+    {
+      "id": "11yt4lY43nifikemRSfOdH_Udvgn5QGjF",
+      "title": "Reporte_Rekluta_Febrero_2026.pdf",
+      "mimeType": "application/pdf",
+      "sizeBytes": 384788,
+      "modifiedTime": "2026-09-03T02:26:36Z",
+      "createdTime": "2026-09-03T02:26:53.024Z"
+    },
+    {
+      "id": "1zrn78r1_CFKU9ml1brf9Xh9A7NY0dtvr",
+      "title": "Reporte_Rekluta_Marzo_2026.pdf",
+      "mimeType": "application/pdf",
+      "sizeBytes": 370263,
+      "modifiedTime": "2026-09-03T02:26:37Z",
+      "createdTime": "2026-09-03T02:26:54.103Z"
+    },
+    {
+      "id": "17R8RxmmpjwHPXmvdMiYEK_IgBcV5JRgA",
+      "title": "Reporte_Rekluta_Abril_2026.pdf",
+      "mimeType": "application/pdf",
+      "sizeBytes": 402425,
+      "modifiedTime": "2026-09-03T02:26:39Z",
+      "createdTime": "2026-09-03T02:26:55.353Z"
+    },
+    {
+      "id": "1O0rgHnS00FBQpF4mjDQTgTtZPF5acAw6",
+      "title": "Reporte_Rekluta_Mayo_2026.pdf",
+      "mimeType": "application/pdf",
+      "sizeBytes": 420184,
+      "modifiedTime": "2026-09-03T02:26:40Z",
+      "createdTime": "2026-09-03T02:26:56.440Z"
+    },
+    {
+      "id": "1eyQSiU7M3HCZu9wquGxZwS128Q1mnoVN",
+      "title": "Reporte_Rekluta_Junio_2026.pdf",
+      "mimeType": "application/pdf",
+      "sizeBytes": 391637,
+      "modifiedTime": "2026-09-03T02:26:41Z",
+      "createdTime": "2026-09-03T02:26:57.522Z"
+    },
+    {
+      "id": "1uGdgzZZXGYyEhDul_YGAHTQWbbkFdI-b",
+      "title": "Reporte_Rekluta_Julio_2026.pdf",
+      "mimeType": "application/pdf",
+      "sizeBytes": 375128,
+      "modifiedTime": "2026-09-03T02:26:43Z",
+      "createdTime": "2026-09-03T02:26:58.743Z"
+    },
+    {
+      "id": "1StnCFN5H0J9-1v5v63AeGB1CQ83PU0Xt",
+      "title": "Reporte_Rekluta_Agosto_2026.pdf",
+      "mimeType": "application/pdf",
+      "sizeBytes": 393255,
+      "modifiedTime": "2026-09-03T02:26:44Z",
+      "createdTime": "2026-09-03T02:27:00.144Z"
+    }
+  ]
 }

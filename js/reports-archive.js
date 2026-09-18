@@ -49,6 +49,14 @@
 
   const EXTENSION_RE = /\.(pdf|mp4|mov|avi|png|jpe?g|gif|xlsx?|csv|docx?|pptx?|zip)$/i;
 
+  // Los archivos nativos de Google no tienen extension en el titulo ni se descargan
+  // por /uc?export=download: se exportan a PDF desde su propia app.
+  const GOOGLE_NATIVE = {
+    'application/vnd.google-apps.presentation': { slug: 'presentation', label: 'SLIDES', exportPath: 'export/pdf' },
+    'application/vnd.google-apps.document': { slug: 'document', label: 'DOCS', exportPath: 'export?format=pdf' },
+    'application/vnd.google-apps.spreadsheet': { slug: 'spreadsheets', label: 'SHEETS', exportPath: 'export?format=pdf' },
+  };
+
   function stripExtension(title) {
     let value = String(title || '');
     while (EXTENSION_RE.test(value)) value = value.replace(EXTENSION_RE, '');
@@ -131,6 +139,7 @@
       const period = detectPeriod(file.title);
       const type = detectType(file.title, file.mimeType, range);
       const isVideo = String(file.mimeType).startsWith('video/');
+      const native = GOOGLE_NATIVE[file.mimeType] || null;
       const extension = (stripExtension(file.title) === file.title ? '' : file.title.split('.').pop() || '').toUpperCase();
 
       return {
@@ -140,14 +149,18 @@
         type,
         period,
         range,
-        format: extension || (isVideo ? 'MP4' : 'PDF'),
+        format: extension || (isVideo ? 'MP4' : native ? native.label : 'PDF'),
         isVideo,
         sizeBytes: Number(file.sizeBytes) || 0,
         modifiedTime: file.modifiedTime,
         createdTime: file.createdTime,
         viewUrl: `https://drive.google.com/file/d/${file.id}/view`,
-        previewUrl: `https://drive.google.com/file/d/${file.id}/preview`,
-        downloadUrl: `https://drive.google.com/uc?export=download&id=${file.id}`,
+        previewUrl: native
+          ? `https://docs.google.com/${native.slug}/d/${file.id}/preview`
+          : `https://drive.google.com/file/d/${file.id}/preview`,
+        downloadUrl: native
+          ? `https://docs.google.com/${native.slug}/d/${file.id}/${native.exportPath}`
+          : `https://drive.google.com/uc?export=download&id=${file.id}`,
         latest: true,
       };
     });
