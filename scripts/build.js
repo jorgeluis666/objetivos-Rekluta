@@ -24,9 +24,28 @@ function copyLoginAssets() {
   }
 }
 
+// El logo y el favicon se sirven como archivos: sin esta copia dist/ sale con
+// la marca rota aunque el CSS y el HTML si esten inlineados.
+function copyBrandAssets() {
+  const source = path.join(ROOT, 'assets');
+  if (!fs.existsSync(source)) {
+    console.warn('[build] falta assets/; dist quedara sin logo ni favicon');
+    return;
+  }
+  const target = path.join(DIST_DIR, 'assets');
+  fs.mkdirSync(target, { recursive: true });
+  for (const asset of ['logo-rekluta.png', 'favicon.png']) {
+    if (!fs.existsSync(path.join(source, asset))) {
+      console.warn(`[build] falta assets/${asset}; dist quedara sin ese archivo`);
+      continue;
+    }
+    fs.copyFileSync(path.join(source, asset), path.join(target, asset));
+  }
+}
+
 function main() {
   let html = readFile('index.html');
-  const css = readFile('css/dashboard.css');
+  const css = readFile('css/dashboard.css').replace(/url\('\.\.\/assets\//g, "url('assets/");
   const app = readFile('js/objectives.js');
   const messagesCalculator = readFile('js/messages-calculator.js');
   const navigation = readFile('js/navigation.js');
@@ -83,6 +102,7 @@ function main() {
   );
 
   copyLoginAssets();
+  copyBrandAssets();
 
   console.log(`[build] escrito dist/index.html (${(fs.statSync(DIST_HTML).size / 1024).toFixed(1)} KB)`);
 }
