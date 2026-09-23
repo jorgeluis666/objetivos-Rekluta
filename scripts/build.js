@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
 
@@ -11,36 +12,36 @@ function readFile(relativePath) {
   return fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
 }
 
-// La pantalla de acceso vive fuera del HTML inlineado, asi que dist/ necesita
-// una copia del script y de la imagen de fondo o el build sale sin login.
-function copyLoginAssets() {
-  for (const asset of ['auth-login.js', 'login-bg.jpg']) {
-    const source = path.join(ROOT, asset);
-    if (!fs.existsSync(source)) {
-      console.warn(`[build] falta ${asset}; dist quedara sin ese archivo`);
-      continue;
-    }
-    fs.copyFileSync(source, path.join(DIST_DIR, asset));
+// El acceso lo controla Apache (HTTP Basic Auth), no el navegador. HTPASSWD_PATH es la ruta absoluta
+// del archivo de claves en el servidor (la que crea cPanel > Privacidad de directorios). Si falta,
+// se deja un marcador: Apache responde 500 en vez de servir el tablero sin clave.
+function writeHtaccess(html) {
+  const htpasswdPath = (process.env.HTPASSWD_PATH || '').trim();
+  if (!htpasswdPath) console.warn('[build] falta HTPASSWD_PATH; dist/.htaccess queda con un marcador y el sitio no abrira');
+  // CSP con el hash de cada <script> inline, porque el build mete todo el JS dentro del HTML.
+  const hashes = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)]
+    .map(match => `'sha256-${crypto.createHash('sha256').update(match[1], 'utf8').digest('base64')}'`);
+  const csp = [
+    "default-src 'self'",
+    `script-src 'self' https://cdnjs.cloudflare.com ${hashes.join(' ')}`,
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+    'font-src https://fonts.gstatic.com',
+    "img-src 'self' data: https:",
+    "connect-src 'self' https://docs.google.com https://script.google.com https://script.googleusercontent.com",
+    'frame-src https://drive.google.com https://docs.google.com',
+    "frame-ancestors 'none'",
+    "base-uri 'self'",
+    "form-action 'self'",
+    "object-src 'none'",
+  ].join('; ');
+  const template = readFile('deploy/.htaccess');
+  for (const token of ['__HTPASSWD_PATH__', '__CSP__']) {
+    if (template.split(token).length !== 2) throw new Error(`deploy/.htaccess debe contener ${token} exactamente una vez`);
   }
-}
-
-// El logo y el favicon se sirven como archivos: sin esta copia dist/ sale con
-// la marca rota aunque el CSS y el HTML si esten inlineados.
-function copyBrandAssets() {
-  const source = path.join(ROOT, 'assets');
-  if (!fs.existsSync(source)) {
-    console.warn('[build] falta assets/; dist quedara sin logo ni favicon');
-    return;
-  }
-  const target = path.join(DIST_DIR, 'assets');
-  fs.mkdirSync(target, { recursive: true });
-  for (const asset of ['logo-rekluta.png', 'favicon.png']) {
-    if (!fs.existsSync(path.join(source, asset))) {
-      console.warn(`[build] falta assets/${asset}; dist quedara sin ese archivo`);
-      continue;
-    }
-    fs.copyFileSync(path.join(source, asset), path.join(target, asset));
-  }
+  const output = template
+    .replace('__HTPASSWD_PATH__', htpasswdPath || '/RUTA/NO/CONFIGURADA/.htpasswd')
+    .replace('__CSP__', csp);
+  fs.writeFileSync(path.join(DIST_DIR, '.htaccess'), output, 'utf8');
 }
 
 function main() {
@@ -88,21 +89,19 @@ function main() {
     `<script>window.RK_ADS_DATA = ${data};window.RK_DRIVE_REPORTS = ${driveReports};</script></head>`
   );
 
+  // El navegador convierte CRLF en LF antes de calcular el hash CSP de cada <script>; si el HTML
+  // conserva CRLF (archivos editados en Windows) los hashes no coinciden y el tablero no carga.
+  html = html.replace(/\r\n?/g, '\n');
+
   fs.rmSync(DIST_DIR, { recursive: true, force: true });
-  fs.mkdirSync(path.join(DIST_DIR, 'data'), { recursive: true });
+  fs.mkdirSync(DIST_DIR, { recursive: true });
   fs.writeFileSync(DIST_HTML, html, 'utf8');
-  fs.copyFileSync(
-    path.join(ROOT, 'data', 'rk-ads-2026.json'),
-    path.join(DIST_DIR, 'data', 'rk-ads-2026.json')
-  );
+  // Los datos (rk-ads-2026.json y rk-drive-reports.json) ya van incrustados en el HTML y los dos
+  // fetch() de js/ solo se usan si falta esa copia inline, asi que dist/ no publica data/.
 
-  fs.copyFileSync(
-    path.join(ROOT, 'data', 'rk-drive-reports.json'),
-    path.join(DIST_DIR, 'data', 'rk-drive-reports.json')
-  );
-
-  copyLoginAssets();
-  copyBrandAssets();
+  // El logo y el favicon se sirven como archivos: sin esta copia dist/ sale con la marca rota.
+  fs.cpSync(path.join(ROOT, 'assets'), path.join(DIST_DIR, 'assets'), { recursive: true });
+  writeHtaccess(html);
 
   console.log(`[build] escrito dist/index.html (${(fs.statSync(DIST_HTML).size / 1024).toFixed(1)} KB)`);
 }
