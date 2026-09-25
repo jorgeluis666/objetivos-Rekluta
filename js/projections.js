@@ -23,13 +23,34 @@
     ],
   };
   const CHART_METRICS = {
-    spend: { label: 'Inversion', money: true, sub: 'TikTok Ads en S/. (eje izquierdo) y Meta Ads en US$ (eje derecho)' },
-    clicks: { label: 'Clics salientes', sub: 'Clics salientes de todas las campanas de cada plataforma' },
-    messageClicks: { label: 'Clics de Mensajes', sub: 'Clics salientes de las campanas de Mensajes' },
-    exposure: { label: 'Exposicion', sub: 'Visualizaciones de video en TikTok y alcance de Reconocimiento en Meta' },
+    spend: { label: 'Inversion', money: true, sub: platform => `Inversion en ${platform === 'tiktok' ? 'soles' : 'dolares'}` },
+    clicks: { label: 'Clics salientes', sub: () => 'Clics salientes de todas las campanas' },
+    messageClicks: { label: 'Clics de Mensajes', sub: () => 'Clics salientes de las campanas de Mensajes' },
+    exposure: { label: 'Exposicion', sub: platform => (platform === 'tiktok' ? 'Visualizaciones de video' : 'Alcance de las campanas de Reconocimiento') },
   };
+  // Filas de indicadores de la parte superior: una por plataforma, Meta primero.
+  const KPI_ROWS = [
+    { platform: 'meta', keys: ['spend', 'reach', 'clicks', 'messageClicks'] },
+    { platform: 'tiktok', keys: ['spend', 'views', 'followers', 'clicks', 'messageClicks'] },
+  ];
+  const KPI_TITLES = {
+    spend: 'Inversion proyectada',
+    reach: 'Alcance proyectado',
+    views: 'Visualizaciones proyectadas',
+    followers: 'Seguidores de pago proyectados',
+    clicks: 'Clics salientes proyectados',
+    messageClicks: 'Clics de Mensajes proyectados',
+  };
+  const PLATFORM_KEY = 'rk-projection-platform-v1';
 
-  const state = { ready: false, metric: 'spend', chart: null, projection: null, data: null };
+  const state = { ready: false, metric: 'spend', platform: readPlatform(), chart: null, projection: null, data: null };
+
+  function readPlatform() {
+    try { return localStorage.getItem(PLATFORM_KEY) === 'tiktok' ? 'tiktok' : 'meta'; } catch { return 'meta'; }
+  }
+  function savePlatform() {
+    try { localStorage.setItem(PLATFORM_KEY, state.platform); } catch {}
+  }
 
   const esc = value => String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
   const isNum = value => value != null && value !== '' && Number.isFinite(Number(value));
@@ -141,35 +162,20 @@
     return `<span class="projection-gap ${tone}">${rounded > 0 ? '+' : ''}${rounded}%</span>`;
   }
 
-  function sumProjected(projection, key) {
-    return projection.platforms.reduce((total, item) => total + (item.byKey[key]?.projected || 0), 0);
-  }
-  function sumReference(projection, key) {
-    const values = projection.platforms.map(item => item.byKey[key]?.reference).filter(isNum);
-    return values.length ? values.reduce((total, value) => total + value, 0) : null;
-  }
-
   function renderKpis(projection) {
     const host = document.getElementById('projection-kpis');
     if (!host) return;
     const prev = projection.previousName ? `vs ${projection.previousName}` : '';
-    const cards = PLATFORM_ORDER.filter(platform => projection.byPlatform[platform]).map(platform => {
-      const spend = projection.byPlatform[platform].byKey.spend;
-      const change = pctChange(spend.projected, spend.reference);
-      return [`Inversion proyectada ${label(platform)}`, fmtMoney(spend.projected, platform), `${fmtMoney(spend.pace, platform)} por dia${isNum(change) ? ` | ${change >= 0 ? '+' : ''}${change.toFixed(0)}% ${prev}` : ''}`];
-    });
-    [['clicks', 'Clics salientes proyectados'], ['messageClicks', 'Clics de Mensajes proyectados']].forEach(([key, name]) => {
-      const total = sumProjected(projection, key);
-      const change = pctChange(total, sumReference(projection, key));
-      const split = projection.platforms.map(item => `${label(item.platform).replace(' Ads', '')} ${fmtCompact(item.byKey[key]?.projected, false)}`).join(' | ');
-      cards.push([name, fmtCount(total), `${split}${isNum(change) ? ` | ${change >= 0 ? '+' : ''}${change.toFixed(0)}% ${prev}` : ''}`]);
-    });
-    cards.push([
-      'Avance del mes',
-      `${projection.lastDay} de ${projection.daysInMonth} dias`,
-      projection.closed ? 'Mes cerrado' : `Quedan ${projection.daysLeft} dias | datos al ${longDate(projection.cutoff)}`,
-    ]);
-    host.innerHTML = cards.map(([name, value, hint]) => `<div class="kpi-pill"><span>${esc(name)}</span><strong>${value}</strong><small>${esc(hint)}</small></div>`).join('');
+    const progress = projection.closed ? 'Mes cerrado' : `Dia ${projection.lastDay} de ${projection.daysInMonth} | quedan ${projection.daysLeft} dias`;
+    host.innerHTML = KPI_ROWS.filter(row => projection.byPlatform[row.platform]).map(row => {
+      const item = projection.byPlatform[row.platform];
+      const cards = row.keys.map(key => item.byKey[key]).filter(Boolean).map(metric => {
+        const pace = metric.money ? fmtMoney(metric.pace, row.platform) : fmtCount(metric.pace);
+        const change = isNum(metric.change) ? ` | ${metric.change >= 0 ? '+' : ''}${metric.change.toFixed(0)}% ${prev}` : '';
+        return `<div class="kpi-pill"><span>${esc(KPI_TITLES[metric.key] || metric.label)}</span><strong>${fmtValue(metric.projected, metric, row.platform)}</strong><small>${esc(`${pace} por dia${change}`)}</small></div>`;
+      }).join('');
+      return `<div class="projection-kpi-row"><div class="projection-kpi-head"><span class="platform-pill ${row.platform}">${esc(label(row.platform))}</span><small>${esc(state.data.platforms[row.platform].currency)} | ${esc(progress)}</small></div><div class="kpi-strip cols-${row.keys.length}">${cards}</div></div>`;
+    }).join('');
   }
 
   function renderTable(projection) {
@@ -262,18 +268,27 @@
 
   function renderChart(projection) {
     const config = CHART_METRICS[state.metric] || CHART_METRICS.spend;
+    // El grafico muestra una sola plataforma; si la elegida no tiene pauta en el mes, se usa la otra.
+    if (!projection.byPlatform[state.platform]) state.platform = projection.platforms[0].platform;
+    const shown = projection.platforms.filter(item => item.platform === state.platform);
+    const sub = config.sub(state.platform);
     document.getElementById('projection-chart-sub').textContent = projection.closed
-      ? `${projection.monthLabel} cerrado. ${config.sub}.`
-      : `Real hasta el dia ${projection.lastDay} y proyeccion hasta el ${projection.daysInMonth}. ${config.sub}.`;
-    document.querySelectorAll('#projection-metrics .series-toggle').forEach(item => {
-      const active = item.dataset.series === state.metric;
-      item.classList.toggle('active', active);
-      item.querySelector('input').checked = active;
+      ? `${label(state.platform)} | ${projection.monthLabel} cerrado. ${sub}.`
+      : `${label(state.platform)} | real hasta el dia ${projection.lastDay} y proyeccion hasta el ${projection.daysInMonth}. ${sub}.`;
+    const exposureLabel = document.getElementById('projection-exposure-label');
+    if (exposureLabel) exposureLabel.textContent = state.platform === 'tiktok' ? 'Visualizaciones' : 'Alcance';
+    [['#projection-metrics', state.metric], ['#projection-platforms', state.platform]].forEach(([group, value]) => {
+      document.querySelectorAll(`${group} .series-toggle`).forEach(item => {
+        const active = item.dataset.series === value;
+        item.classList.toggle('active', active);
+        item.querySelector('input').checked = active;
+        item.querySelector('input').disabled = group === '#projection-platforms' && !projection.byPlatform[item.dataset.series];
+      });
     });
     const legend = document.getElementById('projection-legend');
     if (legend) {
       legend.innerHTML = [
-        ...projection.platforms.map(item => `<span><i class="legend-line ${item.platform}"></i><b>${esc(label(item.platform))}</b></span>`),
+        ...shown.map(item => `<span><i class="legend-line ${item.platform}"></i><b>${esc(label(item.platform))}</b></span>`),
         '<span><i class="legend-line dashed"></i><b>Proyeccion al cierre</b></span>',
         projection.previousName ? `<span><i class="legend-line dotted"></i><b>Cierre de ${esc(projection.previousName)}</b></span>` : '',
       ].join('');
@@ -286,12 +301,11 @@
       return;
     }
     const labels = Array.from({ length: projection.daysInMonth }, (_, index) => `${index + 1} ${projection.shortMonth}`);
-    const datasets = projection.platforms.flatMap(item => {
+    const datasets = shown.flatMap(item => {
       const { platform } = item;
       const data = series(projection, item, state.metric);
       const color = PLATFORM_COLORS[platform];
-      const yAxisID = config.money && platform === 'meta' ? 'y1' : 'y';
-      const base = { platform, borderColor: color, backgroundColor: color, pointRadius: 0, pointHoverRadius: 5, tension: 0, yAxisID };
+      const base = { platform, borderColor: color, backgroundColor: color, pointRadius: 0, pointHoverRadius: 5, tension: 0 };
       const list = [
         { ...base, label: `${label(platform)} real`, data: data.real, borderWidth: 2.5 },
         { ...base, label: `${label(platform)} proyeccion`, data: data.forecast, borderWidth: 2, borderDash: [6, 5] },
@@ -305,12 +319,8 @@
     const axis = { beginAtZero: true, grace: '8%', border: { display: false }, ticks: { color: '#7890b5', font: { size: 10 } } };
     const scales = {
       x: { grid: { display: false }, border: { color: '#cbd5e1' }, ticks: { color: '#7890b5', font: { size: 10 }, maxTicksLimit: 10, autoSkip: true } },
-      y: { ...axis, grid: { color: 'rgba(148,163,184,.20)' }, ticks: { ...axis.ticks, callback: tick('tiktok') } },
+      y: { ...axis, grid: { color: 'rgba(148,163,184,.20)' }, ticks: { ...axis.ticks, callback: tick(state.platform) } },
     };
-    if (config.money) {
-      scales.y.ticks.color = PLATFORM_COLORS.tiktok;
-      scales.y1 = { ...axis, position: 'right', grid: { drawOnChartArea: false }, ticks: { ...axis.ticks, color: PLATFORM_COLORS.meta, callback: tick('meta') } };
-    }
 
     if (state.chart) state.chart.destroy();
     state.chart = new Chart(canvas, {
@@ -389,6 +399,13 @@
       const input = event.target.closest('input[type="radio"]');
       if (!input) return;
       state.metric = input.value;
+      if (state.projection) renderChart(state.projection);
+    });
+    document.getElementById('projection-platforms')?.addEventListener('change', event => {
+      const input = event.target.closest('input[type="radio"]');
+      if (!input) return;
+      state.platform = input.value;
+      savePlatform();
       if (state.projection) renderChart(state.projection);
     });
     window.addEventListener('rk:data-updated', () => {

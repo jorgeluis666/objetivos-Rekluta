@@ -3,7 +3,7 @@
 Dashboard de Agencia Lima Retail para controlar la inversion publicitaria de Rekluta
 
 
-Version actual: `v1.12.1`. El tablero reutiliza el codigo base de otro tablero de la agencia; de ahi
+Version actual: `v1.12.2`. El tablero reutiliza el codigo base de otro tablero de la agencia; de ahi
 viene la numeracion de version.
 
 ## Versionado
