@@ -137,80 +137,6 @@
   }
 }
 
-.sidebar-toggle {
-  position: fixed;
-  top: 24px;
-  left: 230px;
-  z-index: 30;
-  display: grid;
-  width: 40px;
-  height: 40px;
-  padding: 0;
-  place-items: center;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  color: var(--ink);
-  background: #fff;
-  box-shadow: 0 8px 24px rgba(15, 23, 42, .14);
-  cursor: pointer;
-  transition: left .24s ease, color .18s ease, border-color .18s ease, background .18s ease;
-}
-
-.sidebar-toggle:hover {
-  border-color: #C0CEE6;
-  color: var(--brand-text);
-  background: var(--brand-soft);
-}
-
-.sidebar-toggle:focus-visible {
-  outline: 3px solid rgba(185, 28, 28, .22);
-  outline-offset: 2px;
-}
-
-.sidebar-toggle svg {
-  width: 20px;
-  height: 20px;
-  fill: none;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 2;
-  transition: transform .24s ease;
-}
-
-.shell.sidebar-collapsed .sidebar {
-  width: 0;
-  min-width: 0;
-  padding-right: 0;
-  padding-left: 0;
-  transform: translateX(-100%);
-}
-
-.shell.sidebar-collapsed .sidebar-toggle {
-  left: 14px;
-}
-
-.shell.sidebar-collapsed .sidebar-toggle svg {
-  transform: rotate(180deg);
-}
-
-.shell.sidebar-collapsed .topbar {
-  padding-left: 70px;
-}
-
-@media(max-width:760px) {
-  .sidebar-toggle {
-    display: none;
-  }
-
-  .shell.sidebar-collapsed .sidebar {
-    width: 100%;
-    min-width: 0;
-    padding: 22px 14px;
-    transform: none;
-  }
-}
-
 .sr-only {
   position: absolute;
   width: 1px;
@@ -855,28 +781,6 @@
   color: #64748b;
 }
 
-.sidebar-toggle {
-  top: 34px;
-  left: 267px;
-  width: 48px;
-  height: 48px;
-  border-color: #d8e2ee;
-  border-radius: 11px;
-  color: #17233a;
-  background: #ffffff;
-  box-shadow: 0 12px 30px rgba(15, 23, 42, .12);
-}
-
-.sidebar-toggle:hover {
-  border-color: #a9ccff;
-  color: #2563eb;
-  background: #eff6ff;
-}
-
-.shell.sidebar-collapsed .sidebar-toggle {
-  left: 14px;
-}
-
 @media(max-width:760px) {
   .sidebar {
     width: 100%;
@@ -888,6 +792,112 @@
 
   .s-brand {
     max-width: 280px;
+  }
+}
+
+/* ===== Sidebar minimizable ===== */
+
+.topbar-left {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 12px;
+}
+
+.sidebar-toggle {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  padding: 0;
+  place-items: center;
+  border: 1px solid #dbe5f2;
+  border-radius: 9px;
+  color: #52647d;
+  background: #ffffff;
+  cursor: pointer;
+  transition: background .15s, border-color .15s, color .15s;
+}
+
+.sidebar-toggle:hover {
+  border-color: #bfdbfe;
+  color: #2563eb;
+  background: #f8fbff;
+}
+
+.sidebar-toggle:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, .25);
+}
+
+.sidebar-toggle svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.sidebar-toggle .sidebar-toggle-arrow {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform .2s;
+}
+
+.shell.sidebar-collapsed .sidebar-toggle .sidebar-toggle-arrow {
+  transform: scaleX(-1);
+}
+
+.sidebar {
+  transition: width .2s ease, min-width .2s ease, padding .2s ease;
+}
+
+/* Escritorio: franja de iconos de 88px */
+.shell.sidebar-collapsed .sidebar {
+  width: 88px;
+  min-width: 88px;
+  padding: 28px 14px 20px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.shell.sidebar-collapsed .s-brand {
+  min-height: 72px;
+  padding: 0 0 18px;
+}
+
+.shell.sidebar-collapsed .s-brand::before {
+  left: 3px;
+}
+
+.shell.sidebar-collapsed .s-brand .s-title,
+.shell.sidebar-collapsed .s-brand .s-sub,
+.shell.sidebar-collapsed .s-group-lbl,
+.shell.sidebar-collapsed .s-text,
+.shell.sidebar-collapsed .module-status,
+.shell.sidebar-collapsed .s-modulo-activo,
+.shell.sidebar-collapsed .s-item::after {
+  display: none;
+}
+
+.shell.sidebar-collapsed .s-item {
+  min-height: 0;
+  justify-content: center;
+  padding: 8px;
+}
+
+/* "Usuarios y Claves" queda al fondo de la franja */
+.shell.sidebar-collapsed .s-item:last-of-type {
+  margin-top: auto;
+  margin-bottom: 0;
+}
+
+/* Telefono: el panel se oculta por completo */
+@media(max-width:900px) {
+  .shell.sidebar-collapsed .sidebar {
+    display: none;
   }
 }
 
