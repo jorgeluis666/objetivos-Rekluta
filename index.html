@@ -8,13 +8,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="css/dashboard.css?v=1.10.0">
+<link rel="stylesheet" href="css/dashboard.css?v=1.10.1">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js" integrity="sha512-ZwR1/gSZM3ai6vCdI+LVF1zSq/5HznD3ZSTk7kajkaj4D292NLuduDCO1c/NT8Id+jE58KYLKT7hXnbtryGmMg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
 <div class="shell">
   <aside class="sidebar" id="sidebar">
-    <div class="s-brand"><div class="s-title">Rekluta</div><div class="s-sub">BI Agencia Lima Retail <span class="app-version">v1.10.0</span></div></div>
+    <div class="s-brand"><div class="s-title">Rekluta</div><div class="s-sub">BI Agencia Lima Retail <span class="app-version">v1.10.1</span></div></div>
     <div class="s-group-lbl">Modulos activos</div>
     <button class="s-item active" type="button" data-view-target="view-obj">
       <div class="s-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
@@ -48,7 +48,7 @@
         <p class="section-desc">Inversion y resultados de las dos cuentas que administramos: TikTok Ads (facturada en soles) y Meta Ads (facturada en dolares). Cada plataforma se muestra en su moneda de facturacion, igual que en el reporte mensual.</p>
         <div class="kpi-strip" id="kpi-strip" aria-label="KPIs acumulados 2026"></div>
         <div class="panel chart-panel" id="chart-panel">
-          <div class="panel-head chart-panel-head"><div><div class="panel-title" id="chart-title">Evolucion mensual | Inversion | 2026</div><div class="panel-sub" id="chart-sub">TikTok Ads en S/. (eje izquierdo) y Meta Ads en US$ (eje derecho)</div></div><div class="chart-controls"><button type="button" class="chart-toggle" id="chart-toggle-btn" aria-expanded="true" aria-controls="monthly-chart-body" title="Minimizar grafico">-</button><div class="chart-series-toggles" id="chart-series-toggles" role="group" aria-label="Indicador del grafico"><label class="series-toggle active" data-series="spend"><input type="radio" name="ads-chart-metric" value="spend" checked>Inversion</label><label class="series-toggle" data-series="messageClicks"><input type="radio" name="ads-chart-metric" value="messageClicks">Clics a mensajes</label><label class="series-toggle" data-series="exposure"><input type="radio" name="ads-chart-metric" value="exposure">Exposicion</label></div><div class="chart-legend" id="chart-legend"></div></div></div>
+          <div class="panel-head chart-panel-head"><div><div class="panel-title" id="chart-title">Evolucion mensual | Inversion | 2026</div><div class="panel-sub" id="chart-sub">TikTok Ads en S/. (eje izquierdo) y Meta Ads en US$ (eje derecho)</div></div><div class="chart-controls"><button type="button" class="chart-toggle" id="chart-toggle-btn" aria-expanded="true" aria-controls="monthly-chart-body" title="Minimizar grafico">-</button><div class="chart-series-toggles" id="chart-series-toggles" role="group" aria-label="Indicador del grafico"><label class="series-toggle active" data-series="spend"><input type="radio" name="ads-chart-metric" value="spend" checked>Inversion</label><label class="series-toggle" data-series="clicks"><input type="radio" name="ads-chart-metric" value="clicks">Clics salientes</label><label class="series-toggle" data-series="exposure"><input type="radio" name="ads-chart-metric" value="exposure">Exposicion</label></div><div class="chart-legend" id="chart-legend"></div></div></div>
           <div class="chart-wrap h-360" id="monthly-chart-body"><canvas id="chart-monthly"></canvas></div>
         </div>
         <div class="month-tabs" id="month-tabs"></div>
@@ -56,7 +56,7 @@
         <div class="ads-platforms" id="ads-platforms"></div>
         <div class="panel campaigns-panel">
           <div class="panel-head campaigns-panel-head"><div><div class="panel-title" id="campaigns-title">Campanas del mes</div><div class="panel-sub" id="campaigns-sub"></div></div><div class="chart-series-toggles" id="campaigns-filter" role="group" aria-label="Filtrar por plataforma"><label class="series-toggle active" data-series="all"><input type="radio" name="ads-platform-filter" value="all" checked>Ambas</label><label class="series-toggle" data-series="tiktok"><input type="radio" name="ads-platform-filter" value="tiktok">TikTok Ads</label><label class="series-toggle" data-series="meta"><input type="radio" name="ads-platform-filter" value="meta">Meta Ads</label></div></div>
-          <div class="table-scroll"><table class="data-table campaigns-table ads-table"><thead><tr><th>Plataforma</th><th>Campana</th><th>Tipo</th><th>Pais</th><th class="num">Inversion</th><th class="num">% plataforma</th><th class="num">Resultado principal</th><th class="num">Impresiones</th><th class="num">CPM</th><th class="num">Clics</th><th class="num">Costo por clic</th><th class="num">Seguidores</th><th>Mejores anuncios</th></tr></thead><tbody id="campaigns-body"></tbody></table></div>
+          <div class="table-scroll"><table class="data-table campaigns-table ads-table"><thead><tr><th>Plataforma</th><th>Campana</th><th>Tipo</th><th>Pais</th><th class="num">Inversion</th><th class="num">% plataforma</th><th class="num">Resultado principal</th><th class="num">Impresiones</th><th class="num">CPM</th><th class="num">Clics salientes</th><th class="num">Costo por clic</th><th class="num">Seguidores de pago</th><th>Mejores anuncios</th></tr></thead><tbody id="campaigns-body"></tbody></table></div>
         </div>
         <div class="panel ads-checks-panel">
           <div class="panel-head"><div><div class="panel-title">Cruce con el reporte mensual</div><div class="panel-sub" id="checks-sub"></div></div></div>
@@ -191,7 +191,7 @@
           </div>
           <div class="table-scroll">
             <table class="data-table history-table">
-              <thead><tr><th>Mes</th><th>Plataforma</th><th>Campaña</th><th>Tipo</th><th>País</th><th class="num">Inversión</th><th class="num">Resultado principal</th><th class="num">Clics</th><th>Mejores anuncios</th><th>Periodo</th></tr></thead>
+              <thead><tr><th>Mes</th><th>Plataforma</th><th>Campaña</th><th>Tipo</th><th>País</th><th class="num">Inversión</th><th class="num">Resultado principal</th><th class="num">Clics salientes</th><th>Mejores anuncios</th><th>Periodo</th></tr></thead>
               <tbody id="history-body"></tbody>
             </table>
           </div>
@@ -268,7 +268,7 @@
     <div class="reports-modal-foot">La vista previa usa el visor de Google Drive: necesitas iniciar sesion con una cuenta que tenga acceso a la carpeta compartida.</div>
   </div>
 </div>
-<script src="js/objectives.js?v=1.10.0"></script>
+<script src="js/objectives.js?v=1.10.1"></script>
 <script src="js/messages-calculator.js?v=1.9.2"></script>
 <script src="js/reports-archive.js?v=1.9.3"></script>
 <script src="js/projections.js?v=1.10.0"></script>

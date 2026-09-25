@@ -3,7 +3,7 @@
 Dashboard de Agencia Lima Retail para controlar la inversion publicitaria de Rekluta
 
 
-Version actual: `v1.10.0`. El tablero reutiliza el codigo base de otro tablero de la agencia; de ahi
+Version actual: `v1.10.1`. El tablero reutiliza el codigo base de otro tablero de la agencia; de ahi
 viene la numeracion de version.
 
 ## Versionado
@@ -18,7 +18,9 @@ El proyecto usa la nomenclatura `vMAJOR.MINOR.PATCH`:
 
 - Gasto publicitario de las dos cuentas administradas: TikTok Ads (S/.) y Meta Ads (US$).
   - Cada plataforma se muestra en su moneda de facturacion, sin conversion, igual que el reporte mensual.
-  - KPIs acumulados del ano, grafico mensual (inversion, clics a mensajes y exposicion) y detalle por mes.
+  - Indicadores: TikTok = visualizaciones, seguidores de pago y clics salientes; Meta = clics salientes y
+    alcance tomado de la columna Resultados de las campanas de Reconocimiento.
+  - KPIs acumulados del ano, grafico lineal mensual (inversion, clics salientes y exposicion) y detalle por mes.
   - Por mes: tarjeta por plataforma, distribucion Reconocimiento / Seguidores / Mensajes, campanas con su
     resultado principal y los mejores anuncios (con vista previa en Meta).
   - Cruce con el reporte mensual: cada total calculado desde las exportaciones se compara con el resumen del PDF.
