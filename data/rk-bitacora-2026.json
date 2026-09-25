@@ -1,5 +1,21 @@
 {
   "year": 2026,
   "updatedAt": "2026-09-24",
-  "entries": []
+  "items": [
+    { "id": "b01", "date": "2026-01-01", "type": "cambio", "platform": "tiktok", "done": true, "text": "Punto de partida: 5 campañas (Reconocimiento, Seguidores y Mensajes) con S/. 1,997.97 en el mes" },
+    { "id": "b02", "date": "2026-01-01", "type": "cambio", "platform": "meta", "done": true, "text": "Punto de partida: 4 campañas (Reconocimiento y Mensajes) con US$ 243.77 en el mes" },
+    { "id": "b03", "date": "2026-01-31", "type": "comentario", "platform": "tiktok", "done": true, "text": "Enero se pautó en la cuenta anterior: las cifras salen del reporte PDF" },
+    { "id": "b04", "date": "2026-02-28", "type": "comentario", "platform": "tiktok", "done": true, "text": "Febrero se pautó en la cuenta anterior: las cifras salen del reporte PDF" },
+    { "id": "b05", "date": "2026-03-01", "type": "cambio", "platform": "meta", "done": true, "text": "Inversión sube de US$ 246.51 a US$ 575.16 (+133%): Reconocimiento US$ 402.89 y Mensajes US$ 172.27" },
+    { "id": "b06", "date": "2026-03-09", "type": "cambio", "platform": "tiktok", "done": true, "text": "Pasa a la cuenta actual; la pauta arranca el 9 de marzo" },
+    { "id": "b07", "date": "2026-03-09", "type": "cambio", "platform": "tiktok", "done": true, "text": "Seguidores baja de S/. 972.89 a S/. 161.67 y se abren campañas de seguimiento por país (de 5 a 7 campañas)" },
+    { "id": "b08", "date": "2026-03-09", "type": "cambio", "platform": "tiktok", "done": true, "text": "Reconocimiento sube a S/. 1,348.98 (+97%) y Mensajes a S/. 455.58 (+58%)" },
+    { "id": "b09", "date": "2026-04-01", "type": "cambio", "platform": "tiktok", "done": true, "text": "Se pausa Seguidores; quedan 4 campañas: Reconocimiento S/. 1,495.97 y Mensajes S/. 504.03" },
+    { "id": "b10", "date": "2026-05-01", "type": "cambio", "platform": "tiktok", "done": true, "text": "Mensajes sube a S/. 599.02 (+19%)" },
+    { "id": "b11", "date": "2026-06-01", "type": "cambio", "platform": "tiktok", "done": true, "text": "Mensajes baja a S/. 400.18 (-33%) y Reconocimiento sube a S/. 1,599.69 (+14%)" },
+    { "id": "b12", "date": "2026-06-08", "type": "cambio", "platform": "meta", "done": true, "text": "Se pausa Mensajes; solo Reconocimiento desde el 8 de junio (US$ 480.14 en el mes)" },
+    { "id": "b13", "date": "2026-07-01", "type": "cambio", "platform": "meta", "done": true, "text": "Reconocimiento baja de US$ 480.14 a US$ 179.90 (-63%)" },
+    { "id": "b14", "date": "2026-08-05", "type": "cambio", "platform": "meta", "done": true, "text": "Vuelve Mensajes (US$ 283.99) y Reconocimiento sube a US$ 400.04; pauta desde el 5 de agosto, total US$ 684.03" },
+    { "id": "b15", "date": "2026-09-20", "type": "comentario", "platform": "general", "done": false, "text": "Septiembre en curso: datos al 20 de septiembre tomados del reporte; cerrar con las exportaciones del mes" }
+  ]
 }

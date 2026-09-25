@@ -31,10 +31,10 @@
     },
     'view-log': {
       title: 'Bitácora',
-      caption: 'Cambios, comentarios y decisiones por mes',
-      status: 'Datos al 20 de septiembre',
-      source: 'Fuente: Gasto publicitario + registro del equipo',
-      footer: 'Los cambios detectados en los datos se actualizan solos',
+      caption: 'Checklist de cambios, comentarios y decisiones',
+      status: 'Editable',
+      source: 'Fuente: registro de Agencia Lima Retail',
+      footer: 'Las ediciones quedan como borrador hasta exportar y publicar el archivo',
     },
   };
 
