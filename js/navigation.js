@@ -29,6 +29,13 @@
       source: 'Fuente: Carpeta compartida Reportes Rekluta / Google Drive',
       footer: 'Vista previa y descarga directa desde Drive',
     },
+    'view-log': {
+      title: 'Bitácora',
+      caption: 'Cambios, comentarios y decisiones por mes',
+      status: 'Datos al 20 de septiembre',
+      source: 'Fuente: Gasto publicitario + registro del equipo',
+      footer: 'Los cambios detectados en los datos se actualizan solos',
+    },
   };
 
   function storedView() {
@@ -73,6 +80,7 @@
     if (viewId === 'view-obj') window.setTimeout(() => window.dispatchEvent(new Event('resize')), 0);
     if (viewId === 'view-history') window.RKObjectives?.renderHistory?.();
     if (viewId === 'view-reports') window.ReportsArchive?.init();
+    if (viewId === 'view-log') window.RKBitacora?.init();
   }
 
   function initNavigation() {

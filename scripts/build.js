@@ -51,8 +51,10 @@ function main() {
   const sidebar = readFile('js/sidebar.js');
   const reportsArchive = readFile('js/reports-archive.js');
   const projections = readFile('js/projections.js');
+  const bitacora = readFile('js/bitacora.js');
   const data = readFile('data/rk-ads-2026.json').replace(/</g, '\\u003c');
   const driveReports = readFile('data/rk-drive-reports.json').replace(/</g, '\\u003c');
+  const bitacoraData = readFile('data/rk-bitacora-2026.json').replace(/</g, '\\u003c');
 
   html = html.replace(
     new RegExp('<link rel=\"stylesheet\" href=\"css/dashboard\\.css(?:\\?v=[^\"]+)?\">'),
@@ -79,8 +81,12 @@ function main() {
     `<script>${reportsArchive}</script>`
   );
   html = html.replace(
+    new RegExp('<script src="js\\/bitacora\\.js(?:\\?v=[^"]+)?"><\\/script>'),
+    `<script>${bitacora}</script>`
+  );
+  html = html.replace(
     '</head>',
-    `<script>window.RK_ADS_DATA = ${data};window.RK_DRIVE_REPORTS = ${driveReports};</script></head>`
+    `<script>window.RK_ADS_DATA = ${data};window.RK_DRIVE_REPORTS = ${driveReports};window.RK_BITACORA = ${bitacoraData};</script></head>`
   );
 
   fs.rmSync(DIST_DIR, { recursive: true, force: true });
@@ -89,6 +95,11 @@ function main() {
   fs.copyFileSync(
     path.join(ROOT, 'data', 'rk-ads-2026.json'),
     path.join(DIST_DIR, 'data', 'rk-ads-2026.json')
+  );
+
+  fs.copyFileSync(
+    path.join(ROOT, 'data', 'rk-bitacora-2026.json'),
+    path.join(DIST_DIR, 'data', 'rk-bitacora-2026.json')
   );
 
   fs.copyFileSync(

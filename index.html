@@ -8,13 +8,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="css/dashboard.css?v=1.11.0">
+<link rel="stylesheet" href="css/dashboard.css?v=1.12.0">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 </head>
 <body>
 <div class="shell">
   <aside class="sidebar" id="sidebar">
-    <div class="s-brand"><div class="s-title">Rekluta</div><div class="s-sub">BI Agencia Lima Retail <span class="app-version">v1.11.0</span></div></div>
+    <div class="s-brand"><div class="s-title">Rekluta</div><div class="s-sub">BI Agencia Lima Retail <span class="app-version">v1.12.0</span></div></div>
     <div class="s-group-lbl">Modulos activos</div>
     <button class="s-item active" type="button" data-view-target="view-obj">
       <div class="s-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
@@ -31,6 +31,10 @@
     <button class="s-item" type="button" data-view-target="view-reports">
       <div class="s-icon"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="16" x2="13" y2="16"/></svg></div>
       <div class="s-text"><div class="s-title-nav">Archivo de Reportes</div><div class="s-desc-nav">Documentos en Drive</div></div>
+    </button>
+    <button class="s-item" type="button" data-view-target="view-log">
+      <div class="s-icon"><svg viewBox="0 0 24 24"><path d="M5 4a2 2 0 0 1 2-2h11v18H7a2 2 0 0 0-2 2z"/><path d="M5 22V4"/><line x1="9" y1="7" x2="14" y2="7"/><line x1="9" y1="11" x2="14" y2="11"/></svg></div>
+      <div class="s-text"><div class="s-title-nav">Bitácora</div><div class="s-desc-nav">Cambios, comentarios y decisiones</div></div>
     </button>
     <div class="s-modulo-activo"><div class="s-ma-label">CUENTA</div><div class="s-ma-name">Rekluta</div><div class="s-ma-desc">Control de pauta digital</div></div>
   </aside>
@@ -168,6 +172,31 @@
         </div>
       </section>
 
+      <section class="view" id="view-log">
+        <div class="sec-lbl">05 - Bitácora</div>
+        <h1 class="section-title">Bitácora</h1>
+        <p class="section-desc">Registro mensual de los cambios, comentarios y decisiones de la cuenta. Los cambios de campañas, presupuesto y cuentas se detectan en los datos de Gasto publicitario; los comentarios y decisiones los registra el equipo.</p>
+        <div class="kpi-strip log-kpis" id="log-kpis" aria-label="KPIs de la bitácora"></div>
+        <div class="log-toolbar">
+          <div class="chart-series-toggles" id="log-type-filter" role="group" aria-label="Filtrar por tipo de registro">
+            <label class="series-toggle active" data-series="all"><input type="radio" name="log-type" value="all" checked>Todo</label>
+            <label class="series-toggle" data-series="cambio"><input type="radio" name="log-type" value="cambio">Cambios</label>
+            <label class="series-toggle" data-series="comentario"><input type="radio" name="log-type" value="comentario">Comentarios</label>
+            <label class="series-toggle" data-series="decision"><input type="radio" name="log-type" value="decision">Decisiones</label>
+          </div>
+          <label class="reports-field" for="log-platform">
+            <span class="sr-only">Filtrar por plataforma</span>
+            <select id="log-platform">
+              <option value="all">Todas las plataformas</option>
+              <option value="tiktok">TikTok Ads</option>
+              <option value="meta">Meta Ads</option>
+            </select>
+          </label>
+        </div>
+        <div class="panel-sub" id="log-sub"></div>
+        <div class="log-months" id="log-months"></div>
+      </section>
+
       <div class="site-footer"><span id="footer-source">Fuente: Meta Ads + TikTok Ads / exportaciones y reportes mensuales</span><span id="footer-status">Sincronizado por Agencia Lima Retail</span></div>
     </div>
   </main>
@@ -192,7 +221,8 @@
 <script src="js/objectives.js?v=1.11.0"></script>
 <script src="js/reports-archive.js?v=1.9.3"></script>
 <script src="js/projections.js?v=1.11.0"></script>
-<script src="js/navigation.js?v=1.11.0"></script>
+<script src="js/bitacora.js?v=1.12.0"></script>
+<script src="js/navigation.js?v=1.12.0"></script>
 <script src="js/sidebar.js?v=1.9.3"></script>
 <script src="auth-login.js?v=1.9.3"></script>
 <script>

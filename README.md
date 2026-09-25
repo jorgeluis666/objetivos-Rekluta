@@ -3,7 +3,7 @@
 Dashboard de Agencia Lima Retail para controlar la inversion publicitaria de Rekluta
 
 
-Version actual: `v1.11.0`. El tablero reutiliza el codigo base de otro tablero de la agencia; de ahi
+Version actual: `v1.12.0`. El tablero reutiliza el codigo base de otro tablero de la agencia; de ahi
 viene la numeracion de version.
 
 ## Versionado
@@ -27,6 +27,7 @@ El proyecto usa la nomenclatura `vMAJOR.MINOR.PATCH`:
 - Proyecciones: cierre de mes estimado de TikTok Ads y Meta Ads (ver abajo).
 - Historico de Campanas: campanas de los meses cerrados.
 - Archivo de Reportes: catalogo de los documentos guardados en la carpeta de Google Drive.
+- Bitacora: cambios, comentarios y decisiones de cada mes (ver abajo).
 
 ## Datos
 
@@ -72,6 +73,33 @@ moneda de facturacion (TikTok Ads en S/., Meta Ads en US$), sin tipo de cambio.
   constante; se comparan con el mes anterior.
 - Cada proyeccion se compara con el cierre del mes anterior con datos.
 - Cada carga de datos emite el evento `rk:data-updated` y el modulo se recalcula solo.
+
+## Bitacora
+
+El modulo Bitacora consolida por mes tres columnas: Cambios, Comentarios y Decisiones. Tiene dos fuentes:
+
+- **Detectado en los datos** (`js/bitacora.js`, se recalcula con `rk:data-updated`): compara cada mes con el
+  anterior de la misma plataforma y registra cambio de cuenta, tipos de campana que se activan o pausan,
+  variaciones de inversion total o por tipo de campana de 10% o mas (solo meses cerrados), cambios en el
+  numero de campanas, pauta que arranca despues del dia 1, meses tomados del reporte PDF y diferencias con el reporte.
+- **Registrado por el equipo** (`data/rk-bitacora-2026.json`): comentarios, decisiones y cambios que no salen
+  de los datos. Cada registro va en `entries`:
+
+```json
+{
+  "month": "Agosto",
+  "type": "decision",
+  "platform": "meta",
+  "date": "2026-08-04",
+  "author": "Agencia Lima Retail",
+  "title": "Reactivar la campana de Mensajes en Meta",
+  "detail": "Se retoma con US$ 280 al mes para captar postulantes por WhatsApp."
+}
+```
+
+- `type`: `cambio`, `comentario` o `decision`. `platform`: `tiktok`, `meta` o `general`.
+- `month` usa el nombre del mes como en `rk-ads-2026.json` (`Enero` ... `Diciembre`). `date`, `author` y `detail` son opcionales.
+- Actualizar `updatedAt` al editar el archivo. El build lo incrusta en `dist/index.html` como los demas datos.
 
 ## Configuracion pendiente
 
