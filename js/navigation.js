@@ -4,9 +4,9 @@
     'view-obj': {
       title: 'Gasto publicitario 2026',
       caption: 'Agencia Lima Retail',
-      status: 'Datos al 17 de septiembre',
-      source: 'Fuente: Google Sheets / Rekluta',
-      footer: 'Sincronizado por Agencia Lima Retail',
+      status: 'Datos al 20 de septiembre',
+      source: 'Fuente: Meta Ads + TikTok Ads / exportaciones y reportes mensuales',
+      footer: 'Cruzado con el reporte mensual de Agencia Lima Retail',
     },
     'view-messages': {
       title: 'Proyecciones',
@@ -17,10 +17,10 @@
     },
     'view-history': {
       title: 'Histórico de Campañas',
-      caption: 'Campañas finalizadas',
-      status: 'Datos al 17 de septiembre',
-      source: 'Fuente: Rekluta / Histórico consolidado',
-      footer: 'Solo campañas finalizadas',
+      caption: 'Campañas de meses cerrados',
+      status: 'Cierre al 31 de agosto',
+      source: 'Fuente: Meta Ads + TikTok Ads / Histórico consolidado',
+      footer: 'Solo meses cerrados',
     },
     'view-reports': {
       title: 'Archivo de Reportes',

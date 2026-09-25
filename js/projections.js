@@ -282,7 +282,7 @@
 
   function renderEmpty() {
     const panel = document.getElementById('projection-panel');
-    if (panel) panel.innerHTML = '<div class="empty-state"><strong>Sin datos para proyectar</strong>Todavia no hay gasto registrado en el mes en curso.</div>';
+    if (panel) panel.innerHTML = '<div class="empty-state"><strong>Sin datos para proyectar</strong>La proyeccion trabaja con un solo monto en soles y el gasto de Rekluta esta en dos monedas (TikTok Ads en S/. y Meta Ads en US$).</div>';
     const body = document.getElementById('projection-body');
     if (body) body.innerHTML = '<tr><td class="table-empty" colspan="6">Sin datos para proyectar.</td></tr>';
   }
