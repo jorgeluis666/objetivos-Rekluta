@@ -1,116 +1,4292 @@
 {
-  "account": "Rekluta",
-  "year": 2026,
-  "cutoff": null,
-  "source": "Sin datos cargados",
-  "months": [
-    {
-      "name": "Enero",
-      "spend": 0,
-      "spendBreakdown": {
-        "sales": 0,
-        "branding": 0
+ "account": "Rekluta",
+ "year": 2026,
+ "cutoff": "2026-09-20",
+ "generatedAt": "2026-09-24",
+ "source": "Exportaciones de Meta Ads y TikTok Ads + reportes mensuales (Google Drive)",
+ "platforms": {
+  "tiktok": {
+   "label": "TikTok Ads",
+   "currency": "PEN",
+   "symbol": "S/."
+  },
+  "meta": {
+   "label": "Meta Ads",
+   "currency": "USD",
+   "symbol": "US$"
+  }
+ },
+ "months": [
+  {
+   "name": "Enero",
+   "status": "cerrado",
+   "period": "1 - 31 Enero 2026",
+   "report": {
+    "title": "Reporte_Rekluta_Enero_2026.pdf",
+    "period": "1 - 31 Enero 2026",
+    "id": "1j7RAceAiHUVTblrm3aUooKxy2qWkHlLL"
+   },
+   "platforms": {
+    "tiktok": {
+     "source": "reporte",
+     "account": "Cuenta anterior",
+     "firstDay": null,
+     "lastDay": null,
+     "kpis": {
+      "spend": 1997.97,
+      "impressions": null,
+      "views": 1798122.0,
+      "clicks": 6683.0,
+      "followers": 2939.0,
+      "profileVisits": 5786,
+      "messageClicks": 5204.0
+     },
+     "spendByGroup": {
+      "Reconocimiento": 698.48,
+      "Seguidores": 999.53,
+      "Mensajes": 299.96
+     },
+     "campaigns": [
+      {
+       "name": "Mensajes / Tráfico",
+       "objective": "Mensajes / Tráfico",
+       "group": "Mensajes",
+       "country": "Multipaís",
+       "spend": 299.96,
+       "topAds": [
+        {
+         "name": "Soldadores 6GR",
+         "truncated": true,
+         "clicks": 1020,
+         "views": 35269,
+         "spend": 60.66
+        },
+        {
+         "name": "Pintores, maquinaria pesada, albañiles",
+         "truncated": true,
+         "clicks": 987,
+         "views": 28964,
+         "spend": 58.5
+        },
+        {
+         "name": "Quieres postular a Rekluta?",
+         "truncated": true,
+         "clicks": 678,
+         "views": 20209,
+         "spend": 37.43
+        },
+        {
+         "name": "Pintores",
+         "truncated": true,
+         "clicks": 631,
+         "views": 20172,
+         "spend": 36.41
+        }
+       ],
+       "views": 163242,
+       "clicks": 5204,
+       "profileVisits": 4605,
+       "cpm": null
       },
-      "campaigns": []
+      {
+       "name": "Campaña de seguimiento",
+       "objective": "Interacción con la comunidad",
+       "group": "Seguidores",
+       "country": "Multipaís",
+       "spend": 999.53,
+       "views": 313663,
+       "followers": 2824,
+       "topAds": [],
+       "followersByCountry": [
+        {
+         "country": "Perú",
+         "followers": 1682
+        },
+        {
+         "country": "Chile",
+         "followers": 749
+        },
+        {
+         "country": "Ecuador",
+         "followers": 393
+        }
+       ]
+      },
+      {
+       "name": "Reconocimiento Perú",
+       "objective": "Reconocimiento",
+       "group": "Reconocimiento",
+       "country": "Perú",
+       "spend": 262.33,
+       "topAds": [
+        {
+         "name": "Pintura Industrial",
+         "truncated": true,
+         "views": 161206,
+         "clicks": 209,
+         "spend": 80.31
+        },
+        {
+         "name": "INSTALADOR DE DRYWALL",
+         "truncated": true,
+         "views": 94381,
+         "clicks": 113,
+         "spend": 47.88
+        },
+        {
+         "name": "Pintores",
+         "truncated": true,
+         "views": 64304,
+         "clicks": 94,
+         "spend": 32.66
+        },
+        {
+         "name": "¿Tienes experiencia como encargada de",
+         "truncated": true,
+         "views": 44134,
+         "clicks": 61,
+         "spend": 21.26
+        }
+       ],
+       "views": 521425,
+       "impressions": 527079,
+       "clicks": 0,
+       "profileVisits": 381,
+       "cpm": 0.5
+      },
+      {
+       "name": "Reconocimiento Chile",
+       "objective": "Reconocimiento",
+       "group": "Reconocimiento",
+       "country": "Chile",
+       "spend": 261.37,
+       "topAds": [
+        {
+         "name": "¿Quieres trabajar en España con Reklut",
+         "truncated": true,
+         "views": 97449,
+         "clicks": 164,
+         "spend": 58.55
+        },
+        {
+         "name": "¡Atención Soldadores 6G!",
+         "truncated": true,
+         "views": 96680,
+         "clicks": 167,
+         "spend": 57.23
+        },
+        {
+         "name": "Soldadores 4G",
+         "truncated": true,
+         "views": 82820,
+         "clicks": 123,
+         "spend": 49.46
+        },
+        {
+         "name": "Pintores y Arenadores",
+         "truncated": true,
+         "views": 73715,
+         "clicks": 0,
+         "spend": 44.07
+        }
+       ],
+       "views": 436002,
+       "impressions": 439265,
+       "clicks": 0,
+       "profileVisits": 523,
+       "cpm": 0.6
+      },
+      {
+       "name": "Reconocimiento Ecuador",
+       "objective": "Reconocimiento",
+       "group": "Reconocimiento",
+       "country": "Ecuador",
+       "spend": 174.78,
+       "topAds": [
+        {
+         "name": "¿Quieres trabajar en España con Reklut",
+         "truncated": true,
+         "views": 221413,
+         "clicks": 366,
+         "spend": 108.44
+        },
+        {
+         "name": "CV",
+         "truncated": true,
+         "views": 139147,
+         "clicks": 0,
+         "spend": 64.85
+        },
+        {
+         "name": "Agricultores especializados en banano",
+         "truncated": true,
+         "views": 3230,
+         "clicks": 0,
+         "spend": 1.49
+        }
+       ],
+       "views": 363790,
+       "impressions": 367054,
+       "clicks": 0,
+       "profileVisits": 277,
+       "cpm": 0.48
+      }
+     ]
     },
-    {
-      "name": "Febrero",
-      "spend": 0,
-      "spendBreakdown": {
-        "sales": 0,
-        "branding": 0
+    "meta": {
+     "source": "excel",
+     "account": null,
+     "firstDay": "2026-01-01",
+     "lastDay": "2026-01-31",
+     "kpis": {
+      "spend": 243.77,
+      "impressions": 1183554,
+      "reach": 1131190,
+      "clicks": 4804,
+      "interactions": 1986,
+      "messageClicks": 3754
+     },
+     "spendByGroup": {
+      "Mensajes": 84.83,
+      "Reconocimiento": 158.94
+     },
+     "campaigns": [
+      {
+       "name": "Campaña Mensajes | LR -  Total",
+       "objective": "Interacción",
+       "group": "Mensajes",
+       "country": "Multipaís",
+       "spend": 84.83,
+       "impressions": 121652,
+       "reach": 90795,
+       "clicks": 3754,
+       "interactions": 1592,
+       "cpm": 0.7,
+       "cpc": 0.0226,
+       "topAds": [
+        {
+         "name": "Banano",
+         "clicks": 978,
+         "reach": 16166,
+         "spend": 14.96,
+         "url": "https://www.facebook.com/?feed_demo_ad=120241855215880210&h=AQJA8nhAYWE4MRjsAISzpaJGJ4I"
+        },
+        {
+         "name": "¡Atención Perú y Ecuador!",
+         "clicks": 683,
+         "reach": 16216,
+         "spend": 20.25,
+         "url": "https://www.facebook.com/?feed_demo_ad=120238366525630210&h=AQK3PDIKB0ccwX4GByhhGiMMHtc"
+        },
+        {
+         "name": "¿Eres calderero y buscas trabajar en España?",
+         "clicks": 518,
+         "reach": 8883,
+         "spend": 13.22,
+         "url": "https://www.facebook.com/?feed_demo_ad=120235391871500210&h=AQIqERfaM8W-ip_t-tQOCsUZLio"
+        },
+        {
+         "name": "¡Atención pintores industriales!",
+         "clicks": 326,
+         "reach": 13324,
+         "spend": 8.73,
+         "url": "https://www.facebook.com/?feed_demo_ad=120235391921780210&h=AQL7e3qqX64E1HNGqOVzw4g8biE"
+        },
+        {
+         "name": "¡Una nueva oportunidad laboral en España te espera! 🇪🇸",
+         "clicks": 288,
+         "reach": 9884,
+         "spend": 6.05,
+         "url": "https://www.facebook.com/?feed_demo_ad=120236021871210210&h=AQLHlJ11UeM3eLpHa94iI8LGq9Y"
+        }
+       ]
       },
-      "campaigns": []
-    },
-    {
-      "name": "Marzo",
-      "spend": 0,
-      "spendBreakdown": {
-        "sales": 0,
-        "branding": 0
+      {
+       "name": "Campaña R | LR - 2 - Perú",
+       "objective": "Reconocimiento",
+       "group": "Reconocimiento",
+       "country": "Perú",
+       "spend": 73.93,
+       "impressions": 549928,
+       "reach": 538855,
+       "clicks": 531,
+       "interactions": 223,
+       "cpm": 0.13,
+       "cpc": 0.1392,
+       "topAds": [
+        {
+         "name": "Nuevas convocatorias laborales en España 🇪🇸",
+         "clicks": 245,
+         "reach": 159087,
+         "spend": 24.14,
+         "url": "https://www.facebook.com/?feed_demo_ad=120236021829270210&h=AQJ704rFnhhJThzCI6MlnvLQgC0"
+        },
+        {
+         "name": "¡Atención Perú y Ecuador!",
+         "clicks": 101,
+         "reach": 45849,
+         "spend": 6.82,
+         "url": "https://www.facebook.com/?feed_demo_ad=120238366462850210&h=AQKkcQu3EIi5vWiJLjcjryH3UFo"
+        },
+        {
+         "name": "¿Eres electricista y sueñas con trabajar en España?",
+         "clicks": 55,
+         "reach": 35457,
+         "spend": 4.17,
+         "url": "https://www.facebook.com/?feed_demo_ad=120235391680400210&h=AQLqzZjm2acN3XdWeedIkNwY_bE"
+        },
+        {
+         "name": "¿Eres calderero y buscas trabajar en España?",
+         "clicks": 47,
+         "reach": 39381,
+         "spend": 5.4,
+         "url": "https://www.facebook.com/?feed_demo_ad=120235391774150210&h=AQIuQxRCyOXC4vv7XLEmsCpsDt8"
+        },
+        {
+         "name": "✈️🇪🇸 ¡Este puede ser el inicio de una nueva etapa en tu vida profesional!",
+         "clicks": 33,
+         "reach": 111858,
+         "spend": 12.18,
+         "url": "https://www.facebook.com/?feed_demo_ad=120235964103620210&h=AQIMsqpdPV11geByY-DMgPbYAW0"
+        }
+       ]
       },
-      "campaigns": []
-    },
-    {
-      "name": "Abril",
-      "spend": 0,
-      "spendBreakdown": {
-        "sales": 0,
-        "branding": 0
+      {
+       "name": "Campaña R | LR - 2 - Chile",
+       "objective": "Reconocimiento",
+       "group": "Reconocimiento",
+       "country": "Chile",
+       "spend": 51.0,
+       "impressions": 288477,
+       "reach": 280300,
+       "clicks": 289,
+       "interactions": 90,
+       "cpm": 0.18,
+       "cpc": 0.1765,
+       "topAds": [
+        {
+         "name": "¿Eres soldador 6G FCAW con experiencia comprobada?",
+         "clicks": 287,
+         "reach": 258582,
+         "spend": 47.51,
+         "url": "https://www.facebook.com/?feed_demo_ad=120237483309450210&h=AQIcL-2I9iFi0EEJTdJ8NAevxXI"
+        },
+        {
+         "name": "¿Quieres un CV profesional en minutos?",
+         "clicks": 2,
+         "reach": 17874,
+         "spend": 2.82,
+         "url": "https://www.facebook.com/?feed_demo_ad=120237483309460210&h=AQKPx5PpS_39d1H4SPxiAy25mxY"
+        },
+        {
+         "name": "¿Sabes qué hace diferente a Rekluta?",
+         "clicks": 0,
+         "reach": 3844,
+         "spend": 0.67,
+         "url": "https://www.facebook.com/?feed_demo_ad=120237483309470210&h=AQIayLco3rnrQLGN70hdoCzbaSs"
+        }
+       ]
       },
-      "campaigns": []
-    },
-    {
-      "name": "Mayo",
-      "spend": 0,
-      "spendBreakdown": {
-        "sales": 0,
-        "branding": 0
-      },
-      "campaigns": []
-    },
-    {
-      "name": "Junio",
-      "spend": 0,
-      "spendBreakdown": {
-        "sales": 0,
-        "branding": 0
-      },
-      "campaigns": []
-    },
-    {
-      "name": "Julio",
-      "spend": 0,
-      "spendBreakdown": {
-        "sales": 0,
-        "branding": 0
-      },
-      "campaigns": []
-    },
-    {
-      "name": "Agosto",
-      "spend": 0,
-      "spendBreakdown": {
-        "sales": 0,
-        "branding": 0
-      },
-      "campaigns": []
-    },
-    {
-      "name": "Septiembre",
-      "spend": 0,
-      "spendBreakdown": {
-        "sales": 0,
-        "branding": 0
-      },
-      "campaigns": []
-    },
-    {
-      "name": "Octubre",
-      "spend": 0,
-      "spendBreakdown": {
-        "sales": 0,
-        "branding": 0
-      },
-      "campaigns": []
-    },
-    {
-      "name": "Noviembre",
-      "spend": 0,
-      "spendBreakdown": {
-        "sales": 0,
-        "branding": 0
-      },
-      "campaigns": []
-    },
-    {
-      "name": "Diciembre",
-      "spend": 0,
-      "spendBreakdown": {
-        "sales": 0,
-        "branding": 0
-      },
-      "campaigns": []
+      {
+       "name": "Campaña R | LR - 2 - Ecuador",
+       "objective": "Reconocimiento",
+       "group": "Reconocimiento",
+       "country": "Ecuador",
+       "spend": 34.01,
+       "impressions": 223497,
+       "reach": 221240,
+       "clicks": 230,
+       "interactions": 81,
+       "cpm": 0.15,
+       "cpc": 0.1479,
+       "topAds": [
+        {
+         "name": "🇪🇨 ¡Ecuador ya es parte de Rekluta!",
+         "clicks": 120,
+         "reach": 130511,
+         "spend": 20.49,
+         "url": "https://www.facebook.com/?feed_demo_ad=120237483292920210&h=AQLwxdlDlxsQHPQEYjhK5A7gWRw"
+        },
+        {
+         "name": "🔧👷‍♂️ España necesita tu experiencia",
+         "clicks": 101,
+         "reach": 80350,
+         "spend": 11.82,
+         "url": "https://www.facebook.com/?feed_demo_ad=120237483292930210&h=AQLxbEVIhbLvBTtsxKY5IDD04j0"
+        },
+        {
+         "name": "¡ATENCIÓN ECUADOR! 🇪🇨",
+         "clicks": 3,
+         "reach": 971,
+         "spend": 0.16,
+         "url": "https://www.facebook.com/?feed_demo_ad=120237483292910210&h=AQKhRLQinzK441VLL5spe58K1u4"
+        },
+        {
+         "name": "🇪🇨 ¡Atención Ecuador!",
+         "clicks": 3,
+         "reach": 1459,
+         "spend": 0.25,
+         "url": "https://www.facebook.com/?feed_demo_ad=120237483292940210&h=AQI9GEWWJ310yAjf2mUZzwIKzCM"
+        },
+        {
+         "name": "¡Atención Perú y Ecuador!",
+         "clicks": 2,
+         "reach": 1326,
+         "spend": 0.23,
+         "url": "https://www.facebook.com/?feed_demo_ad=120238366486610210&h=AQJ2jRYWMUbotNQsSM8uPteHuk8"
+        }
+       ]
+      }
+     ]
     }
-  ]
+   },
+   "checks": [
+    {
+     "platform": "tiktok",
+     "metric": "spend",
+     "data": 1997.97,
+     "report": 1997.97,
+     "diff": 0.0,
+     "ok": true,
+     "scope": "campanas vs resumen del reporte"
+    },
+    {
+     "platform": "meta",
+     "metric": "spend",
+     "data": 243.77,
+     "report": 243.77,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "meta",
+     "metric": "clicks",
+     "data": 4804,
+     "report": 4804.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "meta",
+     "metric": "messageClicks",
+     "data": 3754,
+     "report": 3754.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "meta",
+     "metric": "interactions",
+     "data": 1986,
+     "report": 1986.0,
+     "diff": 0.0,
+     "ok": true
+    }
+   ]
+  },
+  {
+   "name": "Febrero",
+   "status": "cerrado",
+   "period": "1 - 28 Febrero 2026",
+   "report": {
+    "title": "Reporte_Rekluta_Febrero_2026.pdf",
+    "period": "1 - 28 Febrero 2026",
+    "id": "11yt4lY43nifikemRSfOdH_Udvgn5QGjF"
+   },
+   "platforms": {
+    "tiktok": {
+     "source": "reporte",
+     "account": "Cuenta anterior",
+     "firstDay": null,
+     "lastDay": null,
+     "kpis": {
+      "spend": 1944.87,
+      "impressions": null,
+      "views": 1794553.0,
+      "clicks": 5808.0,
+      "followers": 2914.0,
+      "profileVisits": 4555,
+      "messageClicks": 4509.0
+     },
+     "spendByGroup": {
+      "Reconocimiento": 684.27,
+      "Seguidores": 972.89,
+      "Mensajes": 287.71
+     },
+     "campaigns": [
+      {
+       "name": "Mensajes / Tráfico",
+       "objective": "Mensajes / Tráfico",
+       "group": "Mensajes",
+       "country": "Multipaís",
+       "spend": 287.71,
+       "topAds": [
+        {
+         "name": "Pintores",
+         "truncated": true,
+         "clicks": 1138,
+         "spend": 75.55
+        },
+        {
+         "name": "Soldadores 6GR",
+         "truncated": true,
+         "clicks": 789,
+         "spend": 51.0
+        },
+        {
+         "name": "Soldadores",
+         "truncated": true,
+         "clicks": 527,
+         "spend": 32.46
+        },
+        {
+         "name": "¡CONVOCATORIA ABIERTA!",
+         "truncated": true,
+         "clicks": 520,
+         "spend": 39.13
+        }
+       ],
+       "views": 165588,
+       "clicks": 4509,
+       "profileVisits": 3536,
+       "cpm": null
+      },
+      {
+       "name": "Campaña de seguimiento",
+       "objective": "Interacción con la comunidad",
+       "group": "Seguidores",
+       "country": "Multipaís",
+       "spend": 972.89,
+       "views": 331641,
+       "followers": 2810,
+       "topAds": [],
+       "followersByCountry": [
+        {
+         "country": "Perú",
+         "followers": 1552
+        },
+        {
+         "country": "Chile",
+         "followers": 850
+        },
+        {
+         "country": "Ecuador",
+         "followers": 408
+        }
+       ]
+      },
+      {
+       "name": "Reconocimiento Perú",
+       "objective": "Reconocimiento",
+       "group": "Reconocimiento",
+       "country": "Perú",
+       "spend": 257.07,
+       "topAds": [
+        {
+         "name": "Pintura Industrial",
+         "truncated": true,
+         "views": 110530,
+         "spend": 54.89
+        },
+        {
+         "name": "Así son las pruebas de pintura industr",
+         "truncated": true,
+         "views": 101255,
+         "spend": 51.14
+        },
+        {
+         "name": "Pintores",
+         "truncated": true,
+         "views": 70010,
+         "spend": 36.36
+        },
+        {
+         "name": "Pintores y Arenadores",
+         "truncated": true,
+         "views": 57816,
+         "spend": 28.33
+        }
+       ],
+       "views": 509737,
+       "impressions": 516021,
+       "clicks": 0,
+       "profileVisits": 322,
+       "cpm": 0.5
+      },
+      {
+       "name": "Reconocimiento Chile",
+       "objective": "Reconocimiento",
+       "group": "Reconocimiento",
+       "country": "Chile",
+       "spend": 255.14,
+       "topAds": [
+        {
+         "name": "Pintores Industriales",
+         "truncated": true,
+         "views": 177049,
+         "spend": 107.57
+        },
+        {
+         "name": "Pintores y Arenadores",
+         "truncated": true,
+         "views": 78372,
+         "spend": 45.81
+        },
+        {
+         "name": "¡Atención soldadores chilenos!",
+         "truncated": true,
+         "views": 76074,
+         "spend": 45.52
+        },
+        {
+         "name": "¿Quieres trabajar en España con Reklut",
+         "truncated": true,
+         "views": 36660,
+         "spend": 22.78
+        }
+       ],
+       "views": 420093,
+       "impressions": 423556,
+       "clicks": 0,
+       "profileVisits": 420,
+       "cpm": 0.6
+      },
+      {
+       "name": "Reconocimiento Ecuador",
+       "objective": "Reconocimiento",
+       "group": "Reconocimiento",
+       "country": "Ecuador",
+       "spend": 172.06,
+       "topAds": [
+        {
+         "name": "¿Quieres trabajar en España con Reklut",
+         "truncated": true,
+         "views": 119003,
+         "spend": 55.68
+        },
+        {
+         "name": "Agricultores especializados en banano",
+         "truncated": true,
+         "views": 78186,
+         "spend": 36.83
+        },
+        {
+         "name": "Llegamos a Ecuador",
+         "truncated": true,
+         "views": 72307,
+         "spend": 33.24
+        },
+        {
+         "name": "¡Estamos en GUAYAQUIL!",
+         "truncated": true,
+         "views": 69577,
+         "spend": 32.31
+        }
+       ],
+       "views": 367494,
+       "impressions": 370796,
+       "clicks": 0,
+       "profileVisits": 277,
+       "cpm": 0.46
+      }
+     ]
+    },
+    "meta": {
+     "source": "excel",
+     "account": null,
+     "firstDay": "2026-02-01",
+     "lastDay": "2026-02-28",
+     "kpis": {
+      "spend": 246.51,
+      "impressions": 1016635,
+      "reach": 974444,
+      "clicks": 8591,
+      "interactions": 1107,
+      "messageClicks": 7718
+     },
+     "spendByGroup": {
+      "Mensajes": 82.92,
+      "Reconocimiento": 163.59
+     },
+     "campaigns": [
+      {
+       "name": "Campaña Mensajes | LR -  Total",
+       "objective": "Interacción",
+       "group": "Mensajes",
+       "country": "Multipaís",
+       "spend": 82.92,
+       "impressions": 173213,
+       "reach": 146709,
+       "clicks": 7718,
+       "interactions": 820,
+       "cpm": 0.48,
+       "cpc": 0.0107,
+       "topAds": [
+        {
+         "name": "¿Quieres trabajar en España con contrato desde Perú?",
+         "clicks": 6575,
+         "reach": 107379,
+         "spend": 54.64,
+         "url": "https://www.facebook.com/?feed_demo_ad=120242811280620210&h=AQIyySCJ2yLS2DzYOzSKJYX5oXM"
+        },
+        {
+         "name": "Banano",
+         "clicks": 476,
+         "reach": 10944,
+         "spend": 6.83,
+         "url": "https://www.facebook.com/?feed_demo_ad=120241855215880210&h=AQJA8nhAYWE4MRjsAISzpaJGYcI"
+        },
+        {
+         "name": "¡Atención pintores industriales!",
+         "clicks": 328,
+         "reach": 17311,
+         "spend": 12.41,
+         "url": "https://www.facebook.com/?feed_demo_ad=120235391921780210&h=AQL7e3qqX64E1HNGqOVzw4g80q0"
+        },
+        {
+         "name": "¡ATENCIÓN ELECTRICISTAS!",
+         "clicks": 116,
+         "reach": 3394,
+         "spend": 3.03,
+         "url": "https://www.facebook.com/?feed_demo_ad=120235391953620210&h=AQIXb_m5uE4NlF5fStTGAyXSSlE"
+        },
+        {
+         "name": "¿Eres calderero y buscas trabajar en España?",
+         "clicks": 68,
+         "reach": 1457,
+         "spend": 1.66,
+         "url": "https://www.facebook.com/?feed_demo_ad=120235391871500210&h=AQIqERfaM8W-ip_t-tQOCsUZqHk"
+        }
+       ]
+      },
+      {
+       "name": "Campaña R | LR - 2 - Perú",
+       "objective": "Reconocimiento",
+       "group": "Reconocimiento",
+       "country": "Perú",
+       "spend": 76.7,
+       "impressions": 440730,
+       "reach": 432808,
+       "clicks": 383,
+       "interactions": 160,
+       "cpm": 0.17,
+       "cpc": 0.2003,
+       "topAds": [
+        {
+         "name": "¡Atención profesionales en aislamiento térmico!",
+         "clicks": 107,
+         "reach": 96426,
+         "spend": 15.94,
+         "url": "https://www.facebook.com/?feed_demo_ad=120242592469860210&h=AQK1qk04QPfgrujZLUDN-CBHKbs"
+        },
+        {
+         "name": "🚨 ¡ATENCIÓN POSTULANTES EN LIMA!",
+         "clicks": 89,
+         "reach": 84159,
+         "spend": 15.83,
+         "url": "https://www.facebook.com/?feed_demo_ad=120243115500530210&h=AQILutxlArtB_L9ekOOfZKl4Irg"
+        },
+        {
+         "name": "Nuevas convocatorias laborales en España 🇪🇸",
+         "clicks": 77,
+         "reach": 46639,
+         "spend": 7.99,
+         "url": "https://www.facebook.com/?feed_demo_ad=120236021829270210&h=AQJ704rFnhhJThzCI6MlnvLQAUM"
+        },
+        {
+         "name": "¿Quieres trabajar en España con contrato desde Perú?",
+         "clicks": 57,
+         "reach": 144118,
+         "spend": 26.67,
+         "url": "https://www.facebook.com/?feed_demo_ad=120242811266500210&h=AQIbt0E5d6BVswY3ypIBhQ5KFe8"
+        },
+        {
+         "name": "¡Atención Perú y Ecuador!",
+         "clicks": 24,
+         "reach": 14636,
+         "spend": 2.66,
+         "url": "https://www.facebook.com/?feed_demo_ad=120238366462850210&h=AQKkcQu3EIi5vWiJLjcjryH36Ks"
+        }
+       ]
+      },
+      {
+       "name": "Campaña R | LR - 2 - Chile",
+       "objective": "Reconocimiento",
+       "group": "Reconocimiento",
+       "country": "Chile",
+       "spend": 51.94,
+       "impressions": 223228,
+       "reach": 217481,
+       "clicks": 240,
+       "interactions": 66,
+       "cpm": 0.23,
+       "cpc": 0.2164,
+       "topAds": [
+        {
+         "name": "¿Eres soldador 6G FCAW con experiencia comprobada?",
+         "clicks": 204,
+         "reach": 182747,
+         "spend": 43.46,
+         "url": "https://www.facebook.com/?feed_demo_ad=120237483309450210&h=AQIcL-2I9iFi0EEJTdJ8NAev3r8"
+        },
+        {
+         "name": "🔧 ¡Atención soldadores chilenos!",
+         "clicks": 32,
+         "reach": 23050,
+         "spend": 5.58,
+         "url": "https://www.facebook.com/?feed_demo_ad=120243241997680210&h=AQIpjZpdxwaYeUgpkay6fQyHe2s"
+        },
+        {
+         "name": "¿Quieres un CV profesional en minutos?",
+         "clicks": 4,
+         "reach": 9614,
+         "spend": 2.36,
+         "url": "https://www.facebook.com/?feed_demo_ad=120237483309460210&h=AQKPx5PpS_39d1H4SPxiAy25bRM"
+        },
+        {
+         "name": "¿Sabes qué hace diferente a Rekluta?",
+         "clicks": 0,
+         "reach": 2070,
+         "spend": 0.54,
+         "url": "https://www.facebook.com/?feed_demo_ad=120237483309470210&h=AQIayLco3rnrQLGN70hdoCzbLCE"
+        }
+       ]
+      },
+      {
+       "name": "Campaña R | LR - 2 - Ecuador",
+       "objective": "Reconocimiento",
+       "group": "Reconocimiento",
+       "country": "Ecuador",
+       "spend": 34.95,
+       "impressions": 179464,
+       "reach": 177446,
+       "clicks": 250,
+       "interactions": 61,
+       "cpm": 0.19,
+       "cpc": 0.1398,
+       "topAds": [
+        {
+         "name": "🔧👷‍♂️ España necesita tu experiencia",
+         "clicks": 70,
+         "reach": 40440,
+         "spend": 7.57,
+         "url": "https://www.facebook.com/?feed_demo_ad=120237483292930210&h=AQLxbEVIhbLvBTtsxKY5IDD0S-I"
+        },
+        {
+         "name": "🇪🇨 ¡Ecuador ya es parte de Rekluta!",
+         "clicks": 69,
+         "reach": 84090,
+         "spend": 16.0,
+         "url": "https://www.facebook.com/?feed_demo_ad=120237483292920210&h=AQLwxdlDlxsQHPQEYjhK5A7gcqY"
+        },
+        {
+         "name": "Electro Mecánico Automotriz",
+         "clicks": 57,
+         "reach": 30497,
+         "spend": 6.58,
+         "url": "https://www.facebook.com/?feed_demo_ad=120243291781410210&h=AQKg3z0i_xB0cdPADSgm6sbUYFE"
+        },
+        {
+         "name": "Eres técnico electromecánico automotriz",
+         "clicks": 42,
+         "reach": 16658,
+         "spend": 3.62,
+         "url": "https://www.facebook.com/?feed_demo_ad=120243559549550210&h=AQI9El1rLnGpSa20kIVgA-zRxAM"
+        },
+        {
+         "name": "¿Has trabajado en el SECTOR BANANERO?",
+         "clicks": 8,
+         "reach": 2537,
+         "spend": 0.6,
+         "url": "https://www.facebook.com/?feed_demo_ad=120242592485190210&h=AQKJDVbMTKret6gl_Vt-BhGrXSs"
+        }
+       ]
+      }
+     ]
+    }
+   },
+   "checks": [
+    {
+     "platform": "tiktok",
+     "metric": "spend",
+     "data": 1944.87,
+     "report": 1944.87,
+     "diff": 0.0,
+     "ok": true,
+     "scope": "campanas vs resumen del reporte"
+    },
+    {
+     "platform": "meta",
+     "metric": "spend",
+     "data": 246.51,
+     "report": 246.51,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "meta",
+     "metric": "clicks",
+     "data": 8591,
+     "report": 8591.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "meta",
+     "metric": "messageClicks",
+     "data": 7718,
+     "report": 7718.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "meta",
+     "metric": "interactions",
+     "data": 1107,
+     "report": 1107.0,
+     "diff": 0.0,
+     "ok": true
+    }
+   ]
+  },
+  {
+   "name": "Marzo",
+   "status": "cerrado",
+   "period": "1 - 31 Marzo 2026",
+   "report": {
+    "title": "Reporte_Rekluta_Marzo_2026.pdf",
+    "period": "1 - 31 Marzo 2026",
+    "id": "1zrn78r1_CFKU9ml1brf9Xh9A7NY0dtvr"
+   },
+   "platforms": {
+    "tiktok": {
+     "source": "excel",
+     "account": "Cuenta actual",
+     "firstDay": "2026-03-09",
+     "lastDay": "2026-03-31",
+     "kpis": {
+      "spend": 1966.23,
+      "impressions": 1646287,
+      "views": 1486712,
+      "clicks": 26479,
+      "followers": 943,
+      "profileVisits": 1758,
+      "messageClicks": 24983
+     },
+     "spendByGroup": {
+      "Reconocimiento": 1348.98,
+      "Mensajes": 455.58,
+      "Seguidores": 161.67
+     },
+     "campaigns": [
+      {
+       "name": "Campaña de mensajes",
+       "objective": "Tráfico",
+       "group": "Mensajes",
+       "country": "Multipaís",
+       "spend": 455.58,
+       "impressions": 204190,
+       "views": 66350,
+       "reach": 139940,
+       "clicks": 24983,
+       "followers": 0,
+       "profileVisits": 2,
+       "cpm": 2.23,
+       "cpc": 0.0182,
+       "topAds": [
+        {
+         "name": "electricista instrumentista o conexionador",
+         "views": 57822,
+         "clicks": 21399,
+         "spend": 392.55
+        },
+        {
+         "name": "Atención AREQUIPA",
+         "views": 8528,
+         "clicks": 3584,
+         "spend": 63.03
+        }
+       ]
+      },
+      {
+       "name": "Campaña Reconocimiento Perú",
+       "objective": "Visualización del vídeo",
+       "group": "Reconocimiento",
+       "country": "Perú",
+       "spend": 548.01,
+       "impressions": 536436,
+       "views": 525419,
+       "reach": 526344,
+       "clicks": 761,
+       "followers": 195,
+       "profileVisits": 575,
+       "cpm": 1.02,
+       "cpc": 0.7201,
+       "topAds": [
+        {
+         "name": "electricista instrumentista o conexionador",
+         "views": 350900,
+         "clicks": 652,
+         "spend": 426.31
+        },
+        {
+         "name": "Causo de éxito",
+         "views": 93172,
+         "clicks": 0,
+         "spend": 63.7
+        },
+        {
+         "name": "Atención AREQUIPA",
+         "views": 81347,
+         "clicks": 109,
+         "spend": 58.0
+        }
+       ]
+      },
+      {
+       "name": "Campaña Reconocimiento Chile",
+       "objective": "Visualización del vídeo",
+       "group": "Reconocimiento",
+       "country": "Chile",
+       "spend": 484.0,
+       "impressions": 414921,
+       "views": 411463,
+       "reach": 411072,
+       "clicks": 0,
+       "followers": 165,
+       "profileVisits": 465,
+       "cpm": 1.17,
+       "cpc": null,
+       "topAds": [
+        {
+         "name": "Eres de Chile y quieres...",
+         "views": 411463,
+         "clicks": 0,
+         "spend": 484.0
+        }
+       ]
+      },
+      {
+       "name": "Campaña Reconocimiento Ecuador",
+       "objective": "Visualización del vídeo",
+       "group": "Reconocimiento",
+       "country": "Ecuador",
+       "spend": 316.97,
+       "impressions": 460286,
+       "views": 453566,
+       "reach": 451219,
+       "clicks": 735,
+       "followers": 227,
+       "profileVisits": 634,
+       "cpm": 0.69,
+       "cpc": 0.4313,
+       "topAds": [
+        {
+         "name": "Electricistas",
+         "views": 171079,
+         "clicks": 511,
+         "spend": 128.98
+        },
+        {
+         "name": "Atención ECUADOR",
+         "views": 151183,
+         "clicks": 224,
+         "spend": 61.47
+        },
+        {
+         "name": "Estamos en GUAYAQUIL",
+         "views": 131304,
+         "clicks": 0,
+         "spend": 126.52
+        }
+       ]
+      },
+      {
+       "name": "Campaña seguimiento Perú",
+       "objective": "Interacción con la comunidad",
+       "group": "Seguidores",
+       "country": "Perú",
+       "spend": 87.07,
+       "impressions": 16888,
+       "views": 16535,
+       "reach": 16518,
+       "clicks": 0,
+       "followers": 151,
+       "profileVisits": 29,
+       "cpm": 5.16,
+       "cpc": null,
+       "topAds": [
+        {
+         "name": "electricista instrumentista o conexionador",
+         "views": 16535,
+         "clicks": 0,
+         "spend": 87.07
+        }
+       ]
+      },
+      {
+       "name": "Campaña de seguimiento Chile",
+       "objective": "Interacción con la comunidad",
+       "group": "Seguidores",
+       "country": "Chile",
+       "spend": 40.85,
+       "impressions": 8016,
+       "views": 7896,
+       "reach": 7836,
+       "clicks": 0,
+       "followers": 141,
+       "profileVisits": 25,
+       "cpm": 5.1,
+       "cpc": null,
+       "topAds": [
+        {
+         "name": "Eres de Chile",
+         "views": 7896,
+         "clicks": 0,
+         "spend": 40.85
+        }
+       ]
+      },
+      {
+       "name": "Campaña seguimiento Ecuador",
+       "objective": "Interacción con la comunidad",
+       "group": "Seguidores",
+       "country": "Ecuador",
+       "spend": 33.75,
+       "impressions": 5550,
+       "views": 5483,
+       "reach": 5398,
+       "clicks": 0,
+       "followers": 64,
+       "profileVisits": 28,
+       "cpm": 6.08,
+       "cpc": null,
+       "topAds": [
+        {
+         "name": "Estamos en GUAYAQUIL",
+         "views": 5483,
+         "clicks": 0,
+         "spend": 33.75
+        }
+       ]
+      }
+     ]
+    },
+    "meta": {
+     "source": "excel",
+     "account": null,
+     "firstDay": "2026-03-01",
+     "lastDay": "2026-03-31",
+     "kpis": {
+      "spend": 575.16,
+      "impressions": 2101424,
+      "reach": 2009463,
+      "clicks": 10205,
+      "interactions": 2176,
+      "messageClicks": 7029
+     },
+     "spendByGroup": {
+      "Mensajes": 172.27,
+      "Reconocimiento": 402.89
+     },
+     "campaigns": [
+      {
+       "name": "Campaña Mensajes | LR -  Total",
+       "objective": "Interacción",
+       "group": "Mensajes",
+       "country": "Multipaís",
+       "spend": 172.27,
+       "impressions": 187179,
+       "reach": 135325,
+       "clicks": 7029,
+       "interactions": 1296,
+       "cpm": 0.92,
+       "cpc": 0.0245,
+       "topAds": [
+        {
+         "name": "¿Eres electricista instrumentista o conexionador?",
+         "clicks": 4737,
+         "reach": 74852,
+         "spend": 114.15,
+         "url": "https://www.facebook.com/?feed_demo_ad=120244099329090210&h=AQL8kDwTi4dlDCLdU17zlXVqvvo"
+        },
+        {
+         "name": "Soldador o calderero en Lima",
+         "clicks": 1218,
+         "reach": 23837,
+         "spend": 29.62,
+         "url": "https://www.facebook.com/?feed_demo_ad=120245532613700210&h=AQK5MfRiDs1r7Fs1anmqMTJEh_s"
+        },
+        {
+         "name": "¿Quieres trabajar en España con contrato desde Perú?",
+         "clicks": 686,
+         "reach": 17158,
+         "spend": 8.7,
+         "url": "https://www.facebook.com/?feed_demo_ad=120242811280620210&h=AQIyySCJ2yLS2DzYOzSKJYX541o"
+        },
+        {
+         "name": "¿Eres pintor revestidor y estás en Lima, Perú?",
+         "clicks": 373,
+         "reach": 18526,
+         "spend": 19.39,
+         "url": "https://www.facebook.com/?feed_demo_ad=120244316825320210&h=AQJfbiaz7zhpbAjYPw3SlX5-YIw"
+        },
+        {
+         "name": "¿Eres electricista industrial y quieres trabajar en España?",
+         "clicks": 11,
+         "reach": 319,
+         "spend": 0.18,
+         "url": "https://www.facebook.com/?feed_demo_ad=120244360886030210&h=AQI3ARjOitPJditidVe5XIyF87w"
+        }
+       ]
+      },
+      {
+       "name": "Campaña R | LR - 2 - Perú",
+       "objective": "Reconocimiento",
+       "group": "Reconocimiento",
+       "country": "Perú",
+       "spend": 241.35,
+       "impressions": 1210121,
+       "reach": 1180035,
+       "clicks": 2137,
+       "interactions": 643,
+       "cpm": 0.2,
+       "cpc": 0.1129,
+       "topAds": [
+        {
+         "name": "¿Eres electricista instrumentista o conexionador?",
+         "clicks": 1077,
+         "reach": 285479,
+         "spend": 59.11,
+         "url": "https://www.facebook.com/?feed_demo_ad=120244099204040210&h=AQJui-PCJwK_bSMFWxxZg1-ngww"
+        },
+        {
+         "name": "Electricistas y frigoristas",
+         "clicks": 571,
+         "reach": 355266,
+         "spend": 79.94,
+         "url": "https://www.facebook.com/?feed_demo_ad=120244996016000210&h=AQLe48Z28IDb0KUyw0ZtpVO1VFY"
+        },
+        {
+         "name": "¿Eres pintor revestidor y estás en Lima, Perú?",
+         "clicks": 254,
+         "reach": 282783,
+         "spend": 59.53,
+         "url": "https://www.facebook.com/?feed_demo_ad=120244333297490210&h=AQKXZH3E3V3CxqwUAF4WqmRkt94"
+        },
+        {
+         "name": "Nuevas convocatorias laborales en España 🇪🇸",
+         "clicks": 83,
+         "reach": 49200,
+         "spend": 9.89,
+         "url": "https://www.facebook.com/?feed_demo_ad=120236021829270210&h=AQJ704rFnhhJThzCI6MlnvLQ9dM"
+        },
+        {
+         "name": "¿Eres electricista industrial y quieres trabajar en España?",
+         "clicks": 58,
+         "reach": 60956,
+         "spend": 10.3,
+         "url": "https://www.facebook.com/?feed_demo_ad=120244360931480210&h=AQIfzlaxfRHvWqjEaSp6-LWn4K0"
+        }
+       ]
+      },
+      {
+       "name": "Campaña R | LR - 2 - Chile",
+       "objective": "Reconocimiento",
+       "group": "Reconocimiento",
+       "country": "Chile",
+       "spend": 101.06,
+       "impressions": 426006,
+       "reach": 419454,
+       "clicks": 652,
+       "interactions": 121,
+       "cpm": 0.24,
+       "cpc": 0.155,
+       "topAds": [
+        {
+         "name": "🔧 ¡Atención soldadores chilenos!",
+         "clicks": 482,
+         "reach": 246668,
+         "spend": 61.87,
+         "url": "https://www.facebook.com/?feed_demo_ad=120243241997680210&h=AQIpjZpdxwaYeUgpkay6fQyH008"
+        },
+        {
+         "name": "¡Atención soldadores en Chile!",
+         "clicks": 80,
+         "reach": 70605,
+         "spend": 17.52,
+         "url": "https://www.facebook.com/?feed_demo_ad=120237483309530210&h=AQJ_Vqg4VjgxjLonS6Bq3yB1wLE"
+        },
+        {
+         "name": "¿Eres soldador 6G FCAW con experiencia comprobada?",
+         "clicks": 74,
+         "reach": 70864,
+         "spend": 13.99,
+         "url": "https://www.facebook.com/?feed_demo_ad=120237483309450210&h=AQIcL-2I9iFi0EEJTdJ8NAev6Pk"
+        },
+        {
+         "name": "¿Sabes qué hace diferente a Rekluta?",
+         "clicks": 8,
+         "reach": 27023,
+         "spend": 6.71,
+         "url": "https://www.facebook.com/?feed_demo_ad=120237483309470210&h=AQIayLco3rnrQLGN70hdoCzbYWw"
+        },
+        {
+         "name": "Pintor airless en Chile",
+         "clicks": 7,
+         "reach": 3330,
+         "spend": 0.78,
+         "url": "https://www.facebook.com/?feed_demo_ad=120245407128610210&h=AQJ5_ptjHqL5FCQG1DaNyzIMkqA"
+        }
+       ]
+      },
+      {
+       "name": "Campaña R | LR - 2 - Ecuador",
+       "objective": "Reconocimiento",
+       "group": "Reconocimiento",
+       "country": "Ecuador",
+       "spend": 60.48,
+       "impressions": 278118,
+       "reach": 274649,
+       "clicks": 387,
+       "interactions": 116,
+       "cpm": 0.22,
+       "cpc": 0.1563,
+       "topAds": [
+        {
+         "name": "Electro Mecánico Automotriz",
+         "clicks": 184,
+         "reach": 136637,
+         "spend": 30.29,
+         "url": "https://www.facebook.com/?feed_demo_ad=120243291781410210&h=AQKg3z0i_xB0cdPADSgm6sbUax4"
+        },
+        {
+         "name": "Eres técnico electromecánico automotriz",
+         "clicks": 114,
+         "reach": 64311,
+         "spend": 13.52,
+         "url": "https://www.facebook.com/?feed_demo_ad=120243559549550210&h=AQI9El1rLnGpSa20kIVgA-zRs1M"
+        },
+        {
+         "name": "¡REKLUTA ECUADOR",
+         "clicks": 88,
+         "reach": 63001,
+         "spend": 14.32,
+         "url": "https://www.facebook.com/?feed_demo_ad=120242311719300210&h=AQLUKnR5-tte7iwEBsPm4vMhRqo"
+        },
+        {
+         "name": "✨ ¡Seguimos creciendo! ✨",
+         "clicks": 1,
+         "reach": 10532,
+         "spend": 2.3,
+         "url": "https://www.facebook.com/?feed_demo_ad=120237483292950210&h=AQJKiiMH__YVKP4b_kWHTIy_LyQ"
+        },
+        {
+         "name": "¿Has trabajado en el SECTOR BANANERO?",
+         "clicks": 0,
+         "reach": 168,
+         "spend": 0.05,
+         "url": "https://www.facebook.com/?feed_demo_ad=120242592485190210&h=AQKJDVbMTKret6gl_Vt-BhGruZk"
+        }
+       ]
+      }
+     ]
+    }
+   },
+   "checks": [
+    {
+     "platform": "tiktok",
+     "metric": "spend",
+     "data": 1966.23,
+     "report": 1966.23,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "tiktok",
+     "metric": "views",
+     "data": 1486712,
+     "report": 1486712.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "tiktok",
+     "metric": "followers",
+     "data": 943,
+     "report": 943.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "tiktok",
+     "metric": "clicks",
+     "data": 26479,
+     "report": 26479.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "tiktok",
+     "metric": "messageClicks",
+     "data": 24983,
+     "report": 24983.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "meta",
+     "metric": "spend",
+     "data": 575.16,
+     "report": 575.16,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "meta",
+     "metric": "clicks",
+     "data": 10205,
+     "report": 10205.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "meta",
+     "metric": "messageClicks",
+     "data": 7029,
+     "report": 7029.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "meta",
+     "metric": "interactions",
+     "data": 2176,
+     "report": 2176.0,
+     "diff": 0.0,
+     "ok": true
+    }
+   ]
+  },
+  {
+   "name": "Abril",
+   "status": "cerrado",
+   "period": "1 - 30 Abril 2026",
+   "report": {
+    "title": "Reporte_Rekluta_Abril_2026.pdf",
+    "period": "1 - 30 Abril 2026",
+    "id": "17R8RxmmpjwHPXmvdMiYEK_IgBcV5JRgA"
+   },
+   "platforms": {
+    "tiktok": {
+     "source": "excel",
+     "account": "Cuenta actual",
+     "firstDay": "2026-04-01",
+     "lastDay": "2026-04-30",
+     "kpis": {
+      "spend": 2000.0,
+      "impressions": 1714252,
+      "views": 1568740,
+      "clicks": 34542,
+      "followers": 544,
+      "profileVisits": 1759,
+      "messageClicks": 33406
+     },
+     "spendByGroup": {
+      "Reconocimiento": 1495.97,
+      "Mensajes": 504.03
+     },
+     "campaigns": [
+      {
+       "name": "Campaña de mensajes",
+       "objective": "Tráfico",
+       "group": "Mensajes",
+       "country": "Multipaís",
+       "spend": 504.03,
+       "impressions": 249329,
+       "views": 118760,
+       "reach": 150627,
+       "clicks": 33406,
+       "followers": 0,
+       "profileVisits": 17,
+       "cpm": 2.02,
+       "cpc": 0.0151,
+       "topAds": [
+        {
+         "name": "Eres frigorista",
+         "views": 86601,
+         "clicks": 24206,
+         "spend": 358.92
+        },
+        {
+         "name": "Si trabajas en construcción",
+         "views": 32159,
+         "clicks": 9200,
+         "spend": 145.11
+        }
+       ]
+      },
+      {
+       "name": "Campaña Reconocimiento Perú",
+       "objective": "Visualización del vídeo",
+       "group": "Reconocimiento",
+       "country": "Perú",
+       "spend": 711.4,
+       "impressions": 643304,
+       "views": 635302,
+       "reach": 629721,
+       "clicks": 703,
+       "followers": 201,
+       "profileVisits": 678,
+       "cpm": 1.11,
+       "cpc": 1.0119,
+       "topAds": [
+        {
+         "name": "Si trabajas en construcción",
+         "views": 246929,
+         "clicks": 436,
+         "spend": 301.12
+        },
+        {
+         "name": "Así se vive un día en Rekluta.",
+         "views": 150586,
+         "clicks": 0,
+         "spend": 162.43
+        },
+        {
+         "name": "Perfiles",
+         "views": 90219,
+         "clicks": 107,
+         "spend": 98.81
+        },
+        {
+         "name": "Antes de postular",
+         "views": 64954,
+         "clicks": 0,
+         "spend": 70.98
+        },
+        {
+         "name": "Eres frigorista",
+         "views": 47150,
+         "clicks": 64,
+         "spend": 42.4
+        }
+       ]
+      },
+      {
+       "name": "Campaña Reconocimiento Chile",
+       "objective": "Visualización del vídeo",
+       "group": "Reconocimiento",
+       "country": "Chile",
+       "spend": 486.07,
+       "impressions": 481441,
+       "views": 477418,
+       "reach": 476301,
+       "clicks": 0,
+       "followers": 187,
+       "profileVisits": 602,
+       "cpm": 1.01,
+       "cpc": null,
+       "topAds": [
+        {
+         "name": "Soldadores",
+         "views": 349755,
+         "clicks": 0,
+         "spend": 353.83
+        },
+        {
+         "name": "Eres de Chile y quieres...",
+         "views": 93074,
+         "clicks": 0,
+         "spend": 100.29
+        },
+        {
+         "name": "SOLDADORES en CHILE!",
+         "views": 27872,
+         "clicks": 0,
+         "spend": 30.87
+        },
+        {
+         "name": "Antes de postular",
+         "views": 6535,
+         "clicks": 0,
+         "spend": 0.91
+        },
+        {
+         "name": "CV Efectivo",
+         "views": 182,
+         "clicks": 0,
+         "spend": 0.17
+        }
+       ]
+      },
+      {
+       "name": "Campaña Reconocimiento Ecuador",
+       "objective": "Visualización del vídeo",
+       "group": "Reconocimiento",
+       "country": "Ecuador",
+       "spend": 298.5,
+       "impressions": 340178,
+       "views": 337260,
+       "reach": 335772,
+       "clicks": 433,
+       "followers": 156,
+       "profileVisits": 462,
+       "cpm": 0.88,
+       "cpc": 0.6894,
+       "topAds": [
+        {
+         "name": "Electricistas",
+         "views": 133593,
+         "clicks": 345,
+         "spend": 109.52
+        },
+        {
+         "name": "Antes de postular",
+         "views": 133245,
+         "clicks": 0,
+         "spend": 125.18
+        },
+        {
+         "name": "Atención ECUADOR",
+         "views": 39306,
+         "clicks": 88,
+         "spend": 34.54
+        },
+        {
+         "name": "Estamos en GUAYAQUIL",
+         "views": 31116,
+         "clicks": 0,
+         "spend": 29.26
+        }
+       ]
+      }
+     ]
+    },
+    "meta": {
+     "source": "excel",
+     "account": null,
+     "firstDay": "2026-04-01",
+     "lastDay": "2026-04-30",
+     "kpis": {
+      "spend": 569.99,
+      "impressions": 2104465,
+      "reach": 2014272,
+      "clicks": 10344,
+      "interactions": 2689,
+      "messageClicks": 6963
+     },
+     "spendByGroup": {
+      "Mensajes": 169.96,
+      "Reconocimiento": 400.03
+     },
+     "campaigns": [
+      {
+       "name": "Campaña Mensajes | LR -  Total",
+       "objective": "Interacción",
+       "group": "Mensajes",
+       "country": "Multipaís",
+       "spend": 169.96,
+       "impressions": 171061,
+       "reach": 125210,
+       "clicks": 6963,
+       "interactions": 1877,
+       "cpm": 0.99,
+       "cpc": 0.0244,
+       "topAds": [
+        {
+         "name": "Soldador o calderero en Lima",
+         "clicks": 3873,
+         "reach": 71598,
+         "spend": 103.95,
+         "url": "https://www.facebook.com/?feed_demo_ad=120245532613700210&h=AQK5MfRiDs1r7Fs1anmqMTJEepA"
+        },
+        {
+         "name": "Atención Arequipa",
+         "clicks": 1460,
+         "reach": 25129,
+         "spend": 32.58,
+         "url": "https://www.facebook.com/?feed_demo_ad=120246799326960210&h=AQKOP1tR5Qpgv2u6QbXaXYqx_B0"
+        },
+        {
+         "name": "¿Eres electricista instrumentista o conexionador?",
+         "clicks": 1396,
+         "reach": 20895,
+         "spend": 27.17,
+         "url": "https://www.facebook.com/?feed_demo_ad=120244099329090210&h=AQL8kDwTi4dlDCLdU17zlXVqiw0"
+        },
+        {
+         "name": "¿Eres pintor revestidor y estás en Lima, Perú?",
+         "clicks": 146,
+         "reach": 6145,
+         "spend": 4.74,
+         "url": "https://www.facebook.com/?feed_demo_ad=120244316825320210&h=AQJfbiaz7zhpbAjYPw3SlX5-pBo"
+        },
+        {
+         "name": "Frigoristas",
+         "clicks": 77,
+         "reach": 1249,
+         "spend": 1.46,
+         "url": "https://www.facebook.com/?feed_demo_ad=120246292625500210&h=AQKumfDGvXPn4yQNL81fNes-U3E"
+        }
+       ]
+      },
+      {
+       "name": "Campaña R | LR - 2 - Perú",
+       "objective": "Reconocimiento",
+       "group": "Reconocimiento",
+       "country": "Perú",
+       "spend": 240.05,
+       "impressions": 1211836,
+       "reach": 1178748,
+       "clicks": 2116,
+       "interactions": 510,
+       "cpm": 0.2,
+       "cpc": 0.1134,
+       "topAds": [
+        {
+         "name": "Electricistas y frigoristas",
+         "clicks": 789,
+         "reach": 526552,
+         "spend": 82.82,
+         "url": "https://www.facebook.com/?feed_demo_ad=120246799144060210&h=AQJpPAHe524qDgGO1GT_DjMxbqQ"
+        },
+        {
+         "name": "¿Eres electricista instrumentista o conexionador?",
+         "clicks": 528,
+         "reach": 195442,
+         "spend": 49.17,
+         "url": "https://www.facebook.com/?feed_demo_ad=120246799144340210&h=AQKy9jM_XEA4Jtoz4uS0wJqwb4M"
+        },
+        {
+         "name": "Frigoristas",
+         "clicks": 370,
+         "reach": 121724,
+         "spend": 38.18,
+         "url": "https://www.facebook.com/?feed_demo_ad=120246799144030210&h=AQKEbAZmoS28ts0JcWQ3rwrPHaQ"
+        },
+        {
+         "name": "Atención Arequipa",
+         "clicks": 219,
+         "reach": 96839,
+         "spend": 24.41,
+         "url": "https://www.facebook.com/?feed_demo_ad=120246799144040210&h=AQLRdLlNVrl5FFus_psyeINrgEk"
+        },
+        {
+         "name": "🇪🇸 ¿Quieres trabajar en España?",
+         "clicks": 135,
+         "reach": 54075,
+         "spend": 11.8,
+         "url": "https://www.facebook.com/?feed_demo_ad=120246799144050210&h=AQLS7rbQIEE_RqChwPtguEOSDaw"
+        }
+       ]
+      },
+      {
+       "name": "Campaña R | LR - 2 - Chile",
+       "objective": "Reconocimiento",
+       "group": "Reconocimiento",
+       "country": "Chile",
+       "spend": 100.0,
+       "impressions": 425352,
+       "reach": 418868,
+       "clicks": 693,
+       "interactions": 146,
+       "cpm": 0.24,
+       "cpc": 0.1443,
+       "topAds": [
+        {
+         "name": "🔧 ¡Atención soldadores chilenos!",
+         "clicks": 518,
+         "reach": 250547,
+         "spend": 63.11,
+         "url": "https://www.facebook.com/?feed_demo_ad=120243241997680210&h=AQIpjZpdxwaYeUgpkay6fQyHTAg"
+        },
+        {
+         "name": "¡Atención soldadores en Chile!",
+         "clicks": 104,
+         "reach": 80763,
+         "spend": 17.0,
+         "url": "https://www.facebook.com/?feed_demo_ad=120237483309530210&h=AQJ_Vqg4VjgxjLonS6Bq3yB1CeA"
+        },
+        {
+         "name": "Pintor airless en Chile",
+         "clicks": 60,
+         "reach": 47802,
+         "spend": 11.32,
+         "url": "https://www.facebook.com/?feed_demo_ad=120245407128610210&h=AQJ5_ptjHqL5FCQG1DaNyzIMEGM"
+        },
+        {
+         "name": "¿Sabes qué hace diferente a Rekluta?",
+         "clicks": 11,
+         "reach": 39756,
+         "spend": 8.57,
+         "url": "https://www.facebook.com/?feed_demo_ad=120237483309470210&h=AQIayLco3rnrQLGN70hdoCzb-_U"
+        }
+       ]
+      },
+      {
+       "name": "Campaña R | LR - 2 - Ecuador",
+       "objective": "Reconocimiento",
+       "group": "Reconocimiento",
+       "country": "Ecuador",
+       "spend": 59.98,
+       "impressions": 296216,
+       "reach": 291446,
+       "clicks": 572,
+       "interactions": 156,
+       "cpm": 0.2,
+       "cpc": 0.1049,
+       "topAds": [
+        {
+         "name": "¡REKLUTA ECUADOR",
+         "clicks": 369,
+         "reach": 202267,
+         "spend": 43.39,
+         "url": "https://www.facebook.com/?feed_demo_ad=120242311719300210&h=AQLUKnR5-tte7iwEBsPm4vMhYuo"
+        },
+        {
+         "name": "Electro Mecánico Automotriz",
+         "clicks": 107,
+         "reach": 49048,
+         "spend": 8.9,
+         "url": "https://www.facebook.com/?feed_demo_ad=120243291781410210&h=AQKg3z0i_xB0cdPADSgm6sbU0mU"
+        },
+        {
+         "name": "Eres técnico electromecánico automotriz",
+         "clicks": 96,
+         "reach": 35689,
+         "spend": 6.8,
+         "url": "https://www.facebook.com/?feed_demo_ad=120243559549550210&h=AQI9El1rLnGpSa20kIVgA-zR8Kk"
+        },
+        {
+         "name": "✨ ¡Seguimos creciendo! ✨",
+         "clicks": 0,
+         "reach": 4442,
+         "spend": 0.89,
+         "url": "https://www.facebook.com/?feed_demo_ad=120237483292950210&h=AQJKiiMH__YVKP4b_kWHTIy_CRo"
+        }
+       ]
+      }
+     ]
+    }
+   },
+   "checks": [
+    {
+     "platform": "tiktok",
+     "metric": "spend",
+     "data": 2000.0,
+     "report": 2000.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "tiktok",
+     "metric": "views",
+     "data": 1568740,
+     "report": 1568740.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "tiktok",
+     "metric": "followers",
+     "data": 544,
+     "report": 544.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "tiktok",
+     "metric": "clicks",
+     "data": 34542,
+     "report": 34542.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "tiktok",
+     "metric": "messageClicks",
+     "data": 33406,
+     "report": 33406.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "meta",
+     "metric": "spend",
+     "data": 569.99,
+     "report": 569.99,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "meta",
+     "metric": "clicks",
+     "data": 10344,
+     "report": 10344.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "meta",
+     "metric": "messageClicks",
+     "data": 6963,
+     "report": 6963.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "meta",
+     "metric": "interactions",
+     "data": 2689,
+     "report": 2689.0,
+     "diff": 0.0,
+     "ok": true
+    }
+   ]
+  },
+  {
+   "name": "Mayo",
+   "status": "cerrado",
+   "period": "1 - 31 Mayo 2026",
+   "report": {
+    "title": "Reporte_Rekluta_Mayo_2026.pdf",
+    "period": "1 - 31 Mayo 2026",
+    "id": "1O0rgHnS00FBQpF4mjDQTgTtZPF5acAw6"
+   },
+   "platforms": {
+    "tiktok": {
+     "source": "excel",
+     "account": "Cuenta actual",
+     "firstDay": "2026-05-01",
+     "lastDay": "2026-05-31",
+     "kpis": {
+      "spend": 1998.14,
+      "impressions": 1708585,
+      "views": 1586494,
+      "clicks": 50024,
+      "followers": 636,
+      "profileVisits": 2258,
+      "messageClicks": 49457
+     },
+     "spendByGroup": {
+      "Reconocimiento": 1399.12,
+      "Mensajes": 599.02
+     },
+     "campaigns": [
+      {
+       "name": "Campaña de mensajes",
+       "objective": "Tráfico",
+       "group": "Mensajes",
+       "country": "Multipaís",
+       "spend": 599.02,
+       "impressions": 316974,
+       "views": 207428,
+       "reach": 157146,
+       "clicks": 49457,
+       "followers": 2,
+       "profileVisits": 8,
+       "cpm": 1.89,
+       "cpc": 0.0121,
+       "topAds": [
+        {
+         "name": "Eres frigorista",
+         "views": 93482,
+         "clicks": 20266,
+         "spend": 241.29
+        },
+        {
+         "name": "Si trabajas en construcción",
+         "views": 37080,
+         "clicks": 8854,
+         "spend": 109.04
+        },
+        {
+         "name": "Convocatoria",
+         "views": 21371,
+         "clicks": 6980,
+         "spend": 91.17
+        },
+        {
+         "name": "Arequipa, mira esto",
+         "views": 25454,
+         "clicks": 6731,
+         "spend": 81.91
+        },
+        {
+         "name": "Atenció Lima",
+         "views": 14844,
+         "clicks": 3280,
+         "spend": 37.79
+        }
+       ]
+      },
+      {
+       "name": "Campaña Reconocimiento Perú",
+       "objective": "Visualización del vídeo",
+       "group": "Reconocimiento",
+       "country": "Perú",
+       "spend": 525.78,
+       "impressions": 484679,
+       "views": 479261,
+       "reach": 476100,
+       "clicks": 211,
+       "followers": 171,
+       "profileVisits": 581,
+       "cpm": 1.08,
+       "cpc": 2.4918,
+       "topAds": [
+        {
+         "name": "No es lo que decimos",
+         "views": 271633,
+         "clicks": 0,
+         "spend": 318.01
+        },
+        {
+         "name": "Perfiles",
+         "views": 73176,
+         "clicks": 88,
+         "spend": 77.95
+        },
+        {
+         "name": "Atención PERÚ",
+         "views": 52557,
+         "clicks": 96,
+         "spend": 66.43
+        },
+        {
+         "name": "Todo empieza con una decisión",
+         "views": 29009,
+         "clicks": 0,
+         "spend": 23.87
+        },
+        {
+         "name": "Estos son los errores que no debes cometer si quieres trabajar",
+         "views": 21424,
+         "clicks": 0,
+         "spend": 18.48
+        }
+       ]
+      },
+      {
+       "name": "Campaña Reconocimiento Chile",
+       "objective": "Visualización del vídeo",
+       "group": "Reconocimiento",
+       "country": "Chile",
+       "spend": 523.93,
+       "impressions": 517869,
+       "views": 514037,
+       "reach": 513006,
+       "clicks": 1,
+       "followers": 273,
+       "profileVisits": 1119,
+       "cpm": 1.01,
+       "cpc": 523.93,
+       "topAds": [
+        {
+         "name": "Soldadores",
+         "views": 364479,
+         "clicks": 0,
+         "spend": 389.17
+        },
+        {
+         "name": "Eres de Chile y quieres...",
+         "views": 66096,
+         "clicks": 0,
+         "spend": 69.77
+        },
+        {
+         "name": "Primer grupo de chilenos rumbo",
+         "views": 65113,
+         "clicks": 0,
+         "spend": 52.25
+        },
+        {
+         "name": "SOLDADORES en CHILE!",
+         "views": 9187,
+         "clicks": 1,
+         "spend": 10.41
+        },
+        {
+         "name": "Antes de postular",
+         "views": 8846,
+         "clicks": 0,
+         "spend": 2.11
+        }
+       ]
+      },
+      {
+       "name": "Campaña Reconocimiento Ecuador",
+       "objective": "Visualización del vídeo",
+       "group": "Reconocimiento",
+       "country": "Ecuador",
+       "spend": 349.41,
+       "impressions": 389063,
+       "views": 385768,
+       "reach": 384267,
+       "clicks": 355,
+       "followers": 190,
+       "profileVisits": 550,
+       "cpm": 0.9,
+       "cpc": 0.9843,
+       "topAds": [
+        {
+         "name": "Antes de postular",
+         "views": 151623,
+         "clicks": 0,
+         "spend": 145.93
+        },
+        {
+         "name": "Electricistas",
+         "views": 103487,
+         "clicks": 314,
+         "spend": 82.04
+        },
+        {
+         "name": "Estamos en GUAYAQUIL",
+         "views": 53633,
+         "clicks": 0,
+         "spend": 49.1
+        },
+        {
+         "name": "Hoy no despega solo un avión",
+         "views": 53106,
+         "clicks": 0,
+         "spend": 54.69
+        },
+        {
+         "name": "Atención ECUADOR",
+         "views": 23919,
+         "clicks": 41,
+         "spend": 17.65
+        }
+       ]
+      }
+     ]
+    },
+    "meta": {
+     "source": "excel",
+     "account": null,
+     "firstDay": "2026-05-01",
+     "lastDay": "2026-05-31",
+     "kpis": {
+      "spend": 569.88,
+      "impressions": 1843243,
+      "reach": 1753872,
+      "clicks": 14563,
+      "interactions": 1950,
+      "messageClicks": 12068
+     },
+     "spendByGroup": {
+      "Mensajes": 170.04,
+      "Reconocimiento": 399.84
+     },
+     "campaigns": [
+      {
+       "name": "Campaña Mensajes | LR -  Total",
+       "objective": "Interacción",
+       "group": "Mensajes",
+       "country": "Multipaís",
+       "spend": 170.04,
+       "impressions": 233977,
+       "reach": 190265,
+       "clicks": 12068,
+       "interactions": 1274,
+       "cpm": 0.73,
+       "cpc": 0.0141,
+       "topAds": [
+        {
+         "name": "¿Eres electricista instrumentista o conexionador?",
+         "clicks": 7278,
+         "reach": 94499,
+         "spend": 83.12,
+         "url": "https://www.facebook.com/?feed_demo_ad=120244099329090210&h=AQL8kDwTi4dlDCLdU17zlXVqhe8"
+        },
+        {
+         "name": "Soldador o calderero en Lima",
+         "clicks": 2838,
+         "reach": 55670,
+         "spend": 54.33,
+         "url": "https://www.facebook.com/?feed_demo_ad=120245532613700210&h=AQK5MfRiDs1r7Fs1anmqMTJEL84"
+        },
+        {
+         "name": "Perú, Ecuador y Chile… esto es para ustedes",
+         "clicks": 719,
+         "reach": 13924,
+         "spend": 14.06,
+         "url": "https://www.facebook.com/?feed_demo_ad=120250067678280210&h=AQLMYZoHoaIBENWHU8mB9Gu5RAU"
+        },
+        {
+         "name": "🚨 Atención PERÚ 🇵🇪",
+         "clicks": 629,
+         "reach": 9873,
+         "spend": 7.15,
+         "url": "https://www.facebook.com/?feed_demo_ad=120250067705590210&h=AQJivBYhHXTcX6GtWSmszzu7OBM"
+        },
+        {
+         "name": "Atención Arequipa",
+         "clicks": 370,
+         "reach": 5655,
+         "spend": 4.45,
+         "url": "https://www.facebook.com/?feed_demo_ad=120246799326960210&h=AQKOP1tR5Qpgv2u6QbXaXYqxuTg"
+        }
+       ]
+      },
+      {
+       "name": "Campaña R | LR - 2 - Perú",
+       "objective": "Reconocimiento",
+       "group": "Reconocimiento",
+       "country": "Perú",
+       "spend": 239.93,
+       "impressions": 987352,
+       "reach": 961491,
+       "clicks": 1589,
+       "interactions": 511,
+       "cpm": 0.24,
+       "cpc": 0.151,
+       "topAds": [
+        {
+         "name": "¿Eres electricista instrumentista o conexionador?",
+         "clicks": 603,
+         "reach": 286253,
+         "spend": 68.4,
+         "url": "https://www.facebook.com/?feed_demo_ad=120246799144340210&h=AQKy9jM_XEA4Jtoz4uS0wJqwXj4"
+        },
+        {
+         "name": "Estos son los errores que no debes cometer si quieres trabajar en España!",
+         "clicks": 224,
+         "reach": 73394,
+         "spend": 18.63,
+         "url": "https://www.facebook.com/?feed_demo_ad=120248087165900210&h=AQLbE19U3koK2_8nzc6rbJG--O4"
+        },
+        {
+         "name": "Frigoristas",
+         "clicks": 207,
+         "reach": 114143,
+         "spend": 27.34,
+         "url": "https://www.facebook.com/?feed_demo_ad=120246799144030210&h=AQKEbAZmoS28ts0JcWQ3rwrP8tw"
+        },
+        {
+         "name": "Estamos buscando  Operadores en Media Tensión",
+         "clicks": 141,
+         "reach": 68386,
+         "spend": 17.01,
+         "url": "https://www.facebook.com/?feed_demo_ad=120250067637800210&h=AQLDPYowMRxdSXp59Z0Rxtt9y9A"
+        },
+        {
+         "name": "🇪🇸 ¿Quieres trabajar en España?",
+         "clicks": 110,
+         "reach": 40235,
+         "spend": 9.93,
+         "url": "https://www.facebook.com/?feed_demo_ad=120246799144050210&h=AQLS7rbQIEE_RqChwPtguEOSvyE"
+        }
+       ]
+      },
+      {
+       "name": "Campaña R | LR - 2 - Chile",
+       "objective": "Reconocimiento",
+       "group": "Reconocimiento",
+       "country": "Chile",
+       "spend": 99.97,
+       "impressions": 383596,
+       "reach": 369989,
+       "clicks": 470,
+       "interactions": 107,
+       "cpm": 0.26,
+       "cpc": 0.2127,
+       "topAds": [
+        {
+         "name": "¡Atención soldadores en Chile!",
+         "clicks": 368,
+         "reach": 284187,
+         "spend": 73.0,
+         "url": "https://www.facebook.com/?feed_demo_ad=120237483309530210&h=AQJ_Vqg4VjgxjLonS6Bq3yB1B2M"
+        },
+        {
+         "name": "Perú, Ecuador y Chile… esto es para ustedes🇵🇪🇪🇨🇨🇱!",
+         "clicks": 39,
+         "reach": 36858,
+         "spend": 13.57,
+         "url": "https://www.facebook.com/?feed_demo_ad=120250067759370210&h=AQLiE3B0OjLq2ML69e0isoorwn0"
+        },
+        {
+         "name": "🔧 ¡Atención soldadores chilenos!",
+         "clicks": 34,
+         "reach": 22767,
+         "spend": 5.88,
+         "url": "https://www.facebook.com/?feed_demo_ad=120243241997680210&h=AQIpjZpdxwaYeUgpkay6fQyHv6A"
+        },
+        {
+         "name": "Pintor airless en Chile",
+         "clicks": 27,
+         "reach": 15307,
+         "spend": 4.37,
+         "url": "https://www.facebook.com/?feed_demo_ad=120245407128610210&h=AQJ5_ptjHqL5FCQG1DaNyzIM1-U"
+        },
+        {
+         "name": "¿Sabes qué hace diferente a Rekluta?",
+         "clicks": 2,
+         "reach": 10870,
+         "spend": 3.15,
+         "url": "https://www.facebook.com/?feed_demo_ad=120237483309470210&h=AQIayLco3rnrQLGN70hdoCzbEag"
+        }
+       ]
+      },
+      {
+       "name": "Campaña R | LR - 2 - Ecuador",
+       "objective": "Reconocimiento",
+       "group": "Reconocimiento",
+       "country": "Ecuador",
+       "spend": 59.94,
+       "impressions": 238318,
+       "reach": 232127,
+       "clicks": 436,
+       "interactions": 58,
+       "cpm": 0.25,
+       "cpc": 0.1375,
+       "topAds": [
+        {
+         "name": "¡REKLUTA ECUADOR",
+         "clicks": 357,
+         "reach": 151370,
+         "spend": 39.32,
+         "url": "https://www.facebook.com/?feed_demo_ad=120242311719300210&h=AQLUKnR5-tte7iwEBsPm4vMh1Sw"
+        },
+        {
+         "name": "Electro Mecánico Automotriz",
+         "clicks": 55,
+         "reach": 28299,
+         "spend": 6.52,
+         "url": "https://www.facebook.com/?feed_demo_ad=120243291781410210&h=AQKg3z0i_xB0cdPADSgm6sbUMz0"
+        },
+        {
+         "name": "🇪🇨✈️🇪🇸 Hoy no despega solo un avión… despegan sueños!",
+         "clicks": 11,
+         "reach": 14123,
+         "spend": 4.59,
+         "url": "https://www.facebook.com/?feed_demo_ad=120250067778690210&h=AQJENNEoFyZCff-Vdk1wR1xrS08"
+        },
+        {
+         "name": "Perú, Ecuador y Chile… esto es para ustedes🇵🇪🇪🇨🇨🇱!",
+         "clicks": 7,
+         "reach": 4963,
+         "spend": 1.43,
+         "url": "https://www.facebook.com/?feed_demo_ad=120250067774680210&h=AQKHdQM63_b4zo8ctwRAmRYnIc4"
+        },
+        {
+         "name": "Eres técnico electromecánico automotriz",
+         "clicks": 6,
+         "reach": 4124,
+         "spend": 1.09,
+         "url": "https://www.facebook.com/?feed_demo_ad=120243559549550210&h=AQI9El1rLnGpSa20kIVgA-zRcTk"
+        }
+       ]
+      }
+     ]
+    }
+   },
+   "checks": [
+    {
+     "platform": "tiktok",
+     "metric": "spend",
+     "data": 1998.14,
+     "report": 1998.14,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "tiktok",
+     "metric": "views",
+     "data": 1586494,
+     "report": 1586494.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "tiktok",
+     "metric": "followers",
+     "data": 636,
+     "report": 636.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "tiktok",
+     "metric": "clicks",
+     "data": 50024,
+     "report": 50024.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "tiktok",
+     "metric": "messageClicks",
+     "data": 49457,
+     "report": 49457.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "meta",
+     "metric": "spend",
+     "data": 569.88,
+     "report": 569.88,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "meta",
+     "metric": "clicks",
+     "data": 14563,
+     "report": 14563.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "meta",
+     "metric": "messageClicks",
+     "data": 12068,
+     "report": 12068.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "meta",
+     "metric": "interactions",
+     "data": 1950,
+     "report": 1950.0,
+     "diff": 0.0,
+     "ok": true
+    }
+   ]
+  },
+  {
+   "name": "Junio",
+   "status": "cerrado",
+   "period": "1 - 30 Junio 2026",
+   "report": {
+    "title": "Reporte_Rekluta_Junio_2026.pdf",
+    "period": "1 - 30 Junio 2026",
+    "id": "1eyQSiU7M3HCZu9wquGxZwS128Q1mnoVN"
+   },
+   "platforms": {
+    "tiktok": {
+     "source": "excel",
+     "account": "Cuenta actual",
+     "firstDay": "2026-06-01",
+     "lastDay": "2026-06-30",
+     "kpis": {
+      "spend": 1999.87,
+      "impressions": 1670575,
+      "views": 1591848,
+      "clicks": 31865,
+      "followers": 662,
+      "profileVisits": 1723,
+      "messageClicks": 30309
+     },
+     "spendByGroup": {
+      "Reconocimiento": 1599.69,
+      "Mensajes": 400.18
+     },
+     "campaigns": [
+      {
+       "name": "Campaña de mensajes",
+       "objective": "Tráfico",
+       "group": "Mensajes",
+       "country": "Multipaís",
+       "spend": 400.18,
+       "impressions": 174839,
+       "views": 110972,
+       "reach": 107131,
+       "clicks": 30309,
+       "followers": 0,
+       "profileVisits": 0,
+       "cpm": 2.29,
+       "cpc": 0.0132,
+       "topAds": [
+        {
+         "name": "Contrato",
+         "views": 43073,
+         "clicks": 12019,
+         "spend": 166.72
+        },
+        {
+         "name": "Atenció Lima",
+         "views": 39024,
+         "clicks": 11182,
+         "spend": 142.12
+        },
+        {
+         "name": "España necesita talento en el sector naval",
+         "views": 16518,
+         "clicks": 3773,
+         "spend": 51.69
+        },
+        {
+         "name": "Convocatoria",
+         "views": 3332,
+         "clicks": 1242,
+         "spend": 14.67
+        },
+        {
+         "name": "Encofradores",
+         "views": 5842,
+         "clicks": 1098,
+         "spend": 13.13
+        }
+       ]
+      },
+      {
+       "name": "Campaña Reconocimiento Perú",
+       "objective": "Visualización del vídeo",
+       "group": "Reconocimiento",
+       "country": "Perú",
+       "spend": 700.03,
+       "impressions": 673067,
+       "views": 665431,
+       "reach": 663717,
+       "clicks": 1475,
+       "followers": 277,
+       "profileVisits": 472,
+       "cpm": 1.04,
+       "cpc": 0.4746,
+       "topAds": [
+        {
+         "name": "Atención PERÚ",
+         "views": 273979,
+         "clicks": 587,
+         "spend": 299.9
+        },
+        {
+         "name": "Contrato",
+         "views": 194958,
+         "clicks": 462,
+         "spend": 210.28
+        },
+        {
+         "name": "Perfiles",
+         "views": 101141,
+         "clicks": 146,
+         "spend": 102.3
+        },
+        {
+         "name": "España necesita talento en el sector naval",
+         "views": 31572,
+         "clicks": 129,
+         "spend": 28.29
+        },
+        {
+         "name": "Si no sabes qué es el NIE o el TIE",
+         "views": 23468,
+         "clicks": 0,
+         "spend": 24.66
+        }
+       ]
+      },
+      {
+       "name": "Campaña Reconocimiento Chile",
+       "objective": "Visualización del vídeo",
+       "group": "Reconocimiento",
+       "country": "Chile",
+       "spend": 599.65,
+       "impressions": 526124,
+       "views": 521959,
+       "reach": 520892,
+       "clicks": 0,
+       "followers": 210,
+       "profileVisits": 716,
+       "cpm": 1.14,
+       "cpc": null,
+       "topAds": [
+        {
+         "name": "Soldadores",
+         "views": 502212,
+         "clicks": 0,
+         "spend": 576.44
+        },
+        {
+         "name": "SOLDADORES en CHILE!",
+         "views": 19564,
+         "clicks": 0,
+         "spend": 23.05
+        },
+        {
+         "name": "CV Efectivo",
+         "views": 183,
+         "clicks": 0,
+         "spend": 0.16
+        }
+       ]
+      },
+      {
+       "name": "Campaña Reconocimiento Ecuador",
+       "objective": "Visualización del vídeo",
+       "group": "Reconocimiento",
+       "country": "Ecuador",
+       "spend": 300.01,
+       "impressions": 296545,
+       "views": 293486,
+       "reach": 291350,
+       "clicks": 81,
+       "followers": 175,
+       "profileVisits": 535,
+       "cpm": 1.01,
+       "cpc": 3.7038,
+       "topAds": [
+        {
+         "name": "Hoy no despega solo un avión",
+         "views": 234340,
+         "clicks": 0,
+         "spend": 241.38
+        },
+        {
+         "name": "Antes de postular",
+         "views": 32366,
+         "clicks": 0,
+         "spend": 33.25
+        },
+        {
+         "name": "Electricistas",
+         "views": 18291,
+         "clicks": 72,
+         "spend": 16.83
+        },
+        {
+         "name": "Estamos en GUAYAQUIL",
+         "views": 6903,
+         "clicks": 0,
+         "spend": 7.21
+        },
+        {
+         "name": "Atención ECUADOR",
+         "views": 1586,
+         "clicks": 9,
+         "spend": 1.34
+        }
+       ]
+      }
+     ]
+    },
+    "meta": {
+     "source": "excel",
+     "account": null,
+     "firstDay": "2026-06-08",
+     "lastDay": "2026-06-30",
+     "kpis": {
+      "spend": 480.14,
+      "impressions": 1880864,
+      "reach": 1823327,
+      "clicks": 2040,
+      "interactions": 932,
+      "messageClicks": 0
+     },
+     "spendByGroup": {
+      "Reconocimiento": 480.14
+     },
+     "campaigns": [
+      {
+       "name": "Campaña R | LR - 2 - Perú",
+       "objective": "Reconocimiento",
+       "group": "Reconocimiento",
+       "country": "Perú",
+       "spend": 207.04,
+       "impressions": 829672,
+       "reach": 803032,
+       "clicks": 709,
+       "interactions": 526,
+       "cpm": 0.25,
+       "cpc": 0.292,
+       "topAds": [
+        {
+         "name": "🇪🇸 ¿Quieres trabajar en España?",
+         "clicks": 237,
+         "reach": 121082,
+         "spend": 25.4,
+         "url": "https://www.facebook.com/?feed_demo_ad=120246799144050210&h=AQLS7rbQIEE_RqChwPtguEOSSKc"
+        },
+        {
+         "name": "España necesita talento en el sector naval",
+         "clicks": 233,
+         "reach": 218844,
+         "spend": 58.56,
+         "url": "https://www.facebook.com/?feed_demo_ad=120251570824840210&h=AQKEPvwhoOBSQQF1KHPw1_x9E2Y"
+        },
+        {
+         "name": "Estamos buscando  Operadores en Media Tensión",
+         "clicks": 65,
+         "reach": 46263,
+         "spend": 11.57,
+         "url": "https://www.facebook.com/?feed_demo_ad=120250067637800210&h=AQLDPYowMRxdSXp59Z0Rxtt9obA"
+        },
+        {
+         "name": "Si no sabes qué es el NIE o el TIE",
+         "clicks": 65,
+         "reach": 289712,
+         "spend": 79.2,
+         "url": "https://www.facebook.com/?feed_demo_ad=120252364379380210&h=AQKmyaULrlX1Jfh6i3bVPNn7bkw"
+        },
+        {
+         "name": "Esto no es para cualquiera",
+         "clicks": 35,
+         "reach": 22234,
+         "spend": 5.75,
+         "url": "https://www.facebook.com/?feed_demo_ad=120252364393720210&h=AQKoyqnafe2jNebw317akzFNKTA"
+        }
+       ]
+      },
+      {
+       "name": "Campaña R | LR - 2 - Chile",
+       "objective": "Reconocimiento",
+       "group": "Reconocimiento",
+       "country": "Chile",
+       "spend": 178.02,
+       "impressions": 729537,
+       "reach": 708992,
+       "clicks": 885,
+       "interactions": 225,
+       "cpm": 0.24,
+       "cpc": 0.2012,
+       "topAds": [
+        {
+         "name": "¡Atención soldadores en Chile!",
+         "clicks": 854,
+         "reach": 618172,
+         "spend": 151.82,
+         "url": "https://www.facebook.com/?feed_demo_ad=120237483309530210&h=AQJ_Vqg4VjgxjLonS6Bq3yB1hDU"
+        },
+        {
+         "name": "Perú, Ecuador y Chile… esto es para ustedes🇵🇪🇪🇨🇨🇱!",
+         "clicks": 15,
+         "reach": 8885,
+         "spend": 2.65,
+         "url": "https://www.facebook.com/?feed_demo_ad=120250067759370210&h=AQLiE3B0OjLq2ML69e0isoorJuw"
+        },
+        {
+         "name": "¿Sabes qué hace diferente a Rekluta?",
+         "clicks": 13,
+         "reach": 29113,
+         "spend": 8.46,
+         "url": "https://www.facebook.com/?feed_demo_ad=120237483309470210&h=AQIayLco3rnrQLGN70hdoCzb0Rs"
+        },
+        {
+         "name": "¿Te dan vivienda al llegar a España 🇪🇸?",
+         "clicks": 3,
+         "reach": 38943,
+         "spend": 11.09,
+         "url": "https://www.facebook.com/?feed_demo_ad=120253352598770210&h=AQIkKJisb8IPCR_hiyJ019LmQsA"
+        },
+        {
+         "name": "Muchos hablan de irse a trabajar a Europa",
+         "clicks": 0,
+         "reach": 13879,
+         "spend": 4.0,
+         "url": "https://www.facebook.com/?feed_demo_ad=120253352679920210&h=AQLAqOQMJisZRRSD07-d3pEkS9A"
+        }
+       ]
+      },
+      {
+       "name": "Campaña R | LR - 2 - Ecuador",
+       "objective": "Reconocimiento",
+       "group": "Reconocimiento",
+       "country": "Ecuador",
+       "spend": 95.08,
+       "impressions": 321655,
+       "reach": 311303,
+       "clicks": 446,
+       "interactions": 181,
+       "cpm": 0.3,
+       "cpc": 0.2132,
+       "topAds": [
+        {
+         "name": "🇪🇨✈️🇪🇸 Hoy no despega solo un avión… despegan sueños!",
+         "clicks": 425,
+         "reach": 218521,
+         "spend": 68.28,
+         "url": "https://www.facebook.com/?feed_demo_ad=120250067778690210&h=AQJENNEoFyZCff-Vdk1wR1xrToU"
+        },
+        {
+         "name": "✨ ¡Seguimos creciendo! ✨",
+         "clicks": 8,
+         "reach": 26699,
+         "spend": 7.7,
+         "url": "https://www.facebook.com/?feed_demo_ad=120237483292950210&h=AQJKiiMH__YVKP4b_kWHTIy_H64"
+        },
+        {
+         "name": "Perú, Ecuador y Chile… esto es para ustedes🇵🇪🇪🇨🇨🇱!",
+         "clicks": 6,
+         "reach": 2425,
+         "spend": 0.72,
+         "url": "https://www.facebook.com/?feed_demo_ad=120250067774680210&h=AQKHdQM63_b4zo8ctwRAmRYnhqw"
+        },
+        {
+         "name": "¿Te dan vivienda al llegar a España 🇪🇸? - Copia",
+         "clicks": 3,
+         "reach": 16510,
+         "spend": 4.98,
+         "url": "https://www.facebook.com/?feed_demo_ad=120253352748610210&h=AQKnGBRhkVr_-j6JCfjqn1zJd3g"
+        },
+        {
+         "name": "Nuestras alianzas en Ecuador",
+         "clicks": 2,
+         "reach": 41968,
+         "spend": 11.81,
+         "url": "https://www.facebook.com/?feed_demo_ad=120248087274820210&h=AQIj1fT8d1Qgoom1j6zh2c2uTR8"
+        }
+       ]
+      }
+     ]
+    }
+   },
+   "checks": [
+    {
+     "platform": "tiktok",
+     "metric": "spend",
+     "data": 1999.87,
+     "report": 1999.87,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "tiktok",
+     "metric": "views",
+     "data": 1591848,
+     "report": 1591848.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "tiktok",
+     "metric": "followers",
+     "data": 662,
+     "report": 662.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "tiktok",
+     "metric": "clicks",
+     "data": 31865,
+     "report": 31865.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "tiktok",
+     "metric": "messageClicks",
+     "data": 30309,
+     "report": 30309.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "meta",
+     "metric": "spend",
+     "data": 480.14,
+     "report": 480.14,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "meta",
+     "metric": "clicks",
+     "data": 2040,
+     "report": 2040.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "meta",
+     "metric": "messageClicks",
+     "data": 0,
+     "report": 0.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "meta",
+     "metric": "interactions",
+     "data": 932,
+     "report": 932.0,
+     "diff": 0.0,
+     "ok": true
+    }
+   ]
+  },
+  {
+   "name": "Julio",
+   "status": "cerrado",
+   "period": "1 - 31 Julio 2026",
+   "report": {
+    "title": "Reporte_Rekluta_Julio_2026.pdf",
+    "period": "1 - 31 Julio 2026",
+    "id": "1uGdgzZZXGYyEhDul_YGAHTQWbbkFdI-b"
+   },
+   "platforms": {
+    "tiktok": {
+     "source": "excel",
+     "account": "Cuenta actual",
+     "firstDay": "2026-07-01",
+     "lastDay": "2026-07-31",
+     "kpis": {
+      "spend": 1999.3,
+      "impressions": 2093901,
+      "views": 1986073,
+      "clicks": 31294,
+      "followers": 1078,
+      "profileVisits": 3436,
+      "messageClicks": 30421
+     },
+     "spendByGroup": {
+      "Reconocimiento": 1599.67,
+      "Mensajes": 399.63
+     },
+     "campaigns": [
+      {
+       "name": "Campaña de mensajes",
+       "objective": "Tráfico",
+       "group": "Mensajes",
+       "country": "Multipaís",
+       "spend": 399.63,
+       "impressions": 195526,
+       "views": 106901,
+       "reach": 110184,
+       "clicks": 30421,
+       "followers": 1,
+       "profileVisits": 5,
+       "cpm": 2.04,
+       "cpc": 0.0131,
+       "topAds": [
+        {
+         "name": "Contrato",
+         "views": 33554,
+         "clicks": 11869,
+         "spend": 153.15
+        },
+        {
+         "name": "España necesita talento en el sector naval",
+         "views": 32470,
+         "clicks": 7693,
+         "spend": 103.44
+        },
+        {
+         "name": "MT Y BT",
+         "views": 18905,
+         "clicks": 4313,
+         "spend": 55.21
+        },
+        {
+         "name": "Convocatoria",
+         "views": 14098,
+         "clicks": 3881,
+         "spend": 50.95
+        },
+        {
+         "name": "Arequipa, mira esto",
+         "views": 3606,
+         "clicks": 1368,
+         "spend": 20.68
+        }
+       ]
+      },
+      {
+       "name": "Campaña Reconocimiento Perú",
+       "objective": "Visualización del vídeo",
+       "group": "Reconocimiento",
+       "country": "Perú",
+       "spend": 699.79,
+       "impressions": 786946,
+       "views": 778778,
+       "reach": 777975,
+       "clicks": 655,
+       "followers": 341,
+       "profileVisits": 1072,
+       "cpm": 0.89,
+       "cpc": 1.0684,
+       "topAds": [
+        {
+         "name": "Una de las preguntas más comunes",
+         "views": 283468,
+         "clicks": 1,
+         "spend": 262.96
+        },
+        {
+         "name": "Si no sabes trabajar madera",
+         "views": 141321,
+         "clicks": 407,
+         "spend": 122.82
+        },
+        {
+         "name": "Este no es un viaje cualquiera",
+         "views": 114288,
+         "clicks": 0,
+         "spend": 91.48
+        },
+        {
+         "name": "Antes de postular",
+         "views": 95960,
+         "clicks": 0,
+         "spend": 83.0
+        },
+        {
+         "name": "Perfiles",
+         "views": 62769,
+         "clicks": 93,
+         "spend": 67.42
+        }
+       ]
+      },
+      {
+       "name": "Campaña Reconocimiento Chile",
+       "objective": "Visualización del vídeo",
+       "group": "Reconocimiento",
+       "country": "Chile",
+       "spend": 600.04,
+       "impressions": 639951,
+       "views": 634109,
+       "reach": 634382,
+       "clicks": 187,
+       "followers": 298,
+       "profileVisits": 1097,
+       "cpm": 0.94,
+       "cpc": 3.2088,
+       "topAds": [
+        {
+         "name": "Soldadores",
+         "views": 320616,
+         "clicks": 0,
+         "spend": 332.55
+        },
+        {
+         "name": "No basta con decidir",
+         "views": 200402,
+         "clicks": 1,
+         "spend": 152.79
+        },
+        {
+         "name": "Todo empieza mucho antes de llegar",
+         "views": 83074,
+         "clicks": 186,
+         "spend": 88.5
+        },
+        {
+         "name": "¿Y mi familia?",
+         "views": 10891,
+         "clicks": 0,
+         "spend": 7.89
+        },
+        {
+         "name": "SOLDADORES en CHILE!",
+         "views": 10574,
+         "clicks": 0,
+         "spend": 12.18
+        }
+       ]
+      },
+      {
+       "name": "Campaña Reconocimiento Ecuador",
+       "objective": "Visualización del vídeo",
+       "group": "Reconocimiento",
+       "country": "Ecuador",
+       "spend": 299.84,
+       "impressions": 471478,
+       "views": 466285,
+       "reach": 465549,
+       "clicks": 31,
+       "followers": 438,
+       "profileVisits": 1262,
+       "cpm": 0.64,
+       "cpc": 9.6723,
+       "topAds": [
+        {
+         "name": "No basta con decidir",
+         "views": 364159,
+         "clicks": 0,
+         "spend": 223.97
+        },
+        {
+         "name": "¿Y mi familia?",
+         "views": 71552,
+         "clicks": 0,
+         "spend": 52.84
+        },
+        {
+         "name": "Antes de postular",
+         "views": 10777,
+         "clicks": 0,
+         "spend": 8.03
+        },
+        {
+         "name": "NIE y TIE",
+         "views": 9250,
+         "clicks": 0,
+         "spend": 7.32
+        },
+        {
+         "name": "Electricistas",
+         "views": 5408,
+         "clicks": 30,
+         "spend": 4.4
+        }
+       ]
+      }
+     ]
+    },
+    "meta": {
+     "source": "excel",
+     "account": null,
+     "firstDay": "2026-07-01",
+     "lastDay": "2026-07-31",
+     "kpis": {
+      "spend": 179.9,
+      "impressions": 816825,
+      "reach": 804416,
+      "clicks": 347,
+      "interactions": 381,
+      "messageClicks": 0
+     },
+     "spendByGroup": {
+      "Reconocimiento": 179.9
+     },
+     "campaigns": [
+      {
+       "name": "Campaña R | LR - 2 - Perú",
+       "objective": "Reconocimiento",
+       "group": "Reconocimiento",
+       "country": "Perú",
+       "spend": 89.92,
+       "impressions": 428935,
+       "reach": 423085,
+       "clicks": 237,
+       "interactions": 266,
+       "cpm": 0.21,
+       "cpc": 0.3794,
+       "topAds": [
+        {
+         "name": "Si no sabes trabajar madera",
+         "clicks": 139,
+         "reach": 40831,
+         "spend": 8.34,
+         "url": "https://www.facebook.com/?feed_demo_ad=120254232890690210&h=AQJ5b8qiQENPpMNjzngF6idWipM"
+        },
+        {
+         "name": "Estamos buscando  Operadores en Media Tensión",
+         "clicks": 39,
+         "reach": 25402,
+         "spend": 5.58,
+         "url": "https://www.facebook.com/?feed_demo_ad=120250067637800210&h=AQLDPYowMRxdSXp59Z0Rxtt9REE"
+        },
+        {
+         "name": "¿Quieres trabajar en España 🇪🇸?",
+         "clicks": 33,
+         "reach": 289220,
+         "spend": 61.49,
+         "url": "https://www.facebook.com/?feed_demo_ad=120253508922640210&h=AQJCLZwqr0Y3nSh2SirepjfmeXs"
+        },
+        {
+         "name": "Una de las preguntas más comunes:",
+         "clicks": 13,
+         "reach": 10852,
+         "spend": 2.28,
+         "url": "https://www.facebook.com/?feed_demo_ad=120253352320580210&h=AQLLVhRAJ_Mmh_13xpxWy1C9CpY"
+        },
+        {
+         "name": "¿Pensabas que irte a trabajar a España era rápido?",
+         "clicks": 5,
+         "reach": 8730,
+         "spend": 1.72,
+         "url": "https://www.facebook.com/?feed_demo_ad=120253508701620210&h=AQLJFUHFAqkeE-6WJ6XnKlGgiLA"
+        }
+       ]
+      },
+      {
+       "name": "Campaña R | LR - 2 - Ecuador",
+       "objective": "Reconocimiento",
+       "group": "Reconocimiento",
+       "country": "Ecuador",
+       "spend": 59.99,
+       "impressions": 255866,
+       "reach": 252443,
+       "clicks": 65,
+       "interactions": 96,
+       "cpm": 0.23,
+       "cpc": 0.9229,
+       "topAds": [
+        {
+         "name": "✨ ¡Seguimos creciendo! ✨",
+         "clicks": 33,
+         "reach": 79323,
+         "spend": 20.83,
+         "url": "https://www.facebook.com/?feed_demo_ad=120237483292950210&h=AQJKiiMH__YVKP4b_kWHTIy_yZ8"
+        },
+        {
+         "name": "Nuestras alianzas en Ecuador",
+         "clicks": 18,
+         "reach": 141205,
+         "spend": 31.77,
+         "url": "https://www.facebook.com/?feed_demo_ad=120248087274820210&h=AQIj1fT8d1Qgoom1j6zh2c2ug7A"
+        },
+        {
+         "name": "Perú, Ecuador y Chile… esto es para ustedes🇵🇪🇪🇨🇨🇱!",
+         "clicks": 14,
+         "reach": 5931,
+         "spend": 1.57,
+         "url": "https://www.facebook.com/?feed_demo_ad=120250067774680210&h=AQKHdQM63_b4zo8ctwRAmRYneYU"
+        },
+        {
+         "name": "Muchos hablan de irse a trabajar a Europa - Copia",
+         "clicks": 0,
+         "reach": 5729,
+         "spend": 1.41,
+         "url": "https://www.facebook.com/?feed_demo_ad=120253352748620210&h=AQKxr3D0LFDr8cEqEaN9QjxGGJQ"
+        },
+        {
+         "name": "¿Te dan vivienda al llegar a España 🇪🇸? - Copia",
+         "clicks": 0,
+         "reach": 20255,
+         "spend": 4.41,
+         "url": "https://www.facebook.com/?feed_demo_ad=120253352748610210&h=AQKnGBRhkVr_-j6JCfjqn1zJIeM"
+        }
+       ]
+      },
+      {
+       "name": "Campaña R | LR - 2 - Chile",
+       "objective": "Reconocimiento",
+       "group": "Reconocimiento",
+       "country": "Chile",
+       "spend": 29.99,
+       "impressions": 132024,
+       "reach": 128888,
+       "clicks": 45,
+       "interactions": 19,
+       "cpm": 0.23,
+       "cpc": 0.6664,
+       "topAds": [
+        {
+         "name": "¿Sabes qué hace diferente a Rekluta?",
+         "clicks": 33,
+         "reach": 69076,
+         "spend": 16.02,
+         "url": "https://www.facebook.com/?feed_demo_ad=120237483309470210&h=AQIayLco3rnrQLGN70hdoCzbhCc"
+        },
+        {
+         "name": "Perú, Ecuador y Chile… esto es para ustedes🇵🇪🇪🇨🇨🇱!",
+         "clicks": 9,
+         "reach": 4533,
+         "spend": 1.08,
+         "url": "https://www.facebook.com/?feed_demo_ad=120250067759370210&h=AQLiE3B0OjLq2ML69e0isoor8UU"
+        },
+        {
+         "name": "¿Te dan vivienda al llegar a España 🇪🇸?",
+         "clicks": 3,
+         "reach": 53526,
+         "spend": 12.44,
+         "url": "https://www.facebook.com/?feed_demo_ad=120253352598770210&h=AQIkKJisb8IPCR_hiyJ019LmByM"
+        },
+        {
+         "name": "Muchos hablan de irse a trabajar a Europa",
+         "clicks": 0,
+         "reach": 1753,
+         "spend": 0.45,
+         "url": "https://www.facebook.com/?feed_demo_ad=120253352679920210&h=AQLAqOQMJisZRRSD07-d3pEka4E"
+        }
+       ]
+      }
+     ]
+    }
+   },
+   "checks": [
+    {
+     "platform": "tiktok",
+     "metric": "spend",
+     "data": 1999.3,
+     "report": 1999.3,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "tiktok",
+     "metric": "views",
+     "data": 1986073,
+     "report": 1986073.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "tiktok",
+     "metric": "followers",
+     "data": 1078,
+     "report": 1078.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "tiktok",
+     "metric": "clicks",
+     "data": 31294,
+     "report": 31294.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "tiktok",
+     "metric": "messageClicks",
+     "data": 30421,
+     "report": 30421.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "meta",
+     "metric": "spend",
+     "data": 179.9,
+     "report": 179.9,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "meta",
+     "metric": "clicks",
+     "data": 347,
+     "report": 347.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "meta",
+     "metric": "messageClicks",
+     "data": 0,
+     "report": 0.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "meta",
+     "metric": "interactions",
+     "data": 381,
+     "report": 381.0,
+     "diff": 0.0,
+     "ok": true
+    }
+   ]
+  },
+  {
+   "name": "Agosto",
+   "status": "cerrado",
+   "period": "1 - 31 Agosto 2026",
+   "report": {
+    "title": "Reporte_Rekluta_Agosto_2026.pdf",
+    "period": "1 - 31 Agosto 2026",
+    "id": "1StnCFN5H0J9-1v5v63AeGB1CQ83PU0Xt"
+   },
+   "platforms": {
+    "tiktok": {
+     "source": "excel",
+     "account": "Cuenta actual",
+     "firstDay": "2026-08-01",
+     "lastDay": "2026-08-31",
+     "kpis": {
+      "spend": 1999.79,
+      "impressions": 1940574,
+      "views": 1818957,
+      "clicks": 33869,
+      "followers": 694,
+      "profileVisits": 2713,
+      "messageClicks": 32931
+     },
+     "spendByGroup": {
+      "Reconocimiento": 1599.86,
+      "Mensajes": 399.93
+     },
+     "campaigns": [
+      {
+       "name": "Campaña de mensajes",
+       "objective": "Tráfico",
+       "group": "Mensajes",
+       "country": "Multipaís",
+       "spend": 399.93,
+       "impressions": 225854,
+       "views": 120961,
+       "reach": 125062,
+       "clicks": 32931,
+       "followers": 6,
+       "profileVisits": 42,
+       "cpm": 1.77,
+       "cpc": 0.0121,
+       "topAds": [
+        {
+         "name": "Contrato",
+         "views": 64909,
+         "clicks": 19411,
+         "spend": 229.13
+        },
+        {
+         "name": "No todos están listos",
+         "views": 21876,
+         "clicks": 5849,
+         "spend": 72.64
+        },
+        {
+         "name": "España necesita talento en el sector naval",
+         "views": 13254,
+         "clicks": 3240,
+         "spend": 40.02
+        },
+        {
+         "name": "MT Y BT",
+         "views": 14891,
+         "clicks": 3222,
+         "spend": 44.0
+        },
+        {
+         "name": "frigoristas",
+         "views": 6031,
+         "clicks": 1209,
+         "spend": 14.14
+        }
+       ]
+      },
+      {
+       "name": "Campaña Reconocimiento Perú",
+       "objective": "Visualización del vídeo",
+       "group": "Reconocimiento",
+       "country": "Perú",
+       "spend": 699.99,
+       "impressions": 753045,
+       "views": 744994,
+       "reach": 742286,
+       "clicks": 930,
+       "followers": 257,
+       "profileVisits": 1061,
+       "cpm": 0.93,
+       "cpc": 0.7527,
+       "topAds": [
+        {
+         "name": "IMPORTANTE",
+         "views": 229547,
+         "clicks": 0,
+         "spend": 239.77
+        },
+        {
+         "name": "frigoristas",
+         "views": 175597,
+         "clicks": 373,
+         "spend": 177.13
+        },
+        {
+         "name": "España necesita talento en el sector naval",
+         "views": 120741,
+         "clicks": 202,
+         "spend": 70.54
+        },
+        {
+         "name": "Perfiles",
+         "views": 116343,
+         "clicks": 143,
+         "spend": 109.14
+        },
+        {
+         "name": "Soldadores",
+         "views": 41461,
+         "clicks": 76,
+         "spend": 40.01
+        }
+       ]
+      },
+      {
+       "name": "Campaña Reconocimiento Chile",
+       "objective": "Visualización del vídeo",
+       "group": "Reconocimiento",
+       "country": "Chile",
+       "spend": 599.92,
+       "impressions": 545865,
+       "views": 541366,
+       "reach": 539884,
+       "clicks": 2,
+       "followers": 147,
+       "profileVisits": 683,
+       "cpm": 1.1,
+       "cpc": 299.96,
+       "topAds": [
+        {
+         "name": "Soldadores",
+         "views": 509851,
+         "clicks": 1,
+         "spend": 562.75
+        },
+        {
+         "name": "SOLDADORES en CHILE!",
+         "views": 20579,
+         "clicks": 1,
+         "spend": 25.68
+        },
+        {
+         "name": "NIE y TIE",
+         "views": 5569,
+         "clicks": 0,
+         "spend": 6.67
+        },
+        {
+         "name": "Te dan vivienda",
+         "views": 3330,
+         "clicks": 0,
+         "spend": 2.48
+        },
+        {
+         "name": "CV Efectivo",
+         "views": 2037,
+         "clicks": 0,
+         "spend": 2.34
+        }
+       ]
+      },
+      {
+       "name": "Campaña Reconocimiento Ecuador",
+       "objective": "Visualización del vídeo",
+       "group": "Reconocimiento",
+       "country": "Ecuador",
+       "spend": 299.95,
+       "impressions": 415810,
+       "views": 411636,
+       "reach": 408345,
+       "clicks": 6,
+       "followers": 284,
+       "profileVisits": 927,
+       "cpm": 0.72,
+       "cpc": 49.9917,
+       "topAds": [
+        {
+         "name": "No basta con decidir",
+         "views": 365502,
+         "clicks": 0,
+         "spend": 262.93
+        },
+        {
+         "name": "NIE y TIE",
+         "views": 20652,
+         "clicks": 0,
+         "spend": 15.58
+        },
+        {
+         "name": "Estamos en GUAYAQUIL",
+         "views": 11901,
+         "clicks": 0,
+         "spend": 10.19
+        },
+        {
+         "name": "Antes de postular",
+         "views": 9172,
+         "clicks": 0,
+         "spend": 8.26
+        },
+        {
+         "name": "Te dan vivienda",
+         "views": 3287,
+         "clicks": 0,
+         "spend": 2.24
+        }
+       ]
+      }
+     ]
+    },
+    "meta": {
+     "source": "excel",
+     "account": null,
+     "firstDay": "2026-08-05",
+     "lastDay": "2026-08-31",
+     "kpis": {
+      "spend": 684.03,
+      "impressions": 2205300,
+      "reach": 2106879,
+      "clicks": 22761,
+      "interactions": 6768,
+      "messageClicks": 20120
+     },
+     "spendByGroup": {
+      "Mensajes": 283.99,
+      "Reconocimiento": 400.04
+     },
+     "campaigns": [
+      {
+       "name": "Campaña Mensajes | LR -  Total",
+       "objective": "Interacción",
+       "group": "Mensajes",
+       "country": "Multipaís",
+       "spend": 283.99,
+       "impressions": 459488,
+       "reach": 419709,
+       "clicks": 20120,
+       "interactions": 6203,
+       "cpm": 0.62,
+       "cpc": 0.0141,
+       "topAds": [
+        {
+         "name": "Perú, Ecuador y Chile… esto es para ustedes",
+         "clicks": 18422,
+         "reach": 350519,
+         "spend": 235.21,
+         "url": "https://www.facebook.com/?feed_demo_ad=120250067678280210&h=AQLMYZoHoaIBENWHU8mB9Gu53mY"
+        },
+        {
+         "name": "España está buscando frigoristas",
+         "clicks": 1347,
+         "reach": 59009,
+         "spend": 39.69,
+         "url": "https://www.facebook.com/?feed_demo_ad=120254454431020210&h=AQLGGNXSOdv0x5SZAQOkZ5Lx9aU"
+        },
+        {
+         "name": "No todos están listos",
+         "clicks": 336,
+         "reach": 9646,
+         "spend": 8.62,
+         "url": "https://www.facebook.com/?feed_demo_ad=120254454766130210&h=AQLGeJjCPiDe0N1J8EWbx5jKFsk"
+        },
+        {
+         "name": "Estamos buscando  Operadores en Media",
+         "clicks": 15,
+         "reach": 535,
+         "spend": 0.47,
+         "url": "https://www.facebook.com/?feed_demo_ad=120250067740570210&h=AQL7wU_WLcLwu4P3vD1X-Zaziug"
+        }
+       ]
+      },
+      {
+       "name": "Campaña R | LR - 2 - Perú",
+       "objective": "Reconocimiento",
+       "group": "Reconocimiento",
+       "country": "Perú",
+       "spend": 239.06,
+       "impressions": 1133289,
+       "reach": 1094058,
+       "clicks": 2030,
+       "interactions": 354,
+       "cpm": 0.21,
+       "cpc": 0.1178,
+       "topAds": [
+        {
+         "name": "No todos están listos",
+         "clicks": 1773,
+         "reach": 731982,
+         "spend": 158.5,
+         "url": "https://www.facebook.com/?feed_demo_ad=120254454824460210&h=AQL9s6ag8g7ZT9cAF_l0DjfTwu4"
+        },
+        {
+         "name": "España está buscando frigoristas",
+         "clicks": 228,
+         "reach": 91755,
+         "spend": 18.15,
+         "url": "https://www.facebook.com/?feed_demo_ad=120254454529240210&h=AQK_Pt6r_TLnrhy_1l0jBsFG04E"
+        },
+        {
+         "name": "IMPORTANTE",
+         "clicks": 16,
+         "reach": 121986,
+         "spend": 28.88,
+         "url": "https://www.facebook.com/?feed_demo_ad=120254454646130210&h=AQKTA9SrbnPKvb609-0uYzWB4L8"
+        },
+        {
+         "name": "Este no es un viaje cualquiera",
+         "clicks": 6,
+         "reach": 22090,
+         "spend": 4.69,
+         "url": "https://www.facebook.com/?feed_demo_ad=120254232946760210&h=AQJMLqF1Euo8LWFBZ_j5UQLx4ls"
+        },
+        {
+         "name": "Esto cambia todo",
+         "clicks": 4,
+         "reach": 111666,
+         "spend": 25.8,
+         "url": "https://www.facebook.com/?feed_demo_ad=120254232852470210&h=AQKEZ1yeUIpXKVBDLXVIoCqlU5Q"
+        }
+       ]
+      },
+      {
+       "name": "Campaña R | LR - 2 - Chile",
+       "objective": "Reconocimiento",
+       "group": "Reconocimiento",
+       "country": "Chile",
+       "spend": 99.98,
+       "impressions": 362857,
+       "reach": 347041,
+       "clicks": 581,
+       "interactions": 112,
+       "cpm": 0.28,
+       "cpc": 0.1721,
+       "topAds": [
+        {
+         "name": "Perú, Ecuador y Chile… esto es para ustedes🇵🇪🇪🇨🇨🇱!",
+         "clicks": 571,
+         "reach": 293067,
+         "spend": 85.22,
+         "url": "https://www.facebook.com/?feed_demo_ad=120250067759370210&h=AQLiE3B0OjLq2ML69e0isoorsB0"
+        },
+        {
+         "name": "¿Sabes qué hace diferente a Rekluta?",
+         "clicks": 9,
+         "reach": 34958,
+         "spend": 9.8,
+         "url": "https://www.facebook.com/?feed_demo_ad=120237483309470210&h=AQIayLco3rnrQLGN70hdoCzbGHs"
+        },
+        {
+         "name": "¿Te dan vivienda al llegar a España 🇪🇸?",
+         "clicks": 1,
+         "reach": 9754,
+         "spend": 2.3,
+         "url": "https://www.facebook.com/?feed_demo_ad=120253352598770210&h=AQIkKJisb8IPCR_hiyJ019LmzbE"
+        },
+        {
+         "name": "Muchos hablan de irse a trabajar a Europa",
+         "clicks": 0,
+         "reach": 9262,
+         "spend": 2.66,
+         "url": "https://www.facebook.com/?feed_demo_ad=120253352679920210&h=AQLAqOQMJisZRRSD07-d3pEkLaU"
+        }
+       ]
+      },
+      {
+       "name": "Campaña R | LR - 2 - Ecuador",
+       "objective": "Reconocimiento",
+       "group": "Reconocimiento",
+       "country": "Ecuador",
+       "spend": 61.0,
+       "impressions": 249666,
+       "reach": 246071,
+       "clicks": 30,
+       "interactions": 99,
+       "cpm": 0.24,
+       "cpc": 2.0333,
+       "topAds": [
+        {
+         "name": "Muchos hablan de irse a trabajar a Europa - Copia",
+         "clicks": 10,
+         "reach": 133195,
+         "spend": 32.11,
+         "url": "https://www.facebook.com/?feed_demo_ad=120253352748620210&h=AQKxr3D0LFDr8cEqEaN9QjxGros"
+        },
+        {
+         "name": "Perú, Ecuador y Chile… esto es para ustedes🇵🇪🇪🇨🇨🇱!",
+         "clicks": 9,
+         "reach": 4202,
+         "spend": 1.01,
+         "url": "https://www.facebook.com/?feed_demo_ad=120250067774680210&h=AQKHdQM63_b4zo8ctwRAmRYnVA4"
+        },
+        {
+         "name": "✨ ¡Seguimos creciendo! ✨",
+         "clicks": 9,
+         "reach": 76720,
+         "spend": 19.78,
+         "url": "https://www.facebook.com/?feed_demo_ad=120237483292950210&h=AQJKiiMH__YVKP4b_kWHTIy_gkI"
+        },
+        {
+         "name": "Nuestras alianzas en Ecuador",
+         "clicks": 2,
+         "reach": 26267,
+         "spend": 6.95,
+         "url": "https://www.facebook.com/?feed_demo_ad=120248087274820210&h=AQIj1fT8d1Qgoom1j6zh2c2ujQI"
+        },
+        {
+         "name": "¿Te dan vivienda al llegar a España 🇪🇸? - Copia",
+         "clicks": 0,
+         "reach": 5687,
+         "spend": 1.15,
+         "url": "https://www.facebook.com/?feed_demo_ad=120253352748610210&h=AQKnGBRhkVr_-j6JCfjqn1zJUYE"
+        }
+       ]
+      }
+     ]
+    }
+   },
+   "checks": [
+    {
+     "platform": "tiktok",
+     "metric": "spend",
+     "data": 1999.79,
+     "report": 1999.79,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "tiktok",
+     "metric": "views",
+     "data": 1818957,
+     "report": 1818957.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "tiktok",
+     "metric": "followers",
+     "data": 694,
+     "report": 694.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "tiktok",
+     "metric": "clicks",
+     "data": 33869,
+     "report": 33869.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "tiktok",
+     "metric": "messageClicks",
+     "data": 32931,
+     "report": 32931.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "meta",
+     "metric": "spend",
+     "data": 684.03,
+     "report": 684.03,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "meta",
+     "metric": "clicks",
+     "data": 22761,
+     "report": 22761.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "meta",
+     "metric": "messageClicks",
+     "data": 20120,
+     "report": 20120.0,
+     "diff": 0.0,
+     "ok": true
+    },
+    {
+     "platform": "meta",
+     "metric": "interactions",
+     "data": 6768,
+     "report": 6768.0,
+     "diff": 0.0,
+     "ok": true
+    }
+   ]
+  },
+  {
+   "name": "Septiembre",
+   "status": "parcial",
+   "period": "1 - 20 Septiembre 2026",
+   "report": {
+    "title": "Reporte_Rekluta_Septiembre_2026 (2).pdf",
+    "period": "1 - 20 Septiembre 2026",
+    "id": "10_Y_LL0ZZMYPLHflEOj9ZjXZqMBG0ubb"
+   },
+   "platforms": {
+    "tiktok": {
+     "source": "reporte",
+     "account": "Cuenta actual",
+     "firstDay": null,
+     "lastDay": null,
+     "kpis": {
+      "spend": 685.74,
+      "impressions": null,
+      "views": 639102.0,
+      "clicks": 16249.0,
+      "followers": 309.0,
+      "profileVisits": 757,
+      "messageClicks": 15028.0
+     },
+     "spendByGroup": {
+      "Reconocimiento": 482.71,
+      "Mensajes": 203.03
+     },
+     "campaigns": [
+      {
+       "name": "Mensajes / Tráfico",
+       "objective": "Mensajes / Tráfico",
+       "group": "Mensajes",
+       "country": "Multipaís",
+       "spend": 203.03,
+       "topAds": [
+        {
+         "name": "Eres conductor de transporte pesado",
+         "truncated": true,
+         "clicks": 4367,
+         "spend": 61.06
+        },
+        {
+         "name": "Media tención, alta, tuberos, frigoris",
+         "truncated": true,
+         "clicks": 3134,
+         "spend": 45.02
+        },
+        {
+         "name": "No basta con decir que sabes hacerlo",
+         "truncated": true,
+         "clicks": 2020,
+         "spend": 27.67
+        },
+        {
+         "name": "Encofradores",
+         "truncated": true,
+         "clicks": 1596,
+         "spend": 19.08
+        }
+       ],
+       "views": 39162,
+       "clicks": 15028,
+       "profileVisits": 13,
+       "cpm": null
+      },
+      {
+       "name": "Reconocimiento Chile",
+       "objective": "Reconocimiento",
+       "group": "Reconocimiento",
+       "country": "Chile",
+       "spend": 181.69,
+       "topAds": [
+        {
+         "name": "Si eres conductor profesional",
+         "truncated": true,
+         "views": 167152,
+         "spend": 152.28
+        },
+        {
+         "name": "Albañiles",
+         "truncated": true,
+         "views": 44580,
+         "spend": 24.72
+        },
+        {
+         "name": "¿A qué lugares de España hemos llevado",
+         "truncated": true,
+         "views": 4086,
+         "spend": 3.86
+        },
+        {
+         "name": "Soldadores",
+         "truncated": true,
+         "views": 413,
+         "spend": 0.43
+        }
+       ],
+       "views": 216336,
+       "impressions": 218359,
+       "clicks": 0,
+       "profileVisits": 171,
+       "cpm": 0.83,
+       "followers": 133
+      },
+      {
+       "name": "Reconocimiento Perú",
+       "objective": "Reconocimiento",
+       "group": "Reconocimiento",
+       "country": "Perú",
+       "spend": 177.86,
+       "topAds": [
+        {
+         "name": "suma aura",
+         "truncated": true,
+         "views": 101753,
+         "spend": 73.89
+        },
+        {
+         "name": "Tienes experiencia técnica",
+         "truncated": true,
+         "views": 55628,
+         "spend": 46.3
+        },
+        {
+         "name": "Albañiles",
+         "truncated": true,
+         "views": 33543,
+         "spend": 26.01
+        },
+        {
+         "name": "No basta con decir que sabes hacerlo",
+         "truncated": true,
+         "views": 14503,
+         "spend": 8.27
+        }
+       ],
+       "views": 238193,
+       "impressions": 240813,
+       "clicks": 0,
+       "profileVisits": 271,
+       "cpm": 0.74,
+       "followers": 92
+      },
+      {
+       "name": "Reconocimiento Ecuador",
+       "objective": "Reconocimiento",
+       "group": "Reconocimiento",
+       "country": "Ecuador",
+       "spend": 123.16,
+       "topAds": [
+        {
+         "name": "¿A qué lugares de España hemos llevado",
+         "truncated": true,
+         "views": 60930,
+         "spend": 51.88
+        },
+        {
+         "name": "Estamos en GUAYAQUIL",
+         "truncated": true,
+         "views": 30870,
+         "spend": 31.3
+        },
+        {
+         "name": "Albañiles",
+         "truncated": true,
+         "views": 25429,
+         "spend": 16.7
+        },
+        {
+         "name": "Después de meses de proceso",
+         "truncated": true,
+         "views": 19196,
+         "spend": 14.7
+        }
+       ],
+       "views": 145411,
+       "impressions": 146471,
+       "clicks": 0,
+       "profileVisits": 302,
+       "cpm": 0.84,
+       "followers": 86
+      }
+     ]
+    },
+    "meta": {
+     "source": "reporte",
+     "account": null,
+     "firstDay": null,
+     "lastDay": null,
+     "kpis": {
+      "spend": 181.76,
+      "impressions": null,
+      "reach": 677490.0,
+      "clicks": 7807.0,
+      "interactions": 2434.0,
+      "messageClicks": 6717
+     },
+     "spendByGroup": {
+      "Mensajes": 54.06,
+      "Reconocimiento": 127.7
+     },
+     "campaigns": [
+      {
+       "name": "Mensajes LR - Total",
+       "objective": "Mensajes",
+       "group": "Mensajes",
+       "country": "Multipaís",
+       "spend": 54.06,
+       "topAds": [
+        {
+         "name": "¿Eres conductor de transporte pesado",
+         "truncated": true,
+         "clicks": 5057,
+         "reach": 58911,
+         "spend": 31.06
+        },
+        {
+         "name": "Fierrero, tu experiencia puede llevart",
+         "truncated": true,
+         "clicks": 1062,
+         "reach": 14831,
+         "spend": 13.46
+        },
+        {
+         "name": "Técnicos en ascensores, atención",
+         "truncated": true,
+         "clicks": 289,
+         "reach": 5795,
+         "spend": 4.6
+        },
+        {
+         "name": "Atención, talento metalmecánico",
+         "truncated": true,
+         "clicks": 237,
+         "reach": 8219,
+         "spend": 3.92
+        }
+       ],
+       "reach": 89888,
+       "clicks": 6717,
+       "interactions": 2169,
+       "cpm": null
+      },
+      {
+       "name": "Reconocimiento Perú",
+       "objective": "Reconocimiento",
+       "group": "Reconocimiento",
+       "country": "Perú",
+       "spend": 75.47,
+       "topAds": [
+        {
+         "name": "¿Tienes experiencia técnica y estás pe",
+         "truncated": true,
+         "clicks": 310,
+         "reach": 150982,
+         "spend": 29.59
+        },
+        {
+         "name": "Fierrero, tu experiencia",
+         "truncated": true,
+         "clicks": 219,
+         "reach": 69704,
+         "spend": 15.2
+        },
+        {
+         "name": "No todos están listos",
+         "truncated": true,
+         "clicks": 71,
+         "reach": 32852,
+         "spend": 5.99
+        },
+        {
+         "name": "Eres conductor de transporte pesado y",
+         "truncated": true,
+         "clicks": 67,
+         "reach": 32985,
+         "spend": 6.24
+        }
+       ],
+       "reach": 381269,
+       "impressions": 391053,
+       "clicks": 808,
+       "interactions": 0,
+       "cpm": 0.19
+      },
+      {
+       "name": "Reconocimiento Chile",
+       "objective": "Reconocimiento",
+       "group": "Reconocimiento",
+       "country": "Chile",
+       "spend": 32.72,
+       "topAds": [
+        {
+         "name": "conductor profesional con licencia A3",
+         "truncated": true,
+         "clicks": 182,
+         "reach": 91872,
+         "spend": 24.19
+        },
+        {
+         "name": "¿A qué lugares de España hemos llevado",
+         "truncated": true,
+         "clicks": 7,
+         "reach": 6857,
+         "spend": 1.74
+        },
+        {
+         "name": "¿Sabes qué hace diferente a Rekluta?",
+         "truncated": true,
+         "clicks": 3,
+         "reach": 17534,
+         "spend": 4.64
+        },
+        {
+         "name": "Perú, Ecuador y Chile… esto es para us",
+         "truncated": true,
+         "clicks": 2,
+         "reach": 295,
+         "spend": 0.06
+        }
+       ],
+       "reach": 124628,
+       "impressions": 133027,
+       "clicks": 194,
+       "interactions": 0,
+       "cpm": 0.25
+      },
+      {
+       "name": "Reconocimiento Ecuador",
+       "objective": "Reconocimiento",
+       "group": "Reconocimiento",
+       "country": "Ecuador",
+       "spend": 19.51,
+       "topAds": [
+        {
+         "name": "Después de meses de proceso",
+         "truncated": true,
+         "clicks": 83,
+         "reach": 60122,
+         "spend": 15.09
+        },
+        {
+         "name": "Perú, Ecuador y Chile… esto es para us",
+         "truncated": true,
+         "clicks": 4,
+         "reach": 2700,
+         "spend": 0.64
+        },
+        {
+         "name": "Nuestras alianzas en Ecuador",
+         "truncated": true,
+         "clicks": 1,
+         "reach": 15968,
+         "spend": 3.12
+        },
+        {
+         "name": "¿Te dan vivienda al llegar a España 🇪🇸",
+         "truncated": true,
+         "clicks": 0,
+         "reach": 2814,
+         "spend": 0.64
+        }
+       ],
+       "reach": 81705,
+       "impressions": 86029,
+       "clicks": 88,
+       "interactions": 0,
+       "cpm": 0.23
+      }
+     ]
+    }
+   },
+   "checks": [
+    {
+     "platform": "tiktok",
+     "metric": "spend",
+     "data": 685.74,
+     "report": 685.74,
+     "diff": 0.0,
+     "ok": true,
+     "scope": "campanas vs resumen del reporte"
+    },
+    {
+     "platform": "meta",
+     "metric": "spend",
+     "data": 181.76,
+     "report": 181.76,
+     "diff": 0.0,
+     "ok": true,
+     "scope": "campanas vs resumen del reporte"
+    }
+   ]
+  },
+  {
+   "name": "Octubre",
+   "status": "sin-datos",
+   "period": null,
+   "report": null,
+   "platforms": {},
+   "checks": []
+  },
+  {
+   "name": "Noviembre",
+   "status": "sin-datos",
+   "period": null,
+   "report": null,
+   "platforms": {},
+   "checks": []
+  },
+  {
+   "name": "Diciembre",
+   "status": "sin-datos",
+   "period": null,
+   "report": null,
+   "platforms": {},
+   "checks": []
+  }
+ ]
 }

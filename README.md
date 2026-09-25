@@ -3,7 +3,7 @@
 Dashboard de Agencia Lima Retail para controlar la inversion publicitaria de Rekluta
 
 
-Version actual: `v1.9.2`. El tablero reutiliza el codigo base de otro tablero de la agencia; de ahi
+Version actual: `v1.10.0`. El tablero reutiliza el codigo base de otro tablero de la agencia; de ahi
 viene la numeracion de version.
 
 ## Versionado
@@ -16,12 +16,14 @@ El proyecto usa la nomenclatura `vMAJOR.MINOR.PATCH`:
 
 ## Modulo activo
 
-- Gasto mensual total.
-- Distribucion entre Branding y Ventas.
-- Campanas por mes.
-- Estado, objetivo, presupuesto, gasto, importe diario y URL de anuncios.
-- Proyecciones: cierre de mes estimado con los datos reales y calculadora de inversion por CPL.
-- Historico de Campanas finalizadas.
+- Gasto publicitario de las dos cuentas administradas: TikTok Ads (S/.) y Meta Ads (US$).
+  - Cada plataforma se muestra en su moneda de facturacion, sin conversion, igual que el reporte mensual.
+  - KPIs acumulados del ano, grafico mensual (inversion, clics a mensajes y exposicion) y detalle por mes.
+  - Por mes: tarjeta por plataforma, distribucion Reconocimiento / Seguidores / Mensajes, campanas con su
+    resultado principal y los mejores anuncios (con vista previa en Meta).
+  - Cruce con el reporte mensual: cada total calculado desde las exportaciones se compara con el resumen del PDF.
+- Proyecciones: cierre de mes estimado y calculadora de inversion por CPL (ver nota abajo).
+- Historico de Campanas: campanas de los meses cerrados.
 - Archivo de Reportes: catalogo de los documentos guardados en la carpeta de Google Drive.
 
 Los modulos Comparativo YoY, Distribucion, Productos Web y Usuarios y Claves se muestran
@@ -29,16 +31,31 @@ deshabilitados hasta su futura implementacion.
 
 ## Datos
 
-La fuente normalizada del dashboard esta en `data/rk-ads-2026.json`. Arranca vacia: los doce meses
-de 2026 existen con gasto cero y sin campanas, a la espera de la primera carga real.
+La fuente normalizada del dashboard es `data/rk-ads-2026.json`, generada con `scripts/build-ads-data.py`
+a partir de la carpeta de Rekluta en Google Drive:
 
-El tablero se alimenta de un Google Sheet publicado como CSV. A medida que se cierra cada mes, el
-mes queda archivado en su propio `data/rk-<mes>-sheet-2026.json` y se engancha agregando su ruta al
-arreglo `CLOSED_MONTH_URLS` en `js/objectives.js`.
+| Carpeta | Contenido | Uso |
+| --- | --- | --- |
+| `Tik Tok Files - Rekluta` | Un `.xlsx` por mes (PEN, por dia / edad / sexo / anuncio) | Fuente principal de TikTok |
+| `Meta Files - Rekluta` | Un `.xlsx` por mes (Raw Data Report, USD) | Fuente principal de Meta |
+| `Reportes Rekluta` | `Reporte_Rekluta_<Mes>_2026.pdf` | Control de cuadre y respaldo |
 
-Para que la lectura del CSV funcione, el spreadsheet debe estar compartido como "cualquier persona
-con el enlace / lector". Si se restringe, el boton Actualizar deja de funcionar y hay que refrescar
-el JSON a mano.
+- Si un mes no tiene Excel con datos, se toma del reporte PDF. Hoy pasa con TikTok enero y febrero
+  (se pautaron en la cuenta anterior; la exportacion de la cuenta actual viene vacia) y con septiembre
+  (aun sin exportar; se usa el corte mas reciente del reporte, 1 - 20 de septiembre).
+- Cuando hay varias versiones del reporte de un mes, gana la de periodo mas largo.
+- La pagina "Seguidores por Pais" del reporte a veces es una campana propia (enero y febrero) y a veces
+  solo consolida los seguidores de Reconocimiento; el script la distingue comparando contra el total.
+
+Para actualizar al cerrar un mes: subir los dos Excel y el reporte a sus carpetas y correr
+
+```
+pip install pandas openpyxl pypdf
+python scripts/build-ads-data.py            # usa G:/Mi unidad/.../Rekluta
+python scripts/build-ads-data.py --root "<carpeta Rekluta>"
+```
+
+El script imprime por mes la inversion de cada plataforma, su fuente y si cuadra con el reporte.
 
 ## Proyecciones
 
@@ -51,8 +68,12 @@ El modulo Proyecciones lee los datos del modulo Gasto publicitario a traves de
   dia del mes.
 - La linea de tiempo marca el dia de la ultima actualizacion y compara contra el presupuesto
   (inversion) o el objetivo de reservas.
-- Cada sincronizacion con Google Sheets emite el evento `rk:data-updated` y el modulo se recalcula
+- Cada carga de datos emite el evento `rk:data-updated` y el modulo se recalcula
   solo.
+
+Nota: el modulo proyecta un unico monto en soles. Como el gasto de Rekluta esta en dos monedas, por ahora
+`snapshot()` se entrega sin gasto consolidado y Proyecciones muestra "Sin datos para proyectar" hasta adaptarlo
+por plataforma (o definir un tipo de cambio).
 
 ## Configuracion pendiente
 
@@ -60,9 +81,7 @@ Estos valores estan vacios a proposito y hay que cargarlos antes de publicar:
 
 | Que | Donde |
 | --- | --- |
-| ID del Google Sheet | `js/objectives.js` (`SHEET_ID`) y `scripts/google-sheets-sync.gs` (`SPREADSHEET_ID`) |
 | Catalogo de reportes de Drive | `data/rk-drive-reports.json` (`files`); la carpeta ya esta enlazada |
-| Endpoint de escritura a Sheets (opcional) | `js/objectives.js` (`SHEET_SYNC_ENDPOINT`, URL `https://script.google.com/macros/s/.../exec`) |
 | Acceso y deploy | Secrets de GitHub Actions (ver "Publicacion en el hosting de Lima Retail") |
 | Logo | `assets/logo-rekluta.png` |
 | Favicon | `assets/favicon.png` |
@@ -78,16 +97,10 @@ npm run build    # genera dist/index.html con todo embebido
 El resultado se genera en `dist/`: `index.html` (CSS, JS y datos incrustados), `assets/` y `.htaccess`.
 Nada mas: `data/`, `scripts/` y el resto del repo nunca se publican.
 
-## Sincronizacion de escritura con Google Sheets
+## Google Sheets (retirado)
 
-Para que los cambios en `Objetivo Reservas` se escriban de vuelta en el Sheet:
-
-1. Crear un proyecto de Apps Script vinculado al Google Sheet y copiar `scripts/google-sheets-sync.gs`
-   (con `SPREADSHEET_ID` cargado).
-2. Publicarlo como Web App con ejecucion como propietario.
-   El script solo escribe en las pestañas mensuales del spreadsheet fijado en `SPREADSHEET_ID` y solo acepta enteros entre 0 y 100000.
-3. Pegar la URL `https://script.google.com/macros/s/.../exec` en `SHEET_SYNC_ENDPOINT` (`js/objectives.js`) y volver a publicar.
-   No se acepta desde `?sheetSyncEndpoint=` ni desde localStorage: un enlace manipulado podia desviar los datos a un tercero.
+El tablero ya no lee ni escribe en Google Sheets: los datos salen de las exportaciones de las plataformas.
+`scripts/google-sheets-sync.gs` quedo sin uso.
 
 ## Publicacion en el hosting de Lima Retail
 

@@ -1285,3 +1285,233 @@ body.modal-open {
     gap: 12px;
   }
 }
+
+/* Modulo Gasto publicitario: TikTok Ads (S/.) y Meta Ads (US$) */
+.series-toggle[data-series="spend"].active,
+.series-toggle[data-series="messageClicks"].active,
+.series-toggle[data-series="exposure"].active,
+.series-toggle[data-series="all"].active {
+  color: var(--brand-text);
+  border-color: var(--brand);
+  background: var(--brand-soft);
+}
+
+.series-toggle[data-series="tiktok"].active {
+  color: #be185d;
+  border-color: #db2777;
+  background: #fdf2f8;
+}
+
+.series-toggle[data-series="meta"].active {
+  color: #1d4ed8;
+  border-color: #2563eb;
+  background: #eff6ff;
+}
+
+.legend-line.tiktok { background: #db2777; }
+.legend-line.meta { background: #2563eb; }
+
+.platform-pill,
+.group-pill {
+  display: inline-flex;
+  padding: 4px 8px;
+  border-radius: 99px;
+  font-size: 9px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.platform-pill.tiktok { color: #be185d; background: #fdf2f8; }
+.platform-pill.meta { color: #1d4ed8; background: #eff6ff; }
+.group-pill { color: #475569; background: #f1f5f9; }
+.group-pill.branding { color: #6d28d9; background: #f5f3ff; }
+.group-pill.messages { color: #15803d; background: #f0fdf4; }
+.group-pill.followers { color: #b45309; background: #fffbeb; }
+
+.ads-month-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin: 0 0 14px;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: #fff;
+}
+
+.ads-month-info {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.ads-month-info small {
+  flex-basis: 100%;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.ads-report-link {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  text-decoration: none;
+}
+
+.ads-platforms {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.ads-platform-card { border-top: 3px solid var(--border); }
+.ads-platform-card.tiktok { border-top-color: #db2777; }
+.ads-platform-card.meta { border-top-color: #2563eb; }
+.ads-platform-card .empty-state { min-height: 160px; margin-top: 12px; }
+
+.ads-platform-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ads-platform-head .platform-pill { font-size: 11px; }
+
+.ads-platform-spend { text-align: right; }
+
+.ads-platform-spend span,
+.ads-platform-metrics span {
+  display: block;
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.ads-platform-spend strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -.02em;
+}
+
+.ads-platform-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin: 16px 0 14px;
+}
+
+.ads-platform-metrics > div {
+  padding: 10px;
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.ads-platform-metrics strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.ads-platform-metrics small {
+  display: block;
+  margin-top: 4px;
+  color: #94a3b8;
+  font-size: 9px;
+}
+
+.ads-split-bar {
+  display: flex;
+  height: 8px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: #f1f5f9;
+}
+
+.ads-split-bar i,
+.ads-split-legend i { background: #94a3b8; }
+.ads-split-bar i.branding,
+.ads-split-legend i.branding { background: #7c3aed; }
+.ads-split-bar i.messages,
+.ads-split-legend i.messages { background: #16a34a; }
+.ads-split-bar i.followers,
+.ads-split-legend i.followers { background: #f59e0b; }
+
+.ads-split-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin-top: 9px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.ads-split-legend span { display: inline-flex; align-items: center; gap: 5px; }
+.ads-split-legend i { display: inline-block; width: 8px; height: 8px; border-radius: 2px; }
+.ads-split-legend b { color: var(--ink); font-weight: 700; }
+.ads-split-legend em { font-style: normal; }
+
+.result-label { color: #94a3b8; font-size: 9px; }
+
+.ads-expand {
+  height: 26px;
+  padding: 0 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  background: #fff;
+  color: #475569;
+  font-size: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.ads-expand:hover { border-color: #94a3b8; color: var(--ink); }
+.ads-campaign-row.open td { border-bottom-color: transparent; background: #fcfdff; }
+.ads-detail-row td { padding-top: 0 !important; background: #fcfdff; }
+
+.ads-top-table {
+  width: 100%;
+  max-width: 760px;
+  border-collapse: collapse;
+  font-size: 10px;
+}
+
+.ads-top-table th {
+  padding: 6px 8px;
+  color: #94a3b8;
+  font-size: 9px;
+  font-weight: 700;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.ads-top-table td {
+  padding: 6px 8px;
+  border-top: 1px solid #eef2f7;
+  color: #334155;
+}
+
+.ads-top-table .num { text-align: right; white-space: nowrap; }
+.ads-top-table a { color: #2563eb; font-weight: 700; text-decoration: none; white-space: nowrap; }
+.ads-top-table a:hover { text-decoration: underline; }
+
+.ads-checks-panel { margin-top: 14px; }
+
+@media(max-width:1100px) {
+  .ads-platforms { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media(max-width:760px) {
+  .ads-platform-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ads-month-bar { align-items: flex-start; flex-direction: column; }
+}
