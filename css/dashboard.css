@@ -1288,7 +1288,7 @@ body.modal-open {
 
 /* Modulo Gasto publicitario: TikTok Ads (S/.) y Meta Ads (US$) */
 .series-toggle[data-series="spend"].active,
-.series-toggle[data-series="messageClicks"].active,
+.series-toggle[data-series="clicks"].active,
 .series-toggle[data-series="exposure"].active,
 .series-toggle[data-series="all"].active {
   color: var(--brand-text);
@@ -1409,6 +1409,9 @@ body.modal-open {
   margin: 16px 0 14px;
 }
 
+.ads-platform-metrics.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.ads-platform-metrics.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
 .ads-platform-metrics > div {
   padding: 10px;
   border-radius: 8px;
@@ -1512,6 +1515,6 @@ body.modal-open {
 }
 
 @media(max-width:760px) {
-  .ads-platform-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ads-platform-metrics.cols-3 { grid-template-columns: minmax(0, 1fr); }
   .ads-month-bar { align-items: flex-start; flex-direction: column; }
 }

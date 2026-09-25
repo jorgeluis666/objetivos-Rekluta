@@ -9,8 +9,8 @@
   const GROUP_CLASS = { Reconocimiento: 'branding', Mensajes: 'messages', Seguidores: 'followers' };
   const CHART_METRICS = {
     spend: { label: 'Inversion', money: true, sub: 'TikTok Ads en S/. (eje izquierdo) y Meta Ads en US$ (eje derecho)' },
-    messageClicks: { label: 'Clics a mensajes', money: false, sub: 'Clics de las campanas de Mensajes / Trafico de cada plataforma' },
-    exposure: { label: 'Exposicion', money: false, sub: 'Visualizaciones de video en TikTok y alcance en Meta' },
+    clicks: { label: 'Clics salientes', money: false, sub: 'Clics salientes de todas las campanas de cada plataforma' },
+    exposure: { label: 'Exposicion', money: false, sub: 'Visualizaciones de video en TikTok y alcance de Reconocimiento en Meta' },
   };
   const CHART_COLLAPSED_KEY = 'rk-chart-collapsed-v1';
   const CHART_METRIC_KEY = 'rk-ads-chart-metric-v1';
@@ -76,7 +76,7 @@
 
   // ── KPIs acumulados del año ────────────────────────────────────────────────
   function yearTotals() {
-    const totals = { tiktok: { spend: 0, views: 0, followers: 0, messageClicks: 0 }, meta: { spend: 0, reach: 0, messageClicks: 0, clicks: 0 }, months: 0 };
+    const totals = { tiktok: { spend: 0, views: 0, followers: 0, clicks: 0 }, meta: { spend: 0, reach: 0, clicks: 0 }, months: 0 };
     state.data.months.forEach(month => {
       if (!hasData(month)) return;
       totals.months += 1;
@@ -91,14 +91,14 @@
   function renderKpis() {
     const host = document.getElementById('kpi-strip');
     const totals = yearTotals();
-    const messageClicks = totals.tiktok.messageClicks + totals.meta.messageClicks;
+    const clicks = totals.tiktok.clicks + totals.meta.clicks;
     const cutoff = longDate(state.data.cutoff);
     const cards = [
       ['Inversion TikTok Ads', fmtMoney(totals.tiktok.spend, 'tiktok'), `Acumulado al ${cutoff}`],
       ['Inversion Meta Ads', fmtMoney(totals.meta.spend, 'meta'), `Acumulado al ${cutoff}`],
-      ['Visualizaciones TikTok', fmtCompact(totals.tiktok.views, false), `${fmtCount(totals.tiktok.followers)} seguidores ganados`],
-      ['Alcance Meta', fmtCompact(totals.meta.reach, false), `${fmtCount(totals.meta.clicks)} clics en el enlace`],
-      ['Clics a mensajes', fmtCount(messageClicks), `TikTok ${fmtCompact(totals.tiktok.messageClicks, false)} | Meta ${fmtCompact(totals.meta.messageClicks, false)}`],
+      ['Visualizaciones TikTok', fmtCompact(totals.tiktok.views, false), `${fmtCount(totals.tiktok.followers)} seguidores de pago`],
+      ['Alcance Meta', fmtCompact(totals.meta.reach, false), 'Resultados de Reconocimiento'],
+      ['Clics salientes', fmtCount(clicks), `TikTok ${fmtCompact(totals.tiktok.clicks, false)} | Meta ${fmtCompact(totals.meta.clicks, false)}`],
     ];
     host.innerHTML = cards.map(([name, value, meta]) => `<div class="kpi-pill"><span>${name}</span><strong>${value}</strong><small>${meta}</small></div>`).join('');
   }
@@ -134,13 +134,17 @@
       label: seriesName(platform),
       platform,
       data: state.data.months.slice(0, lastIndex + 1).map(month => metricValue(month, platform, metric)),
+      borderColor: PLATFORM_COLORS[platform],
       backgroundColor: PLATFORM_COLORS[platform],
-      borderRadius: 5,
-      maxBarThickness: 34,
+      borderWidth: 2.5,
+      pointRadius: 5,
+      pointHoverRadius: 7,
+      tension: .3,
+      cubicInterpolationMode: 'monotone',
       yAxisID: config.money && platform === 'meta' ? 'y1' : 'y',
     }));
     const tick = platform => value => fmtCompact(value, config.money, platform);
-    const axis = { beginAtZero: true, border: { display: false }, ticks: { color: '#7890b5', font: { size: 10 } } };
+    const axis = { beginAtZero: true, grace: '15%', border: { display: false }, ticks: { color: '#7890b5', font: { size: 10 } } };
     const scales = {
       x: { grid: { display: false }, border: { color: '#cbd5e1' }, ticks: { color: '#7890b5', font: { size: 10 } } },
       y: { ...axis, grid: { color: 'rgba(148,163,184,.20)' }, ticks: { ...axis.ticks, callback: tick('tiktok') } },
@@ -149,7 +153,7 @@
     if (config.money) scales.y.ticks.color = PLATFORM_COLORS.tiktok;
     if (state.chart) state.chart.destroy();
     state.chart = new Chart(canvas, {
-      type: 'bar',
+      type: 'line',
       data: { labels, datasets },
       options: {
         responsive: true,
@@ -173,9 +177,9 @@
         ctx.textAlign = 'center';
         chart.data.datasets.forEach((dataset, index) => {
           ctx.fillStyle = dataset.backgroundColor;
-          chart.getDatasetMeta(index).data.forEach((bar, point) => {
+          chart.getDatasetMeta(index).data.forEach((dot, point) => {
             const value = dataset.data[point];
-            if (value) ctx.fillText(fmtCompact(value, config.money, dataset.platform), bar.x, bar.y - 6);
+            if (value) ctx.fillText(fmtCompact(value, config.money, dataset.platform), dot.x, dot.y - 11);
           });
         });
         ctx.restore();
@@ -228,14 +232,11 @@
     const cost = (value, count) => isNum(value) && Number(count) > 0 ? Number(value) / Number(count) : null;
     const metrics = platform === 'tiktok' ? [
       ['Visualizaciones', fmtCount(k.views), k.impressions ? `CPM ${fmtMoney(k.spend / k.impressions * 1000, platform)}` : 'Total del reporte mensual'],
-      ['Seguidores', fmtCount(k.followers), `${fmtCost(cost(k.spend, k.followers), platform)} por seguidor`],
-      ['Clics destino', fmtCount(k.clicks), `${fmtCount(k.profileVisits)} visitas al perfil`],
-      ['Clics a mensajes', fmtCount(k.messageClicks), `${fmtCost(cost(data.spendByGroup.Mensajes, k.messageClicks), platform)} por clic`],
+      ['Seguidores de pago', fmtCount(k.followers), `${fmtCost(cost(k.spend, k.followers), platform)} por seguidor`],
+      ['Clics salientes', fmtCount(k.clicks), `${fmtCount(k.messageClicks)} de la campana de Mensajes`],
     ] : [
-      ['Alcance', fmtCount(k.reach), k.impressions ? `${fmtCount(k.impressions)} impresiones` : 'Suma por campana'],
-      ['Clics en el enlace', fmtCount(k.clicks), `${fmtCost(cost(k.spend, k.clicks), platform)} por clic`],
-      ['Clics a mensajes', fmtCount(k.messageClicks), k.messageClicks ? `${fmtCost(cost(data.spendByGroup.Mensajes, k.messageClicks), platform)} por clic` : 'Sin campana de Mensajes'],
-      ['Interacciones', fmtCount(k.interactions), 'Reacciones, comentarios y compartidos'],
+      ['Alcance', fmtCount(k.reach), 'Resultados de las campanas de Reconocimiento'],
+      ['Clics salientes', fmtCount(k.clicks), `${fmtCost(cost(k.spend, k.clicks), platform)} por clic | ${fmtCount(k.messageClicks)} de Mensajes`],
     ];
     const groups = Object.entries(data.spendByGroup || {}).sort((a, b) => b[1] - a[1]);
     const bar = groups.map(([group, value]) => `<i class="${GROUP_CLASS[group] || ''}" style="width:${(value / k.spend * 100).toFixed(2)}%" title="${esc(group)}: ${fmtMoney(value, platform)}"></i>`).join('');
@@ -246,7 +247,7 @@
           <div>${platformPill(platform)}<div class="panel-sub">${esc(state.data.platforms[platform].currency)}${data.account ? ` | ${esc(data.account)}` : ''} | ${data.campaigns.length} campanas</div></div>
           <div class="ads-platform-spend"><span>Inversion</span><strong>${fmtMoney(k.spend, platform)}</strong></div>
         </div>
-        <div class="ads-platform-metrics">${metrics.map(([name, value, hint]) => `<div><span>${name}</span><strong>${value}</strong><small>${hint}</small></div>`).join('')}</div>
+        <div class="ads-platform-metrics cols-${metrics.length}">${metrics.map(([name, value, hint]) => `<div><span>${name}</span><strong>${value}</strong><small>${hint}</small></div>`).join('')}</div>
         <div class="ads-split"><div class="ads-split-bar">${bar}</div><div class="ads-split-legend">${legend}</div></div>
       </div>`;
   }
@@ -294,7 +295,7 @@
     }).join('');
   }
   function renderChecks(month) {
-    const names = { spend: 'Inversion', views: 'Visualizaciones', followers: 'Seguidores', clicks: 'Clics', messageClicks: 'Clics a mensajes', interactions: 'Interacciones' };
+    const names = { spend: 'Inversion', views: 'Visualizaciones', followers: 'Seguidores de pago', clicks: 'Clics salientes', messageClicks: 'Clics salientes de Mensajes', interactions: 'Interacciones' };
     const checks = month.checks || [];
     const reportName = month.report ? `${month.report.title} (${month.report.period})` : 'sin reporte';
     document.getElementById('checks-sub').textContent = checks.length
@@ -337,8 +338,8 @@
         ['Campañas', fmtCount(rows.length), `${closed.length} meses cerrados`],
         ['Inversión TikTok', fmtMoney(closedSpend('tiktok'), 'tiktok'), 'Meses cerrados'],
         ['Inversión Meta', fmtMoney(closedSpend('meta'), 'meta'), 'Meses cerrados'],
-        ['Seguidores TikTok', fmtCount(totals.tiktok.followers), 'Acumulado 2026'],
-        ['Clics a mensajes', fmtCount(totals.tiktok.messageClicks + totals.meta.messageClicks), 'Acumulado 2026'],
+        ['Seguidores de pago', fmtCount(totals.tiktok.followers), 'TikTok, acumulado 2026'],
+        ['Clics salientes', fmtCount(totals.tiktok.clicks + totals.meta.clicks), 'Acumulado 2026'],
       ].map(([name, value, meta]) => `<div class="kpi-pill"><span>${name}</span><strong>${value}</strong><small>${meta}</small></div>`).join('');
     }
     const sub = document.getElementById('history-sub');

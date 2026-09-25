@@ -354,7 +354,10 @@ def build(drive):
                 kpis = totals(campaigns, ['spend', 'impressions', 'reach', 'clicks', 'interactions'])
                 kpis['messageClicks'] = int(sum(c.get('clicks', 0) for c in campaigns if c['group'] == 'Mensajes'))
                 if source == 'reporte':
-                    kpis.update({key: summary[key] for key in ('reach', 'clicks', 'interactions') if summary.get(key) is not None})
+                    kpis.update({key: summary[key] for key in ('clicks', 'interactions') if summary.get(key) is not None})
+                # El alcance de Meta es el resultado (columna Resultados) de las campanas de Reconocimiento;
+                # el de la campana de Mensajes no cuenta.
+                kpis['reach'] = int(sum(c.get('reach', 0) for c in campaigns if c['group'] == 'Reconocimiento'))
             if any('impressions' not in c for c in campaigns):
                 kpis['impressions'] = None  # el reporte no trae impresiones de todas las campanas
             by_group = {}

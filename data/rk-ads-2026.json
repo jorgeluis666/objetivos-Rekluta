@@ -241,7 +241,7 @@
      "kpis": {
       "spend": 243.77,
       "impressions": 1183554,
-      "reach": 1131190,
+      "reach": 1040395,
       "clicks": 4804,
       "interactions": 1986,
       "messageClicks": 3754
@@ -699,7 +699,7 @@
      "kpis": {
       "spend": 246.51,
       "impressions": 1016635,
-      "reach": 974444,
+      "reach": 827735,
       "clicks": 8591,
       "interactions": 1107,
       "messageClicks": 7718
@@ -1180,7 +1180,7 @@
      "kpis": {
       "spend": 575.16,
       "impressions": 2101424,
-      "reach": 2009463,
+      "reach": 1874138,
       "clicks": 10205,
       "interactions": 2176,
       "messageClicks": 7029
@@ -1671,7 +1671,7 @@
      "kpis": {
       "spend": 569.99,
       "impressions": 2104465,
-      "reach": 2014272,
+      "reach": 1889062,
       "clicks": 10344,
       "interactions": 2689,
       "messageClicks": 6963
@@ -2172,7 +2172,7 @@
      "kpis": {
       "spend": 569.88,
       "impressions": 1843243,
-      "reach": 1753872,
+      "reach": 1563607,
       "clicks": 14563,
       "interactions": 1950,
       "messageClicks": 12068
@@ -3596,7 +3596,7 @@
      "kpis": {
       "spend": 684.03,
       "impressions": 2205300,
-      "reach": 2106879,
+      "reach": 1687170,
       "clicks": 22761,
       "interactions": 6768,
       "messageClicks": 20120
@@ -4063,7 +4063,7 @@
      "kpis": {
       "spend": 181.76,
       "impressions": null,
-      "reach": 677490.0,
+      "reach": 587602,
       "clicks": 7807.0,
       "interactions": 2434.0,
       "messageClicks": 6717
