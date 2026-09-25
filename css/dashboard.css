@@ -1368,9 +1368,6 @@ body.modal-open {
   margin-bottom: 14px;
 }
 
-.ads-platform-card { border-top: 3px solid var(--border); }
-.ads-platform-card.tiktok { border-top-color: #db2777; }
-.ads-platform-card.meta { border-top-color: #2563eb; }
 .ads-platform-card .empty-state { min-height: 160px; margin-top: 12px; }
 
 .ads-platform-head {
