@@ -765,7 +765,59 @@ body.modal-open {
 /* ===== 02 - Proyecciones ===== */
 
 .projection-kpis {
-  margin-bottom: 4px;
+  margin: 18px 0 4px;
+}
+
+.projection-kpi-row + .projection-kpi-row {
+  margin-top: 16px;
+}
+
+.projection-kpi-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.projection-kpi-head .platform-pill {
+  font-size: 11px;
+}
+
+.projection-kpi-head small {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.projection-kpis .kpi-strip {
+  margin: 8px 0 0;
+}
+
+.projection-kpis .kpi-strip.cols-4 {
+  grid-template-columns: repeat(4, minmax(150px, 1fr));
+}
+
+@media (max-width: 1180px) {
+  .projection-kpis .kpi-strip.cols-4 { grid-template-columns: repeat(2, minmax(150px, 1fr)); }
+}
+
+@media (max-width: 680px) {
+  .projection-kpis .kpi-strip.cols-4 { grid-template-columns: 1fr; }
+}
+
+.projection-chart-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+#projection-platforms {
+  padding-right: 10px;
+  border-right: 1px solid var(--border);
+}
+
+.series-toggle:has(input:disabled) {
+  opacity: .45;
+  cursor: not-allowed;
 }
 
 .projection-panel {

@@ -8,13 +8,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="css/dashboard.css?v=1.12.1">
+<link rel="stylesheet" href="css/dashboard.css?v=1.12.2">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 </head>
 <body>
 <div class="shell">
   <aside class="sidebar" id="sidebar">
-    <div class="s-brand"><div class="s-title">Rekluta</div><div class="s-sub">BI Agencia Lima Retail <span class="app-version">v1.12.1</span></div></div>
+    <div class="s-brand"><div class="s-title">Rekluta</div><div class="s-sub">BI Agencia Lima Retail <span class="app-version">v1.12.2</span></div></div>
     <div class="s-group-lbl">Modulos activos</div>
     <button class="s-item active" type="button" data-view-target="view-obj">
       <div class="s-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
@@ -67,18 +67,24 @@
         <div class="sec-lbl">02 - Proyecciones</div>
         <h1 class="section-title">Proyecciones</h1>
         <p class="section-desc" id="projection-desc">Cierre de mes estimado con los datos reales del modulo Gasto publicitario.</p>
-        <div class="kpi-strip projection-kpis" id="projection-kpis" aria-label="KPIs proyectados al cierre del mes"></div>
+        <div class="projection-kpis" id="projection-kpis" aria-label="KPIs proyectados al cierre del mes por plataforma"></div>
         <div class="panel projection-panel" id="projection-panel">
           <div class="panel-head projection-panel-head">
             <div>
               <div class="panel-title" id="projection-title">Linea de tiempo</div>
               <div class="panel-sub" id="projection-chart-sub">Cargando datos del mes en curso...</div>
             </div>
+            <div class="projection-chart-controls">
+            <div class="chart-series-toggles" id="projection-platforms" role="group" aria-label="Plataforma del grafico">
+              <label class="series-toggle active" data-series="meta"><input type="radio" name="projection-platform" value="meta" checked>Meta Ads</label>
+              <label class="series-toggle" data-series="tiktok"><input type="radio" name="projection-platform" value="tiktok">TikTok Ads</label>
+            </div>
             <div class="chart-series-toggles" id="projection-metrics" role="group" aria-label="Indicador proyectado">
               <label class="series-toggle active" data-series="spend"><input type="radio" name="projection-metric" value="spend" checked>Inversion</label>
               <label class="series-toggle" data-series="clicks"><input type="radio" name="projection-metric" value="clicks">Clics salientes</label>
               <label class="series-toggle" data-series="messageClicks"><input type="radio" name="projection-metric" value="messageClicks">Clics de Mensajes</label>
-              <label class="series-toggle" data-series="exposure"><input type="radio" name="projection-metric" value="exposure">Exposicion</label>
+              <label class="series-toggle" data-series="exposure"><input type="radio" name="projection-metric" value="exposure"><span id="projection-exposure-label">Alcance</span></label>
+            </div>
             </div>
           </div>
           <div class="chart-wrap h-360"><canvas id="chart-projection"></canvas></div>
@@ -226,7 +232,7 @@
 </div>
 <script src="js/objectives.js?v=1.11.0"></script>
 <script src="js/reports-archive.js?v=1.9.3"></script>
-<script src="js/projections.js?v=1.11.0"></script>
+<script src="js/projections.js?v=1.12.2"></script>
 <script src="js/bitacora.js?v=1.12.1"></script>
 <script src="js/navigation.js?v=1.12.1"></script>
 <script src="js/sidebar.js?v=1.9.3"></script>
