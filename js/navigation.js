@@ -10,10 +10,10 @@
     },
     'view-messages': {
       title: 'Proyecciones',
-      caption: 'Cierre de mes y planificación por CPL',
-      status: 'Proyección sobre datos reales',
+      caption: 'Cierre de mes de TikTok Ads y Meta Ads',
+      status: 'Proyección sobre datos al 20 de septiembre',
       source: 'Fuente: Gasto publicitario / Rekluta',
-      footer: 'Proyección lineal según el ritmo del mes',
+      footer: 'Proyección lineal según el ritmo diario de cada plataforma',
     },
     'view-history': {
       title: 'Histórico de Campañas',
@@ -67,7 +67,6 @@
     saveView(viewId);
 
     if (viewId === 'view-messages') {
-      window.MessagesCalculator?.init();
       window.RKProjections?.init();
       window.setTimeout(() => window.dispatchEvent(new Event('resize')), 0);
     }

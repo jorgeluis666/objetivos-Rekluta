@@ -422,17 +422,9 @@
       console.error(error);
     }
   }
-  // Snapshot de solo lectura para Proyecciones. Ese modulo proyecta un unico monto en soles y aqui
-  // conviven S/. y US$ sin tipo de cambio, asi que se entrega sin gasto consolidado hasta adaptarlo.
+  // Copia de solo lectura para Proyecciones: cada plataforma se proyecta en su propia moneda.
   function snapshot() {
-    if (!state.data) return null;
-    return {
-      cutoff: state.data.cutoff,
-      source: state.data.source,
-      year: state.data.year,
-      lastSync: null,
-      months: state.data.months.map(month => ({ name: month.name, spend: 0, messages: null, reservations: null, campaigns: [], platforms: JSON.parse(JSON.stringify(month.platforms)) })),
-    };
+    return state.data ? JSON.parse(JSON.stringify(state.data)) : null;
   }
   window.RKObjectives = { renderHistory, snapshot };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
