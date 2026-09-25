@@ -3,7 +3,7 @@
 Dashboard de Agencia Lima Retail para controlar la inversion publicitaria de Rekluta
 
 
-Version actual: `v1.10.2`. El tablero reutiliza el codigo base de otro tablero de la agencia; de ahi
+Version actual: `v1.11.0`. El tablero reutiliza el codigo base de otro tablero de la agencia; de ahi
 viene la numeracion de version.
 
 ## Versionado
@@ -24,12 +24,9 @@ El proyecto usa la nomenclatura `vMAJOR.MINOR.PATCH`:
   - Por mes: tarjeta por plataforma, distribucion Reconocimiento / Seguidores / Mensajes, campanas con su
     resultado principal y los mejores anuncios (con vista previa en Meta).
   - Cruce con el reporte mensual: cada total calculado desde las exportaciones se compara con el resumen del PDF.
-- Proyecciones: cierre de mes estimado y calculadora de inversion por CPL (ver nota abajo).
+- Proyecciones: cierre de mes estimado de TikTok Ads y Meta Ads (ver abajo).
 - Historico de Campanas: campanas de los meses cerrados.
 - Archivo de Reportes: catalogo de los documentos guardados en la carpeta de Google Drive.
-
-Los modulos Comparativo YoY, Distribucion, Productos Web y Usuarios y Claves se muestran
-deshabilitados hasta su futura implementacion.
 
 ## Datos
 
@@ -62,20 +59,19 @@ El script imprime por mes la inversion de cada plataforma, su fuente y si cuadra
 ## Proyecciones
 
 El modulo Proyecciones lee los datos del modulo Gasto publicitario a traves de
-`window.RKObjectives.snapshot()` y proyecta el cierre del mes en curso.
+`window.RKObjectives.snapshot()` y proyecta el cierre del mes en curso por plataforma, cada una en su
+moneda de facturacion (TikTok Ads en S/., Meta Ads en US$), sin tipo de cambio.
 
-- El mes proyectado es el que corresponde a la fecha de corte (`cutoff`); si no tiene gasto, se usa
-  el ultimo mes con datos.
-- Ritmo diario = acumulado real / dias con datos; la proyeccion mantiene ese ritmo hasta el ultimo
-  dia del mes.
-- La linea de tiempo marca el dia de la ultima actualizacion y compara contra el presupuesto
-  (inversion) o el objetivo de reservas.
-- Cada carga de datos emite el evento `rk:data-updated` y el modulo se recalcula
-  solo.
-
-Nota: el modulo proyecta un unico monto en soles. Como el gasto de Rekluta esta en dos monedas, por ahora
-`snapshot()` se entrega sin gasto consolidado y Proyecciones muestra "Sin datos para proyectar" hasta adaptarlo
-por plataforma (o definir un tipo de cambio).
+- El mes proyectado es el de la fecha de corte (`cutoff`); si no tiene datos, se usa el ultimo mes con datos.
+- Ritmo diario = acumulado real / dias con pauta (si la plataforma arranco despues del dia 1, cuenta
+  desde `firstDay`). Proyeccion = actual + ritmo x dias restantes del mes.
+- Indicadores: inversion (total y por tipo de campana), clics salientes, clics de Mensajes, visualizaciones
+  y seguidores de pago (TikTok), alcance e interacciones (Meta). El alcance son usuarios unicos: su
+  proyeccion es referencial.
+- Los costos unitarios (por clic, por clic de Mensajes, por seguidor) se mantienen al cierre con un ritmo
+  constante; se comparan con el mes anterior.
+- Cada proyeccion se compara con el cierre del mes anterior con datos.
+- Cada carga de datos emite el evento `rk:data-updated` y el modulo se recalcula solo.
 
 ## Configuracion pendiente
 

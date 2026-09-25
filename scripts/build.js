@@ -47,7 +47,6 @@ function main() {
   let html = readFile('index.html');
   const css = readFile('css/dashboard.css').replace(/url\('\.\.\/assets\//g, "url('assets/");
   const app = readFile('js/objectives.js');
-  const messagesCalculator = readFile('js/messages-calculator.js');
   const navigation = readFile('js/navigation.js');
   const sidebar = readFile('js/sidebar.js');
   const reportsArchive = readFile('js/reports-archive.js');
@@ -62,10 +61,6 @@ function main() {
   html = html.replace(
     new RegExp('<script src=\"js/objectives\\.js(?:\\?v=[^\"]+)?\"><\\/script>'),
     `<script>${app}</script>`
-  );
-  html = html.replace(
-    new RegExp('<script src="js\\/messages-calculator\\.js(?:\\?v=[^"]+)?"><\\/script>'),
-    `<script>${messagesCalculator}</script>`
   );
   html = html.replace(
     new RegExp('<script src="js\\/navigation\\.js(?:\\?v=[^"]+)?"><\\/script>'),
