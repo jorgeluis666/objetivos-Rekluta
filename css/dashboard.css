@@ -1109,167 +1109,185 @@ body.modal-open {
   .ads-month-bar { align-items: flex-start; flex-direction: column; }
 }
 
-/* Modulo Bitacora: cambios, comentarios y decisiones por mes */
-.status-pill.amber { color: #b45309; background: #fffbeb; }
-
+/* Modulo Bitacora: checklist de cambios, comentarios y decisiones */
 #log-type-filter .series-toggle.active {
   color: var(--brand-text);
   border-color: var(--brand);
   background: var(--brand-soft);
 }
 
+.log-panel { margin-top: 20px; }
+
+.log-form,
+.log-item {
+  display: grid;
+  grid-template-columns: 136px minmax(0, 1fr) 118px 112px auto;
+  align-items: center;
+  gap: 8px;
+}
+
+.log-form {
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.log-date,
+.log-text,
+.log-tag {
+  height: 34px;
+  min-width: 0;
+  padding: 0 9px;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  color: var(--ink);
+  background: #fff;
+  font: inherit;
+  font-size: 12px;
+}
+
+.log-date:focus,
+.log-text:focus,
+.log-tag:focus {
+  border-color: var(--brand);
+  outline: 2px solid var(--brand-soft);
+}
+
+.log-form .refresh-sheet-btn { height: 34px; }
+
 .log-toolbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 12px;
-  margin: 18px 0 14px;
+  gap: 10px;
+  margin-top: 14px;
 }
 
-.log-toolbar .reports-field { min-width: 180px; }
-
-.log-months {
-  display: grid;
-  gap: 14px;
-}
-
-.log-month-head {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px 20px;
-  margin-bottom: 14px;
-}
-
-.log-month-title {
+.log-actions {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 15px;
-  font-weight: 800;
 }
 
-.log-summary {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 18px;
-}
-
-.log-summary-item {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 6px;
-  font-size: 12px;
-}
-
-.log-summary-groups {
-  display: inline-flex;
-  flex-wrap: wrap;
-  gap: 4px;
-}
-
-.log-columns {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.log-columns.cols-1 { grid-template-columns: minmax(0, 1fr); }
-
-.log-column {
-  min-width: 0;
-  padding: 12px;
-  border: 1px solid #eef2f7;
-  border-radius: 9px;
-  background: #f8fafc;
-}
-
-.log-column-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
-
-.log-type {
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-}
-
-.log-type.cambio { color: var(--brand-text); }
-.log-type.comentario { color: #b45309; }
-.log-type.decision { color: var(--green-text); }
+.log-actions [hidden] { display: none; }
 
 .log-count {
-  min-width: 22px;
-  padding: 2px 7px;
-  border-radius: 99px;
-  color: #475569;
-  background: #e2e8f0;
-  font-size: 10px;
-  font-weight: 800;
-  text-align: center;
+  color: var(--muted);
+  font-size: 11px;
 }
 
-.log-list {
-  display: grid;
-  gap: 8px;
+.log-status {
+  margin-top: 8px;
+  color: #94a3b8;
+  font-size: 10px;
+}
+
+.log-status.draft { color: #b45309; font-weight: 700; }
+
+.log-group { margin-top: 18px; }
+
+.log-group-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2px 6px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.log-progress {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.log-items {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.log-entry {
-  padding: 10px 11px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
+.log-item {
+  grid-template-columns: 20px 136px minmax(0, 1fr) 118px 112px 28px;
+  align-items: start;
+  padding: 7px 2px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.log-item .log-date,
+.log-item .log-text,
+.log-item .log-tag {
+  border-color: transparent;
+  background: transparent;
+}
+
+.log-item:hover .log-date,
+.log-item:hover .log-text,
+.log-item:hover .log-tag {
+  border-color: #e2e8f0;
   background: #fff;
 }
 
-.log-entry-head {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 6px;
+.log-check {
+  width: 16px;
+  height: 16px;
+  margin: 9px 0 0;
+  accent-color: var(--green);
+  cursor: pointer;
 }
 
-.log-origin {
-  color: var(--muted);
-  font-size: 9px;
-  font-weight: 700;
+.log-item.done .log-text { color: #64748b; }
+
+textarea.log-text {
+  display: block;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  overflow: hidden;
+  line-height: 1.45;
+  resize: none;
 }
 
-.log-origin.auto { color: #94a3b8; font-weight: 600; }
-
-.log-entry-title {
-  color: var(--ink);
-  font-size: 12px;
-  font-weight: 700;
+.log-item .log-tag {
+  font-size: 10px;
+  font-weight: 800;
 }
 
-.log-entry-detail {
-  margin-top: 4px;
-  color: #475569;
-  font-size: 11px;
-  line-height: 1.5;
-  overflow-wrap: anywhere;
-}
+.log-item .log-tag.cambio { color: var(--brand-text); }
+.log-item .log-tag.comentario { color: #b45309; }
+.log-item .log-tag.decision { color: var(--green-text); }
+.log-item .log-tag.platform.general { color: #475569; }
+.log-item .log-tag.platform.tiktok { color: #be185d; }
+.log-item .log-tag.platform.meta { color: #1d4ed8; }
 
-.log-empty {
-  padding: 14px 8px;
-  border: 1px dashed var(--border);
-  border-radius: 8px;
+.log-delete {
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 6px;
   color: #94a3b8;
-  font-size: 11px;
+  background: transparent;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.log-delete:hover { color: var(--red); background: #fef2f2; }
+
+.log-none {
+  padding: 28px;
+  color: var(--muted);
+  font-size: 12px;
   text-align: center;
 }
 
-@media (max-width: 1000px) {
-  .log-columns { grid-template-columns: minmax(0, 1fr); }
+@media (max-width: 760px) {
+  .log-form { grid-template-columns: 1fr 1fr; }
+  .log-form .log-text { grid-column: 1 / -1; order: -1; }
+  .log-item { grid-template-columns: 20px minmax(0, 1.25fr) minmax(0, 1fr) minmax(0, 1fr) 28px; gap: 4px; }
+  .log-item .log-text { grid-column: 2 / -1; order: -1; }
+  .log-item .log-check { order: -2; }
+  .log-item .log-date { grid-column: 2; }
+  .log-item .log-date,
+  .log-item .log-tag { padding: 0 4px; font-size: 11px; }
 }

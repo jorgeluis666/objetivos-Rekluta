@@ -1,234 +1,183 @@
 (function () {
-  // Bitacora mensual: junta los cambios que se detectan en los datos de Gasto publicitario con los
-  // comentarios y decisiones que registra el equipo en data/rk-bitacora-2026.json.
+  // Bitacora mensual como checklist: cambios, comentarios y decisiones con fecha. Lo publicado sale de
+  // data/rk-bitacora-2026.json; las ediciones quedan como borrador en este navegador hasta exportarlas.
   const DATA_URL = 'data/rk-bitacora-2026.json';
+  const DRAFT_KEY = 'rk-bitacora-draft';
   const MONTHS = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-  const PLATFORM_ORDER = ['tiktok', 'meta'];
-  const TYPES = [
-    { id: 'cambio', label: 'Cambios', empty: 'Sin cambios registrados.' },
-    { id: 'comentario', label: 'Comentarios', empty: 'Sin comentarios registrados.' },
-    { id: 'decision', label: 'Decisiones', empty: 'Sin decisiones registradas.' },
-  ];
-  const GROUP_CLASS = { Reconocimiento: 'branding', Mensajes: 'messages', Seguidores: 'followers' };
-  const METRIC_LABELS = { spend: 'inversión', views: 'visualizaciones', followers: 'seguidores de pago', clicks: 'clics salientes', messageClicks: 'clics de Mensajes', reach: 'alcance' };
-  // Variacion minima (en %) para que un cambio de inversion entre a la bitacora.
-  const SPEND_THRESHOLD = 10;
+  const TYPES = { cambio: 'Cambio', comentario: 'Comentario', decision: 'Decisión' };
+  const PLATFORMS = { general: 'General', tiktok: 'TikTok Ads', meta: 'Meta Ads' };
 
-  const state = { ready: false, ads: null, log: null, type: 'all', platform: 'all' };
+  const state = { ready: false, published: null, items: [], draft: false, type: 'all' };
 
   const esc = value => String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
-  const isNum = value => value != null && value !== '' && Number.isFinite(Number(value));
-  const symbol = platform => state.ads?.platforms?.[platform]?.symbol || '';
-  const label = platform => state.ads?.platforms?.[platform]?.label || (platform === 'general' ? 'General' : platform);
-  const fmtCount = value => (isNum(value) ? Math.round(Number(value)).toLocaleString('es-PE') : '-');
-  const fmtMoney = (value, platform) => (isNum(value) ? `${symbol(platform)} ${Number(value).toLocaleString('es-PE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : '-');
-  const fmtPct = value => `${value > 0 ? '+' : ''}${Math.round(value)}%`;
-  const pctChange = (value, base) => (Number(base) > 0 ? (Number(value) / Number(base) - 1) * 100 : null);
-  const hasData = month => month && Object.keys(month.platforms || {}).length > 0;
-  const lower = name => String(name || '').toLowerCase();
+  const pad = value => String(value).padStart(2, '0');
+  const today = () => { const d = new Date(); return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`; };
+  const newId = () => `b${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`;
+  const validDate = value => /^\d{4}-\d{2}-\d{2}$/.test(String(value || ''));
 
-  function parseDate(iso) {
-    const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso || ''));
-    return match ? new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3])) : null;
-  }
-  const longDate = date => (date ? `${date.getDate()} de ${MONTHS[date.getMonth()].toLowerCase()}` : '');
-
-  function entry(type, platform, title, detail) {
-    return { type, platform, title, detail, origin: 'datos' };
+  function clean(item) {
+    return {
+      id: String(item.id || newId()),
+      date: validDate(item.date) ? item.date : today(),
+      type: TYPES[item.type] ? item.type : 'comentario',
+      platform: PLATFORMS[item.platform] ? item.platform : 'general',
+      done: Boolean(item.done),
+      text: String(item.text || '').trim(),
+    };
   }
 
-  // Cambios de un mes frente al mes anterior con datos de la misma plataforma.
-  function detectPlatform(month, prevMonth, platform) {
-    const current = month.platforms[platform];
-    if (!current) return [];
-    const prev = prevMonth?.platforms?.[platform];
-    const out = [];
-    const spend = Number(current.kpis?.spend || 0);
-    const groups = current.spendByGroup || {};
-
-    if (!prev) {
-      const names = Object.keys(groups).join(', ');
-      out.push(entry('cambio', platform, 'Punto de partida del año',
-        `${(current.campaigns || []).length} campañas activas (${names}) con una inversión de ${fmtMoney(spend, platform)}.`));
-    } else {
-      if (current.account && prev.account && current.account !== prev.account) {
-        out.push(entry('cambio', platform, 'Cambio de cuenta publicitaria',
-          `La pauta pasa de la ${lower(prev.account)} a la ${lower(current.account)}.`));
-      }
-      const prevGroups = prev.spendByGroup || {};
-      Object.keys(groups).filter(group => !(group in prevGroups)).forEach(group => {
-        out.push(entry('cambio', platform, `Se activa ${group}`,
-          `Vuelve a pautarse ${group} con ${fmtMoney(groups[group], platform)} en el mes.`));
-      });
-      Object.keys(prevGroups).filter(group => !(group in groups)).forEach(group => {
-        out.push(entry('cambio', platform, `Se pausa ${group}`,
-          `En ${prevMonth.name.toLowerCase()} se invirtieron ${fmtMoney(prevGroups[group], platform)}; este mes no tiene pauta.`));
-      });
-      // En un mes parcial la inversion todavia no es comparable con un mes cerrado.
-      if (month.status === 'cerrado') {
-        const change = pctChange(spend, prev.kpis?.spend);
-        if (change != null && Math.abs(change) >= SPEND_THRESHOLD) {
-          out.push(entry('cambio', platform, `Inversión ${fmtPct(change)} vs ${prevMonth.name.toLowerCase()}`,
-            `${fmtMoney(prev.kpis.spend, platform)} a ${fmtMoney(spend, platform)}.`));
-        }
-        Object.keys(groups).filter(group => group in prevGroups).forEach(group => {
-          const groupChange = pctChange(groups[group], prevGroups[group]);
-          if (groupChange != null && Math.abs(groupChange) >= SPEND_THRESHOLD) {
-            out.push(entry('cambio', platform, `${group} ${fmtPct(groupChange)}`,
-              `Presupuesto de ${group}: ${fmtMoney(prevGroups[group], platform)} a ${fmtMoney(groups[group], platform)}.`));
-          }
-        });
-      }
-      const count = (current.campaigns || []).length;
-      const prevCount = (prev.campaigns || []).length;
-      if (count !== prevCount) {
-        out.push(entry('cambio', platform, `Campañas activas: ${prevCount} a ${count}`,
-          (current.campaigns || []).map(campaign => campaign.name).join(' / ')));
-      }
+  function readDraft() {
+    try {
+      const draft = JSON.parse(window.localStorage.getItem(DRAFT_KEY) || 'null');
+      // Un borrador hecho sobre una version anterior del archivo ya no aplica: se descarta.
+      return draft && draft.base === state.published.updatedAt && Array.isArray(draft.items) ? draft.items.map(clean) : null;
+    } catch {
+      return null;
     }
+  }
 
-    const first = parseDate(current.firstDay);
-    if (first && first.getDate() > 1) {
-      out.push(entry('cambio', platform, `La pauta inicia el ${longDate(first)}`,
-        `Sin inversión del 1 al ${first.getDate() - 1} de ${month.name.toLowerCase()}.`));
+  function saveDraft() {
+    state.draft = true;
+    try {
+      window.localStorage.setItem(DRAFT_KEY, JSON.stringify({ base: state.published.updatedAt, items: state.items }));
+    } catch {
+      // Sin localStorage los cambios duran hasta recargar; Exportar sigue funcionando.
     }
-    if (current.source === 'reporte') {
-      out.push(entry('comentario', platform, 'Datos tomados del reporte PDF',
-        current.account === 'Cuenta anterior'
-          ? 'Se pautó en la cuenta anterior y la exportación de la cuenta actual viene vacía.'
-          : 'Aún no hay exportación del mes; se usa el corte más reciente del reporte.'));
-    }
-    (month.checks || []).filter(check => check.platform === platform && check.ok === false).forEach(check => {
-      out.push(entry('comentario', platform, `Diferencia con el reporte en ${METRIC_LABELS[check.metric] || check.metric}`,
-        `Exportación ${check.metric === 'spend' ? fmtMoney(check.data, platform) : fmtCount(check.data)} vs reporte ${check.metric === 'spend' ? fmtMoney(check.report, platform) : fmtCount(check.report)}.`));
-    });
-    return out;
+    renderStatus();
   }
 
-  function buildMonths() {
-    const adsMonths = state.ads?.months || [];
-    const manual = Array.isArray(state.log?.entries) ? state.log.entries : [];
-    const lastByPlatform = {};
-    return MONTHS.map(name => {
-      const month = adsMonths.find(item => item.name === name) || { name, platforms: {} };
-      const auto = [];
-      if (hasData(month)) {
-        PLATFORM_ORDER.forEach(platform => {
-          if (!month.platforms[platform]) return;
-          auto.push(...detectPlatform(month, lastByPlatform[platform], platform));
-          lastByPlatform[platform] = month;
-        });
-        if (month.status === 'parcial') {
-          auto.unshift(entry('comentario', 'general', 'Mes en curso', `Datos parciales: ${month.period}. Las variaciones se calculan al cierre.`));
-        }
-      }
-      const own = manual
-        .filter(item => item && item.month === name && TYPES.some(type => type.id === item.type))
-        .map(item => ({ ...item, platform: PLATFORM_ORDER.includes(item.platform) ? item.platform : 'general', origin: 'equipo' }))
-        .sort((a, b) => String(a.date || '').localeCompare(String(b.date || '')));
-      return { month, entries: [...own, ...auto] };
-    }).filter(item => item.entries.length);
+  function discardDraft() {
+    try { window.localStorage.removeItem(DRAFT_KEY); } catch { /* sin localStorage no hay borrador guardado */ }
+    state.items = (state.published.items || []).map(clean);
+    state.draft = false;
+    render();
   }
 
-  function matches(item) {
-    return (state.platform === 'all' || item.platform === state.platform || item.platform === 'general')
-      && (state.type === 'all' || item.type === state.type);
+  function exportJson() {
+    const payload = {
+      year: state.published.year || 2026,
+      updatedAt: today(),
+      items: [...state.items].filter(item => item.text).sort((a, b) => a.date.localeCompare(b.date)),
+    };
+    const blob = new Blob([`${JSON.stringify(payload, null, 2)}\n`], { type: 'application/json' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'rk-bitacora-2026.json';
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.setTimeout(() => URL.revokeObjectURL(link.href), 1000);
   }
 
-  function platformPill(platform) {
-    return `<span class="platform-pill ${esc(platform)}">${esc(label(platform))}</span>`;
+  function options(map, selected) {
+    return Object.entries(map).map(([value, text]) => `<option value="${value}"${value === selected ? ' selected' : ''}>${text}</option>`).join('');
   }
 
-  function renderEntry(item) {
-    const date = parseDate(item.date);
-    const origin = item.origin === 'datos'
-      ? '<span class="log-origin auto">Detectado en los datos</span>'
-      : `<span class="log-origin">${esc([item.author, date ? longDate(date) : ''].filter(Boolean).join(' | ') || 'Equipo')}</span>`;
-    return `<li class="log-entry">
-      <div class="log-entry-head">${platformPill(item.platform)}${origin}</div>
-      <div class="log-entry-title">${esc(item.title)}</div>
-      ${item.detail ? `<div class="log-entry-detail">${esc(item.detail)}</div>` : ''}
+  function renderItem(item) {
+    return `<li class="log-item${item.done ? ' done' : ''}" data-id="${esc(item.id)}">
+      <input class="log-check" type="checkbox" data-field="done"${item.done ? ' checked' : ''} aria-label="Marcar como hecho">
+      <input class="log-date" type="date" data-field="date" value="${esc(item.date)}" aria-label="Fecha">
+      <textarea class="log-text" rows="1" data-field="text" placeholder="Describe el cambio, comentario o decisión" aria-label="Detalle">${esc(item.text)}</textarea>
+      <select class="log-tag ${esc(item.type)}" data-field="type" aria-label="Tipo">${options(TYPES, item.type)}</select>
+      <select class="log-tag platform ${esc(item.platform)}" data-field="platform" aria-label="Plataforma">${options(PLATFORMS, item.platform)}</select>
+      <button class="log-delete" type="button" data-action="delete" aria-label="Eliminar" title="Eliminar">&times;</button>
     </li>`;
   }
 
-  function monthSummary(month) {
-    if (!hasData(month)) return '';
-    return PLATFORM_ORDER.filter(platform => month.platforms[platform]).map(platform => {
-      const data = month.platforms[platform];
-      const groups = Object.keys(data.spendByGroup || {})
-        .map(group => `<span class="group-pill ${GROUP_CLASS[group] || ''}">${esc(group)}</span>`).join('');
-      return `<div class="log-summary-item">${platformPill(platform)}<strong>${fmtMoney(data.kpis?.spend, platform)}</strong><span class="log-summary-groups">${groups}</span></div>`;
-    }).join('');
+  // Los textos largos se ven completos: cada campo crece con su contenido.
+  function fitText(field) {
+    field.style.height = 'auto';
+    field.style.height = `${field.scrollHeight + 2}px`;
   }
 
-  function renderMonth({ month, entries }) {
-    const visible = entries.filter(matches);
-    const types = state.type === 'all' ? TYPES : TYPES.filter(type => type.id === state.type);
-    const status = month.status === 'cerrado'
-      ? '<span class="status-pill green">Cerrado</span>'
-      : month.status === 'parcial' ? '<span class="status-pill amber">En curso</span>' : '<span class="status-pill muted">Sin datos</span>';
-    const columns = types.map(type => {
-      const list = visible.filter(item => item.type === type.id);
-      return `<div class="log-column">
-        <div class="log-column-head"><span class="log-type ${type.id}">${type.label}</span><span class="log-count">${list.length}</span></div>
-        ${list.length ? `<ul class="log-list">${list.map(renderEntry).join('')}</ul>` : `<div class="log-empty">${type.empty}</div>`}
-      </div>`;
-    }).join('');
-    return `<article class="panel log-month" id="log-${esc(month.name.toLowerCase())}">
-      <div class="log-month-head">
-        <div>
-          <div class="log-month-title">${esc(month.name)} ${esc(state.ads?.year || '')} ${status}</div>
-          <div class="panel-sub">${esc(month.period || 'Sin datos de pauta')}</div>
-        </div>
-        <div class="log-summary">${monthSummary(month)}</div>
-      </div>
-      <div class="log-columns cols-${types.length}">${columns}</div>
-    </article>`;
-  }
-
-  function renderKpis(months) {
-    const kpis = document.getElementById('log-kpis');
-    if (!kpis) return;
-    const all = months.flatMap(item => item.entries).filter(matches);
-    const count = type => all.filter(item => item.type === type).length;
-    const own = all.filter(item => item.origin === 'equipo').length;
-    const updated = parseDate(state.log?.updatedAt);
-    kpis.innerHTML = [
-      ['Meses', fmtCount(months.length), 'Con registros en la bitácora'],
-      ['Cambios', fmtCount(count('cambio')), 'De campañas, presupuesto y cuentas'],
-      ['Comentarios', fmtCount(count('comentario')), 'Observaciones del mes'],
-      ['Decisiones', fmtCount(count('decision')), 'Acuerdos tomados'],
-      ['Registros del equipo', fmtCount(own), updated ? `Actualizado al ${longDate(updated)}` : 'Sin registros manuales'],
-    ].map(([name, value, meta]) => `<div class="kpi-pill"><span>${name}</span><strong>${value}</strong><small>${meta}</small></div>`).join('');
+  function renderStatus() {
+    const status = document.getElementById('log-status');
+    const discard = document.getElementById('log-discard');
+    if (status) {
+      status.textContent = state.draft
+        ? 'Borrador en este navegador: exporta el archivo para publicarlo.'
+        : `Publicado al ${state.published?.updatedAt ? state.published.updatedAt.split('-').reverse().join('/') : '-'}.`;
+      status.classList.toggle('draft', state.draft);
+    }
+    if (discard) discard.hidden = !state.draft;
   }
 
   function render() {
-    const list = document.getElementById('log-months');
+    const list = document.getElementById('log-list');
     if (!list) return;
-    if (!state.ads) state.ads = window.RKObjectives?.snapshot?.() || null;
-    const months = buildMonths().reverse();
-    renderKpis(months);
-    const sub = document.getElementById('log-sub');
-    if (sub) sub.textContent = months.length ? `${months.length} meses, del más reciente al más antiguo.` : '';
-    list.innerHTML = months.length
-      ? months.map(renderMonth).join('')
-      : '<div class="empty-state"><strong>La bitácora aún no tiene registros</strong>Se completa con los datos de Gasto publicitario y con data/rk-bitacora-2026.json.</div>';
+    const visible = state.items
+      .filter(item => state.type === 'all' || (state.type === 'pending' ? !item.done : item.type === state.type))
+      .sort((a, b) => b.date.localeCompare(a.date));
+    const groups = new Map();
+    visible.forEach(item => {
+      const key = item.date.slice(0, 7);
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key).push(item);
+    });
+    list.innerHTML = groups.size
+      ? [...groups].map(([key, items]) => {
+        const [year, month] = key.split('-').map(Number);
+        const done = items.filter(item => item.done).length;
+        return `<section class="log-group">
+          <div class="log-group-head"><span>${MONTHS[month - 1]} ${year}</span><span class="log-progress">${done}/${items.length}</span></div>
+          <ul class="log-items">${items.map(renderItem).join('')}</ul>
+        </section>`;
+      }).join('')
+      : '<div class="log-none">No hay ítems con este filtro.</div>';
+    list.querySelectorAll('textarea.log-text').forEach(fitText);
+    const pending = state.items.filter(item => !item.done).length;
+    const count = document.getElementById('log-count');
+    if (count) count.textContent = `${state.items.length} ítems | ${pending} pendientes`;
+    renderStatus();
   }
 
-  async function loadLog() {
-    if (window.RK_BITACORA) return window.RK_BITACORA;
-    try {
-      const response = await fetch(DATA_URL, { cache: 'no-store' });
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      return await response.json();
-    } catch (error) {
-      // Sin el archivo la bitacora sigue mostrando los cambios detectados en los datos.
-      console.warn('[bitacora] no se pudo leer', DATA_URL, error);
-      return { entries: [] };
-    }
+  function updateItem(target) {
+    const row = target.closest('.log-item');
+    const item = row && state.items.find(entry => entry.id === row.dataset.id);
+    if (!item) return;
+    const field = target.dataset.field;
+    if (field === 'done') item.done = target.checked;
+    else if (field === 'date') { if (!validDate(target.value)) return; item.date = target.value; }
+    else if (field === 'text') item.text = target.value.trim();
+    else if (field === 'type' || field === 'platform') item[field] = target.value;
+    saveDraft();
+    // El texto se guarda mientras se escribe sin redibujar, para no perder el foco del campo.
+    if (field !== 'text') render();
   }
 
   function wireEvents() {
+    const form = document.getElementById('log-form');
+    form?.addEventListener('submit', event => {
+      event.preventDefault();
+      const text = form.elements.text.value.trim();
+      if (!text) { form.elements.text.focus(); return; }
+      state.items.push(clean({ date: form.elements.date.value, type: form.elements.type.value, platform: form.elements.platform.value, text, done: false }));
+      form.elements.text.value = '';
+      saveDraft();
+      render();
+      form.elements.text.focus();
+    });
+    const list = document.getElementById('log-list');
+    list?.addEventListener('change', event => updateItem(event.target));
+    list?.addEventListener('input', event => {
+      if (event.target.dataset.field !== 'text') return;
+      fitText(event.target);
+      updateItem(event.target);
+    });
+    list?.addEventListener('keydown', event => {
+      if (event.key === 'Enter' && event.target.dataset.field === 'text') { event.preventDefault(); event.target.blur(); }
+    });
+    list?.addEventListener('click', event => {
+      const button = event.target.closest('[data-action="delete"]');
+      if (!button) return;
+      const id = button.closest('.log-item')?.dataset.id;
+      const item = state.items.find(entry => entry.id === id);
+      if (item && (!item.text || window.confirm(`¿Eliminar "${item.text}"?`))) {
+        state.items = state.items.filter(entry => entry.id !== id);
+        saveDraft();
+        render();
+      }
+    });
     document.getElementById('log-type-filter')?.addEventListener('change', event => {
       const input = event.target.closest('input[type="radio"]');
       if (!input) return;
@@ -236,21 +185,34 @@
       document.querySelectorAll('#log-type-filter .series-toggle').forEach(item => item.classList.toggle('active', item.dataset.series === state.type));
       render();
     });
-    document.getElementById('log-platform')?.addEventListener('change', event => {
-      state.platform = event.target.value;
-      render();
-    });
-    window.addEventListener('rk:data-updated', () => {
-      state.ads = window.RKObjectives?.snapshot?.() || state.ads;
-      if (state.log) render();
+    document.getElementById('log-export')?.addEventListener('click', exportJson);
+    document.getElementById('log-discard')?.addEventListener('click', () => {
+      if (window.confirm('¿Descartar los cambios del borrador y volver a lo publicado?')) discardDraft();
     });
   }
 
+  async function loadPublished() {
+    if (window.RK_BITACORA) return window.RK_BITACORA;
+    try {
+      const response = await fetch(DATA_URL, { cache: 'no-store' });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      return await response.json();
+    } catch (error) {
+      console.warn('[bitacora] no se pudo leer', DATA_URL, error);
+      return { items: [] };
+    }
+  }
+
   async function init() {
-    if (state.ready) { render(); return; }
+    if (state.ready) return;
     state.ready = true;
+    const dateInput = document.querySelector('#log-form [name="date"]');
+    if (dateInput) dateInput.value = today();
     wireEvents();
-    state.log = await loadLog();
+    state.published = await loadPublished();
+    const draft = readDraft();
+    state.draft = Boolean(draft);
+    state.items = draft || (state.published.items || []).map(clean);
     render();
   }
 
