@@ -92,13 +92,13 @@ La fuente publicada es `data/rk-bitacora-2026.json` (el build la incrusta en `di
 - Los items iniciales (enero a septiembre) se armaron a partir de los cambios que muestran las exportaciones:
   pausas y reactivaciones, cambios de cuenta y variaciones de presupuesto.
 
-## Configuracion pendiente
+## Configuracion
 
-Estos valores estan vacios a proposito y hay que cargarlos antes de publicar:
+Donde vive cada valor de marca y acceso, por si hay que cambiarlo:
 
 | Que | Donde |
 | --- | --- |
-| Catalogo de reportes de Drive | `data/rk-drive-reports.json` (`files`); la carpeta ya esta enlazada |
+| Catalogo de reportes de Drive | `data/rk-drive-reports.json` (`files`) |
 | Contrasena de acceso | `index.html`, al final (`AuthLogin.init`) |
 | Logo | `assets/logo-rekluta.png` |
 | Favicon | `assets/favicon.png` |
@@ -121,4 +121,4 @@ sitio con Jekyll.
 ## Google Sheets (retirado)
 
 El tablero ya no lee ni escribe en Google Sheets: los datos salen de las exportaciones de las plataformas.
-`scripts/google-sheets-sync.gs` quedo sin uso.
+El script de sincronizacion que usaba (`scripts/google-sheets-sync.gs`) se elimino del repositorio.
