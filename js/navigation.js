@@ -1,17 +1,23 @@
 (function () {
   const VIEW_KEY = 'rk-active-view';
+  const MONTHS = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+  // La fecha de corte sale de los datos sincronizados (cambia con cada sincronizacion con Drive).
+  function cutoffLabel() {
+    const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(window.RKObjectives?.snapshot?.()?.cutoff || '');
+    return match ? `${Number(match[3])} de ${MONTHS[Number(match[2]) - 1]}` : '...';
+  }
   const VIEW_META = {
     'view-obj': {
       title: 'Gasto publicitario 2026',
       caption: 'Agencia Lima Retail',
-      status: 'Datos al 20 de septiembre',
+      status: () => `Datos al ${cutoffLabel()}`,
       source: 'Fuente: Meta Ads + TikTok Ads / exportaciones y reportes mensuales',
       footer: 'Cruzado con el reporte mensual de Agencia Lima Retail',
     },
     'view-messages': {
       title: 'Proyecciones',
       caption: 'Cierre de mes de TikTok Ads y Meta Ads',
-      status: 'Proyección sobre datos al 20 de septiembre',
+      status: () => `Proyección sobre datos al ${cutoffLabel()}`,
       source: 'Fuente: Gasto publicitario / Rekluta',
       footer: 'Proyección lineal según el ritmo diario de cada plataforma',
     },
@@ -68,7 +74,7 @@
 
     document.getElementById('topbar-title').textContent = meta.title;
     document.getElementById('topbar-caption').textContent = meta.caption;
-    document.getElementById('topbar-status').textContent = meta.status;
+    document.getElementById('topbar-status').textContent = typeof meta.status === 'function' ? meta.status() : meta.status;
     document.getElementById('footer-source').textContent = meta.source;
     document.getElementById('footer-status').textContent = meta.footer;
     saveView(viewId);
@@ -88,6 +94,11 @@
       button.addEventListener('click', () => showView(button.dataset.viewTarget));
     });
     showView(storedView());
+    // Los datos llegan despues de la navegacion (y cambian al sincronizar): refresca la fecha de corte.
+    window.addEventListener('rk:data-updated', () => {
+      const meta = VIEW_META[storedView()];
+      if (typeof meta?.status === 'function') document.getElementById('topbar-status').textContent = meta.status();
+    });
   }
 
   if (document.readyState === 'loading') {

@@ -221,7 +221,8 @@
     const status = month.status === 'parcial'
       ? `<span class="status-pill muted">Parcial | ${esc(month.period)}</span>`
       : `<span class="status-pill green">Mes cerrado | ${esc(month.period || month.name)}</span>`;
-    const reconcile = !checks.length ? '<span class="status-pill muted">Sin reporte para cruzar</span>'
+    const reconcile = !checks.length
+      ? `<span class="status-pill muted">${month.report ? `Sin cruce: el reporte llega al ${esc(month.report.period)}` : 'Sin reporte para cruzar'}</span>`
       : failed.length ? `<span class="status-pill red">${failed.length} diferencia${failed.length === 1 ? '' : 's'} con el reporte</span>`
       : `<span class="status-pill green">Cuadra con el reporte (${checks.length} controles)</span>`;
     document.getElementById('ads-month-bar').innerHTML = `
@@ -305,7 +306,9 @@
     const reportName = month.report ? `${month.report.title} (${month.report.period})` : 'sin reporte';
     document.getElementById('checks-sub').textContent = checks.length
       ? `Totales calculados desde las exportaciones contra el resumen de ${reportName}.`
-      : 'Este mes no tiene reporte con el que cruzar los datos.';
+      : month.report
+        ? `El ultimo reporte (${month.report.period}) cubre menos dias que la exportacion; se cruzara cuando llegue el reporte del mes completo.`
+        : 'Este mes no tiene reporte con el que cruzar los datos.';
     const body = document.getElementById('checks-body');
     if (!checks.length) { body.innerHTML = '<tr><td colspan="6" class="table-empty">Sin controles para este mes.</td></tr>'; return; }
     body.innerHTML = checks.map(check => {

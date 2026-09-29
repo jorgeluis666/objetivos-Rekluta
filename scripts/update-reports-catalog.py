@@ -41,9 +41,10 @@ def main():
         if entry['id'] in known:
             files.append(known[entry['id']])
             continue
-        mime = MIME_BY_EXTENSION.get(os.path.splitext(entry['name'])[1].lower())
-        if not mime:
-            continue  # documento nativo de Google sin tipo conocido: se cataloga a mano
+        listed_mime = entry.get('mimeType', '')
+        mime = listed_mime if listed_mime.startswith('application/vnd.google-apps.') else MIME_BY_EXTENSION.get(os.path.splitext(entry['name'])[1].lower())
+        if not mime or mime == 'application/vnd.google-apps.folder':
+            continue
         path = os.path.join(args.root, FOLDER, entry['file']) if entry.get('file') else None
         files.append({
             'id': entry['id'],
@@ -55,8 +56,8 @@ def main():
         })
         added.append(entry['name'])
     listed = {entry['id'] for entry in folder['files']}
-    # El listado publico de gdown omite los documentos nativos de Google (Presentaciones, Documentos):
-    # esos no se pueden detectar como borrados, asi que se conservan tal como estan catalogados.
+    # Por si la vista publica omite algun documento nativo de Google (Presentaciones, Documentos): esos
+    # no se dan por borrados, se conservan tal como estan catalogados.
     native = [item for item_id, item in known.items() if item_id not in listed and item.get('mimeType', '').startswith('application/vnd.google-apps')]
     files = native + files
     removed = [item['title'] for item_id, item in known.items() if item_id not in listed and item not in native]

@@ -3,7 +3,7 @@
 Dashboard de Agencia Lima Retail para controlar la inversion publicitaria de Rekluta
 
 
-Version actual: `v1.14.1`. El tablero reutiliza el codigo base de otro tablero de la agencia; de ahi
+Version actual: `v1.15.0`. El tablero reutiliza el codigo base de otro tablero de la agencia; de ahi
 viene la numeracion de version.
 
 ## Versionado
@@ -62,7 +62,8 @@ El script imprime por mes la inversion de cada plataforma, su fuente y si cuadra
 
 Todo corre en GitHub, sin credenciales de Google. `.github/workflows/sync-ads-data.yml`:
 
-1. descarga las tres carpetas de Drive (`scripts/drive-download.py`, con `gdown`);
+1. descarga las tres carpetas de Drive (`scripts/drive-download.py`): las Hojas de calculo de Google
+   se exportan a `.xlsx` y los `.xlsx`/`.pdf` se bajan tal cual;
 2. regenera `data/rk-ads-2026.json` (`scripts/build-ads-data.py`);
 3. actualiza el catalogo de Archivo de Reportes, `data/rk-drive-reports.json`
    (`scripts/update-reports-catalog.py`): suma los PDF nuevos de la carpeta Reportes y retira los borrados;
@@ -90,8 +91,11 @@ Notas:
 
 - Cualquiera con el enlace de una carpeta puede ver sus archivos; los datos del tablero ya son publicos
   en GitHub Pages.
-- `gdown` lee hasta 50 archivos por carpeta. Con un Excel por mes alcanza; si una carpeta crece mas,
-  mover los anos anteriores a una subcarpeta.
+- El mes de cada Excel se reconoce por el nombre ("Rekluta - Agosto 2026", "Agosto") o por el rango de
+  fechas de la exportacion ("..._20260101-20260131"). Las subcarpetas se ignoran: sirven para archivar
+  anos anteriores.
+- Si el Excel del mes en curso va mas adelante que el ultimo reporte PDF, manda el Excel y el cruce con
+  el reporte se omite hasta que llegue el reporte del mes completo.
 - La vista publica de Drive no da fechas: un reporte nuevo aparece en Archivo de Reportes con la fecha
   de la sincronizacion.
 

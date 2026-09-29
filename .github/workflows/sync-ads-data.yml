@@ -26,7 +26,7 @@ jobs:
           python-version: '3.12'
 
       - name: Dependencias
-        run: pip install --disable-pip-version-check -q pandas openpyxl pypdf gdown
+        run: pip install --disable-pip-version-check -q pandas openpyxl pypdf requests
 
       # Sin credenciales: las carpetas de Drive estan compartidas por enlace (solo lectura).
       - name: Descargar carpetas de Drive

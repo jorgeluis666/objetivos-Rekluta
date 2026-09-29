@@ -17,6 +17,7 @@ Uso:
 Requiere: pandas, openpyxl, pypdf.
 """
 import argparse
+import calendar
 import glob
 import json
 import os
@@ -65,8 +66,16 @@ def country_of(name):
 
 
 def month_file(folder, month):
-    matches = [path for path in glob.glob(os.path.join(folder, '*.xlsx')) if norm(os.path.basename(path)).startswith(norm(month))]
-    return matches[0] if matches else None
+    """Excel del mes: por nombre ("Agosto.xlsx", "Rekluta - Agosto 2026.xlsx") o por el rango de
+    fechas de la exportacion ("..._20260101-20260131.xlsx")."""
+    number = MONTHS.index(month) + 1
+    word = re.compile(r'(^|[^a-z])' + norm(month) + r'([^a-z]|$)')
+    for path in sorted(glob.glob(os.path.join(folder, '*.xlsx'))):
+        name = norm(os.path.basename(path))
+        span = re.search(r'(\d{4})(\d{2})\d{2}\s*-\s*\d{8}', name)
+        if word.search(name) or (span and int(span.group(1)) == YEAR and int(span.group(2)) == number):
+            return path
+    return None
 
 
 def top(frame, sort_key, columns, url_column=None):
@@ -376,18 +385,28 @@ def build(drive):
                 result = check('spend', r2(sum(c['spend'] for c in campaigns)), summary.get('spend'))
                 if result:
                     entry['checks'].append({'platform': platform, **result, 'scope': 'campanas vs resumen del reporte'})
-            if source == 'excel' and report:
+            report_end = re.match(r'\d+ - (\d+)', report['period'] or '') if report else None
+            # Solo se cruza si el reporte cubre los mismos dias que el Excel (no un corte parcial anterior).
+            same_span = report_end and days[1] and int(report_end.group(1)) >= int(days[1][8:10])
+            if source == 'excel' and report and same_span:
                 for metric in (['spend', 'views', 'followers', 'clicks', 'messageClicks'] if platform == 'tiktok'
                                else ['spend', 'clicks', 'messageClicks', 'interactions']):
                     result = check(metric, kpis.get(metric), summary.get(metric))
                     if result:
                         entry['checks'].append({'platform': platform, **result})
         if entry['platforms']:
-            last_day = re.match(r'\d+ - (\d+)', entry['period'] or '')
-            days_in_month = (date(YEAR + (index == 11), index % 12 + 2, 1) - date(YEAR, index + 1, 1)).days
-            closed = not last_day or int(last_day.group(1)) >= days_in_month
-            entry['status'] = 'cerrado' if closed else 'parcial'
-            end = int(last_day.group(1)) if last_day else days_in_month
+            days_in_month = calendar.monthrange(YEAR, index + 1)[1]
+            report_end = re.match(r'\d+ - (\d+)', entry['period'] or '')
+            report_end = int(report_end.group(1)) if report_end else None
+            # Un Excel del mes puede ir mas adelante que el ultimo reporte (mes en curso): manda el mas reciente.
+            excel_days = [p['lastDay'] for p in entry['platforms'].values() if p['source'] == 'excel' and p['lastDay']]
+            excel_end = max(int(day[8:10]) for day in excel_days) if excel_days else None
+            end = max(filter(None, [report_end, excel_end]), default=days_in_month)
+            if report_end is None and excel_end is not None and excel_end >= days_in_month - 1:
+                end = days_in_month  # mes cerrado sin reporte: la pauta pudo terminar un dia antes
+            if report_end is None or (excel_end or 0) > report_end:
+                entry['period'] = f'1 - {end} {month} {YEAR}'
+            entry['status'] = 'cerrado' if end >= days_in_month else 'parcial'
             cutoff = date(YEAR, index + 1, end).isoformat()
         months.append(entry)
     return {
