@@ -3,7 +3,7 @@
 Dashboard de Agencia Lima Retail para controlar la inversion publicitaria de Rekluta
 
 
-Version actual: `v1.14.0`. El tablero reutiliza el codigo base de otro tablero de la agencia; de ahi
+Version actual: `v1.14.1`. El tablero reutiliza el codigo base de otro tablero de la agencia; de ahi
 viene la numeracion de version.
 
 ## Versionado
@@ -60,14 +60,21 @@ El script imprime por mes la inversion de cada plataforma, su fuente y si cuadra
 
 ## Sincronizacion con Drive
 
-`.github/workflows/sync-ads-data.yml` descarga las carpetas de Drive (`scripts/drive-download.py`),
-regenera `data/rk-ads-2026.json` y lo publica en `main`; GitHub Pages lo sirve en uno o dos minutos.
-Corre de tres formas:
+Todo corre en GitHub, sin credenciales de Google. `.github/workflows/sync-ads-data.yml`:
+
+1. descarga las tres carpetas de Drive (`scripts/drive-download.py`, con `gdown`);
+2. regenera `data/rk-ads-2026.json` (`scripts/build-ads-data.py`);
+3. actualiza el catalogo de Archivo de Reportes, `data/rk-drive-reports.json`
+   (`scripts/update-reports-catalog.py`): suma los PDF nuevos de la carpeta Reportes y retira los borrados;
+4. publica en `main`; GitHub Pages lo sirve en uno o dos minutos.
+
+Corre de dos formas:
 
 - **Automatica:** todos los dias a las 7:00 a. m. (hora de Lima).
-- **Boton "Sincronizar con Drive"** en Gasto publicitario: lanza el workflow y el tablero se
-  actualiza solo cuando llega el nuevo JSON (2 a 4 minutos).
-- **A mano:** GitHub > Actions > "Sincronizar datos de Meta y TikTok desde Drive" > Run workflow.
+- **A pedido:** boton "Sincronizar con Drive" en Gasto publicitario. Abre el workflow en GitHub para
+  pulsar "Run workflow" (requiere sesion en GitHub con acceso al repositorio) y el tablero se
+  actualiza solo cuando llega el nuevo JSON (2 a 4 minutos). Es lo mismo que GitHub > Actions >
+  "Sincronizar datos de Meta y TikTok desde Drive" > Run workflow.
 
 | Carpeta | ID de Drive |
 | --- | --- |
@@ -75,21 +82,18 @@ Corre de tres formas:
 | Tik Tok Files - Rekluta | `1QDnLk7OfZdRc_7I62_8SUq1kacmshgIX` |
 | Reportes Rekluta | `1wmPgJICrSiPyy8X_SA6UD5VSq8N8tIBJ` |
 
-Configuracion (una sola vez):
+Configuracion (una sola vez): el propietario de las tres carpetas las comparte en Drive como
+**"Cualquier persona con el enlace" > Lector** (Compartir > Acceso general). Luego se prueba con
+Actions > Run workflow. Si falla en "Descargar carpetas de Drive", alguna carpeta sigue restringida.
 
-1. **Cuenta de servicio de Google.** Google Cloud Console > crear proyecto > habilitar "Google Drive
-   API" > Cuentas de servicio > crear > Claves > agregar clave JSON.
-2. **Compartir las tres carpetas** de la tabla con el correo de la cuenta de servicio
-   (`...@....iam.gserviceaccount.com`) como **Lector**. Las comparte el propietario de las carpetas.
-3. **Secret en GitHub:** Settings > Secrets and variables > Actions > `GDRIVE_SERVICE_ACCOUNT` con el
-   contenido completo del JSON.
-4. **Probar:** Actions > Run workflow. Si falla en "Descargar carpetas de Drive", revisar el paso 2.
-5. **Boton del tablero** (opcional; sin esto el boton queda deshabilitado y la corrida diaria sigue):
-   publicar `scripts/sync-trigger.gs` como Web App siguiendo las instrucciones de su cabecera (usa un
-   token fine-grained de GitHub con permiso solo "Actions: Read and write" en este repositorio) y pegar
-   la URL `.../exec` en `SYNC_TRIGGER_URL` de `js/objectives.js`.
+Notas:
 
-El token de GitHub vive solo en el Apps Script: el tablero es publico y no debe llevar credenciales.
+- Cualquiera con el enlace de una carpeta puede ver sus archivos; los datos del tablero ya son publicos
+  en GitHub Pages.
+- `gdown` lee hasta 50 archivos por carpeta. Con un Excel por mes alcanza; si una carpeta crece mas,
+  mover los anos anteriores a una subcarpeta.
+- La vista publica de Drive no da fechas: un reporte nuevo aparece en Archivo de Reportes con la fecha
+  de la sincronizacion.
 
 ## Proyecciones
 

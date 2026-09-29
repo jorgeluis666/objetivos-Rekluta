@@ -6,22 +6,19 @@ Deja en --out la misma estructura que la carpeta Rekluta sincronizada en G::
   <out>/Tik Tok Files - Rekluta/*.xlsx
   <out>/Reportes Rekluta/*.pdf
 
-Autenticacion: cuenta de servicio de Google (JSON en la variable GDRIVE_SERVICE_ACCOUNT). Las tres
-carpetas deben estar compartidas con el correo de esa cuenta como lector.
+Sin credenciales: las tres carpetas deben estar compartidas como "Cualquier persona con el enlace
+puede ver". Usa gdown, que lee la vista publica de la carpeta (hasta 50 archivos por carpeta).
 
 Uso (lo corre .github/workflows/sync-ads-data.yml):
   python scripts/drive-download.py --out drive-data
-Requiere: google-api-python-client, google-auth.
+Requiere: gdown.
 """
 import argparse
-import io
 import json
 import os
 import sys
 
-from google.oauth2 import service_account
-from googleapiclient.discovery import build
-from googleapiclient.http import MediaIoBaseDownload
+import gdown
 
 # Carpeta local -> ID de la carpeta en Drive (se pueden cambiar por variable de entorno).
 FOLDERS = {
@@ -29,67 +26,52 @@ FOLDERS = {
     'Tik Tok Files - Rekluta': os.environ.get('RK_TIKTOK_FOLDER_ID', '1QDnLk7OfZdRc_7I62_8SUq1kacmshgIX'),
     'Reportes Rekluta': os.environ.get('RK_REPORTS_FOLDER_ID', '1wmPgJICrSiPyy8X_SA6UD5VSq8N8tIBJ'),
 }
-XLSX = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-# Solo lo que lee build-ads-data.py. Si alguien sube el Excel como Hoja de calculo de Google, se exporta a .xlsx.
-WANTED = {XLSX: '.xlsx', 'application/pdf': '.pdf', 'application/vnd.google-apps.spreadsheet': '.xlsx'}
+# Solo lo que lee build-ads-data.py (se ignoran presentaciones de Google, imagenes, etc.).
+EXTENSIONS = ('.xlsx', '.pdf')
 
 
-def drive_service():
-    raw = os.environ.get('GDRIVE_SERVICE_ACCOUNT', '').strip()
-    if not raw:
-        sys.exit('Falta GDRIVE_SERVICE_ACCOUNT (JSON de la cuenta de servicio).')
-    credentials = service_account.Credentials.from_service_account_info(
-        json.loads(raw), scopes=['https://www.googleapis.com/auth/drive.readonly'])
-    return build('drive', 'v3', credentials=credentials, cache_discovery=False)
-
-
-def list_files(service, folder_id):
-    files, token = [], None
-    while True:
-        response = service.files().list(
-            q=f"'{folder_id}' in parents and trashed = false",
-            fields='nextPageToken, files(id, name, mimeType)',
-            pageSize=200, pageToken=token,
-            supportsAllDrives=True, includeItemsFromAllDrives=True,
-        ).execute()
-        files.extend(response.get('files', []))
-        token = response.get('nextPageToken')
-        if not token:
-            return files
-
-
-def download(service, item, target):
-    if item['mimeType'] == 'application/vnd.google-apps.spreadsheet':
-        request = service.files().export_media(fileId=item['id'], mimeType=XLSX)
-    else:
-        request = service.files().get_media(fileId=item['id'], supportsAllDrives=True)
-    with io.FileIO(target, 'wb') as handle:
-        downloader = MediaIoBaseDownload(handle, request)
-        done = False
-        while not done:
-            _, done = downloader.next_chunk()
-
-
-def safe_name(name, extension):
+def safe_name(path):
     # Los nombres vienen de Drive: sin separadores de ruta ni nombres ocultos.
-    base = os.path.basename(name.replace('\\', '/')).lstrip('.').strip() or 'archivo'
-    return base if base.lower().endswith(extension) else base + extension
+    return os.path.basename(str(path).replace('\\', '/')).lstrip('.').strip()
+
+
+def download_folder(folder_id, target_dir):
+    """Descarga los .xlsx/.pdf y devuelve el listado completo (lo usa update-reports-catalog.py)."""
+    try:
+        listing = gdown.download_folder(id=folder_id, output=target_dir, quiet=True, use_cookies=False, skip_download=True)
+    except Exception as error:  # gdown lanza errores genericos cuando la carpeta no es publica
+        sys.exit(f'No se pudo leer la carpeta {folder_id}: {error}\n'
+                 'Revisa que este compartida como "Cualquier persona con el enlace puede ver".')
+    entries = []
+    for item in listing or []:
+        if len(os.path.normpath(str(item.path)).split(os.sep)) > 1:
+            continue  # subcarpetas (p. ej. anos anteriores archivados): no entran
+        name = safe_name(item.path)
+        entry = {'id': item.id, 'name': name, 'file': None}
+        if name.lower().endswith(EXTENSIONS):
+            target = os.path.join(target_dir, name)
+            if not gdown.download(id=item.id, output=target, quiet=True, use_cookies=False):
+                sys.exit(f'No se pudo descargar {name} ({item.id}).')
+            entry['file'] = name
+        entries.append(entry)
+    return entries
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument('--out', required=True, help='Carpeta destino')
     args = parser.parse_args()
-    service = drive_service()
+    manifest = {}
     for local, folder_id in FOLDERS.items():
         target_dir = os.path.join(args.out, local)
         os.makedirs(target_dir, exist_ok=True)
-        items = [item for item in list_files(service, folder_id) if item['mimeType'] in WANTED]
-        if not items:
-            sys.exit(f'La carpeta "{local}" ({folder_id}) esta vacia o no esta compartida con la cuenta de servicio.')
-        for item in items:
-            download(service, item, os.path.join(target_dir, safe_name(item['name'], WANTED[item['mimeType']])))
-        print(f'[drive] {local}: {len(items)} archivos')
+        entries = download_folder(folder_id, target_dir)
+        if not any(entry['file'] for entry in entries):
+            sys.exit(f'La carpeta "{local}" ({folder_id}) no tiene archivos .xlsx ni .pdf.')
+        manifest[local] = {'folderId': folder_id, 'files': entries}
+        print(f'[drive] {local}: {sum(1 for entry in entries if entry["file"])} archivos descargados de {len(entries)}')
+    with open(os.path.join(args.out, 'manifest.json'), 'w', encoding='utf-8') as handle:
+        json.dump(manifest, handle, ensure_ascii=False, indent=1)
 
 
 if __name__ == '__main__':

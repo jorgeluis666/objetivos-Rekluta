@@ -1,9 +1,8 @@
 name: Sincronizar datos de Meta y TikTok desde Drive
 
 # Descarga los Excel de Meta Ads y TikTok Ads y los reportes PDF de Drive, regenera
-# data/rk-ads-2026.json y lo publica en main (GitHub Pages lo sirve al cliente). Lo dispara el
-# boton "Sincronizar con Drive" del tablero via scripts/sync-trigger.gs; tambien se puede correr a
-# mano desde Actions y corre solo todos los dias.
+# data/rk-ads-2026.json y lo publica en main (GitHub Pages lo sirve al cliente). Corre solo todos
+# los dias y a pedido con "Run workflow" (el boton "Sincronizar con Drive" del tablero abre esa pagina).
 on:
   workflow_dispatch:
   schedule:
@@ -27,15 +26,17 @@ jobs:
           python-version: '3.12'
 
       - name: Dependencias
-        run: pip install --disable-pip-version-check -q pandas openpyxl pypdf google-api-python-client google-auth
+        run: pip install --disable-pip-version-check -q pandas openpyxl pypdf gdown
 
+      # Sin credenciales: las carpetas de Drive estan compartidas por enlace (solo lectura).
       - name: Descargar carpetas de Drive
-        env:
-          GDRIVE_SERVICE_ACCOUNT: ${{ secrets.GDRIVE_SERVICE_ACCOUNT }}
         run: python scripts/drive-download.py --out "$RUNNER_TEMP/rekluta"
 
       - name: Regenerar data/rk-ads-2026.json
         run: python scripts/build-ads-data.py --root "$RUNNER_TEMP/rekluta"
+
+      - name: Actualizar el catalogo de Archivo de Reportes
+        run: python scripts/update-reports-catalog.py --root "$RUNNER_TEMP/rekluta"
 
       - name: Publicar en main
         run: |
@@ -43,6 +44,6 @@ jobs:
           git config user.email "rekluta-sync@users.noreply.github.com"
           # syncedAt cambia en cada corrida y es lo que el tablero espera para saber que termino,
           # asi que se publica siempre, aunque los demas datos no hayan cambiado.
-          git add data/rk-ads-2026.json
+          git add data/rk-ads-2026.json data/rk-drive-reports.json
           git commit -m "data: sincronizacion desde Drive ($(date -u +%Y-%m-%dT%H:%MZ))" || exit 0
           git push
