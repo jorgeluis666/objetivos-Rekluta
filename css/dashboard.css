@@ -1343,3 +1343,39 @@ textarea.log-text {
   .log-item .log-date,
   .log-item .log-tag { padding: 0 4px; font-size: 11px; }
 }
+
+/* Boton de sincronizacion con Drive (cabecera de Gasto publicitario) */
+.ads-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.ads-sync {
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  padding-top: 18px;
+  text-align: right;
+}
+
+.ads-sync-btn { min-width: 170px; }
+
+.ads-sync-status {
+  max-width: 280px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.ads-sync-links { color: #94a3b8; font-size: 10px; }
+.ads-sync-links a { color: var(--brand-text); font-weight: 600; text-decoration: none; }
+.ads-sync-links a:hover { text-decoration: underline; }
+
+@media(max-width:760px) {
+  .ads-header { flex-direction: column; gap: 12px; }
+  .ads-sync { align-items: flex-start; padding-top: 0; text-align: left; }
+}

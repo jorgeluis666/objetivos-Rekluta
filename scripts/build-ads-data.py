@@ -24,7 +24,7 @@ import re
 import sys
 import unicodedata
 import warnings
-from datetime import date
+from datetime import date, datetime, timezone
 
 import pandas as pd
 import pypdf
@@ -395,6 +395,8 @@ def build(drive):
         'year': YEAR,
         'cutoff': cutoff,
         'generatedAt': date.today().isoformat(),
+        # El boton "Sincronizar con Drive" del tablero espera a que cambie este sello para recargar.
+        'syncedAt': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
         'source': 'Exportaciones de Meta Ads y TikTok Ads + reportes mensuales (Google Drive)',
         'platforms': {
             'tiktok': {'label': 'TikTok Ads', 'currency': 'PEN', 'symbol': 'S/.'},

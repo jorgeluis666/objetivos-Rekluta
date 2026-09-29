@@ -14,7 +14,13 @@
   };
   const CHART_COLLAPSED_KEY = 'rk-chart-collapsed-v1';
   const CHART_METRIC_KEY = 'rk-ads-chart-metric-v1';
-  const state = { data: null, month: null, chart: null, platform: 'all', metric: readPref(CHART_METRIC_KEY, 'spend'), chartCollapsed: readPref(CHART_COLLAPSED_KEY, 'false') === 'true', open: new Set() };
+  // URL .../exec del Web App de scripts/sync-trigger.gs. Vacia = boton deshabilitado (la sincronizacion
+  // diaria de GitHub Actions sigue corriendo igual). Va fija en el codigo: no se acepta desde la URL.
+  const SYNC_TRIGGER_URL = '';
+  const SYNC_TRIGGER_RE = /^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]{20,}\/exec$/;
+  const SYNC_POLL_MS = 15000;
+  const SYNC_TIMEOUT_MS = 8 * 60 * 1000;
+  const state = { data: null, month: null, chart: null, platform: 'all', metric: readPref(CHART_METRIC_KEY, 'spend'), chartCollapsed: readPref(CHART_COLLAPSED_KEY, 'false') === 'true', open: new Set(), syncing: false };
 
   function readPref(key, fallback) {
     try { return localStorage.getItem(key) ?? fallback; } catch { return fallback; }
@@ -363,6 +369,70 @@
     }).join('');
   }
 
+  // ── Sincronizacion con Drive ───────────────────────────────────────────────
+  // El boton lanza el workflow sync-ads-data.yml (via scripts/sync-trigger.gs); este descarga los
+  // Excel y PDF de Drive, regenera data/rk-ads-2026.json y lo publica. Aqui solo se espera a que el
+  // sello syncedAt del JSON publicado cambie y se vuelve a dibujar el tablero.
+  function syncStamp(data) { return data?.syncedAt || data?.generatedAt || ''; }
+  function syncLabel(data) {
+    const stamp = syncStamp(data);
+    const date = stamp ? new Date(stamp.length === 10 ? `${stamp}T12:00:00` : stamp) : null;
+    if (!date || Number.isNaN(date.getTime())) return '';
+    const day = `${date.getDate()} ${SHORT_MONTHS[date.getMonth()].toLowerCase()}`;
+    return stamp.length === 10 ? `Ultima sincronizacion: ${day}` : `Ultima sincronizacion: ${day}, ${date.toLocaleTimeString('es-PE', { hour: '2-digit', minute: '2-digit' })}`;
+  }
+  function setSyncStatus(text, busy = false) {
+    const button = document.getElementById('ads-sync-btn');
+    const status = document.getElementById('ads-sync-status');
+    if (status) status.textContent = text;
+    if (!button) return;
+    const configured = SYNC_TRIGGER_RE.test(SYNC_TRIGGER_URL);
+    button.disabled = busy || !configured;
+    button.textContent = busy ? 'Sincronizando...' : 'Sincronizar con Drive';
+    button.title = configured ? 'Descarga los Excel de Meta y TikTok de Drive y actualiza el tablero' : 'Falta configurar el enlace de sincronizacion (ver README)';
+  }
+  async function fetchPublishedData() {
+    const response = await fetch(`${DATA_URL}?cb=${Date.now()}`, { cache: 'no-store' });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    return response.json();
+  }
+  function applyData(data) {
+    state.data = data;
+    const withData = data.months.filter(hasData);
+    if (!hasData(monthData(state.month))) state.month = withData[withData.length - 1]?.name || null;
+    state.open.clear();
+    renderAll();
+  }
+  async function syncFromDrive() {
+    if (state.syncing || !SYNC_TRIGGER_RE.test(SYNC_TRIGGER_URL)) return;
+    state.syncing = true;
+    const before = syncStamp(state.data);
+    setSyncStatus('Leyendo las carpetas de Drive. Tarda 2 a 4 minutos...', true);
+    try {
+      const response = await fetch(`${SYNC_TRIGGER_URL}?action=sync`, { cache: 'no-store' });
+      const result = await response.json();
+      if (!result.ok) throw new Error(result.error || 'No se pudo iniciar la sincronizacion');
+      const started = Date.now();
+      while (Date.now() - started < SYNC_TIMEOUT_MS) {
+        await new Promise(resolve => setTimeout(resolve, SYNC_POLL_MS));
+        const data = await fetchPublishedData().catch(() => null);
+        if (data && syncStamp(data) !== before) {
+          applyData(data);
+          setSyncStatus(`Datos actualizados. ${syncLabel(data)}`);
+          return;
+        }
+      }
+      setSyncStatus('La sincronizacion sigue en curso. Recarga la pagina en unos minutos.');
+    } catch (error) {
+      console.warn('[rk] Sincronizacion con Drive:', error);
+      setSyncStatus(`No se pudo sincronizar: ${error.message}`);
+    } finally {
+      state.syncing = false;
+      const button = document.getElementById('ads-sync-btn');
+      if (button) { button.textContent = 'Sincronizar con Drive'; button.disabled = !SYNC_TRIGGER_RE.test(SYNC_TRIGGER_URL); }
+    }
+  }
+
   function renderAll() {
     renderKpis();
     applyChartCollapsed();
@@ -396,6 +466,7 @@
       state.platform = input.value;
       renderCampaigns(monthData(state.month));
     });
+    document.getElementById('ads-sync-btn')?.addEventListener('click', syncFromDrive);
     document.getElementById('campaigns-body').addEventListener('click', event => {
       const button = event.target.closest('.ads-expand');
       if (!button) return;
@@ -417,6 +488,7 @@
       state.month = withData[withData.length - 1].name;
       wireEvents();
       renderAll();
+      setSyncStatus(SYNC_TRIGGER_RE.test(SYNC_TRIGGER_URL) ? syncLabel(state.data) : `${syncLabel(state.data)} | sincronizacion automatica diaria`);
     } catch (error) {
       document.getElementById('view-obj').innerHTML = '<div class="data-notice error"><strong>No se pudo cargar la informacion de Rekluta.</strong></div>';
       console.error(error);
