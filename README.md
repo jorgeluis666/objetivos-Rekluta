@@ -156,9 +156,21 @@ npm run build    # genera dist/index.html con todo embebido
 
 ## Despliegue
 
-GitHub Pages desde el repositorio `jorgeluis666/objetivos-Rekluta`
-(https://jorgeluis666.github.io/objetivos-Rekluta/). El archivo `.nojekyll` evita que Pages procese el
-sitio con Jekyll.
+GitHub Pages publica la raiz de la rama `main` del repositorio `jorgeluis666/objetivos-Rekluta` en
+**https://rekluta.limaretail.com/**. Cada push a `main` (incluidos los de la sincronizacion diaria con
+Drive) se publica solo en unos minutos; no hay que tocar el DNS ni el hosting. El archivo `.nojekyll`
+evita que Pages procese el sitio con Jekyll.
+
+### Dominio propio
+
+- `CNAME` (en la raiz) contiene `rekluta.limaretail.com`: le dice a GitHub Pages que sirva este repo en
+  ese dominio. No borrarlo ni moverlo; sin el, el sitio vuelve a `jorgeluis666.github.io/objetivos-Rekluta/`.
+- DNS en Banahosting (cPanel → Zone Editor → `limaretail.com`): registro **CNAME** `rekluta` →
+  `jorgeluis666.github.io` (sin ruta: GitHub elige el repo por el archivo `CNAME`).
+- HTTPS: Settings → Pages → *Custom domain* `rekluta.limaretail.com` con **Enforce HTTPS** marcado.
+- La URL anterior (https://jorgeluis666.github.io/objetivos-Rekluta/) redirige con 301 al dominio nuevo.
+- Todas las rutas del sitio son relativas (`css/…`, `js/…`, `data/…`), asi que funcionan en la raiz
+  del dominio sin base path.
 
 ## Google Sheets (retirado)
 
