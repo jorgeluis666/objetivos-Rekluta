@@ -3,7 +3,7 @@
  "year": 2026,
  "cutoff": "2026-09-27",
  "generatedAt": "2026-10-19",
- "syncedAt": "2026-10-19T18:28:26Z",
+ "syncedAt": "2026-10-19T20:37:28Z",
  "source": "Exportaciones de Meta Ads y TikTok Ads + reportes mensuales (Google Drive)",
  "platforms": {
   "tiktok": {
@@ -4383,5 +4383,6 @@
    "platforms": {},
    "checks": []
   }
- ]
+ ],
+ "warnings": []
 }
