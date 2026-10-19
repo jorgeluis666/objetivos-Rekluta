@@ -3,7 +3,7 @@
 Dashboard de Agencia Lima Retail para controlar la inversion publicitaria de Rekluta
 
 
-Version actual: `v1.15.0`. El tablero reutiliza el codigo base de otro tablero de la agencia; de ahi
+Version actual: `v1.16.0`. El tablero reutiliza el codigo base de otro tablero de la agencia; de ahi
 viene la numeracion de version.
 
 ## Versionado
@@ -28,6 +28,10 @@ El proyecto usa la nomenclatura `vMAJOR.MINOR.PATCH`:
 - Historico de Campanas: campanas de los meses cerrados.
 - Archivo de Reportes: catalogo de los documentos guardados en la carpeta de Google Drive.
 - Bitacora: checklist editable de cambios, comentarios y decisiones con fecha (ver abajo).
+
+El pie del panel lateral lleva el nombre de la cuenta, el WhatsApp de Agencia Lima Retail
+(+51 937 409 733) y www.limaretail.com. El modulo "Usuarios y Claves" salio del tablero; el
+directorio guardado sigue en el repositorio por si hace falta recuperarlo.
 
 ## Datos
 
