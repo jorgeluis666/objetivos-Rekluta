@@ -2,7 +2,8 @@ name: Sincronizar datos de Meta y TikTok desde Drive
 
 # Descarga los Excel de Meta Ads y TikTok Ads y los reportes PDF de Drive, regenera
 # data/rk-ads-2026.json y lo publica en main (GitHub Pages lo sirve al cliente). Corre solo todos
-# los dias y a pedido con "Run workflow" (el boton "Sincronizar con Drive" del tablero abre esa pagina).
+# los dias y a pedido: el boton "Sincronizar con Drive" del tablero lo lanza por el Web App
+# scripts/sync-trigger.gs.
 on:
   workflow_dispatch:
   schedule:

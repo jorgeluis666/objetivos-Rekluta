@@ -25,6 +25,7 @@ import re
 import sys
 import unicodedata
 import warnings
+import zipfile
 from datetime import date, datetime, timezone
 
 import pandas as pd
@@ -94,15 +95,30 @@ def top(frame, sort_key, columns, url_column=None):
     return ads
 
 
+def require(path, frame, columns, names):
+    missing = [column for column in columns if column not in frame.columns]
+    if missing:
+        raise ValueError(f'{path}: no tiene las columnas de la exportacion: {names}')
+
+
 # ── Meta Ads (Excel) ─────────────────────────────────────────────────────────
 def meta_from_excel(path):
     frame = pd.read_excel(path)
-    frame = frame.rename(columns={
+    columns = {
         'Nombre de la campaña': 'campaign', 'Nombre del anuncio': 'ad', 'Objetivo': 'objective',
-        'Importe gastado (USD)': 'spend', 'Impresiones': 'impressions', 'Alcance': 'reach',
+        'Impresiones': 'impressions', 'Alcance': 'reach',
         'Clics en el enlace': 'clicks', 'Interacciones': 'interactions', 'Resultados': 'results',
         'Tipo de resultado': 'resultType', 'Enlace de vista previa': 'preview', 'Día': 'day',
-    })
+    }
+    for column in frame.columns:
+        # Meta renombro "Importe gastado (USD)" a "Monto gastado (USD)" en octubre de 2026: valen las dos.
+        spend = re.fullmatch(r'(?:importe|monto) gastado \((\w+)\)', norm(column))
+        if spend:
+            if spend.group(1).upper() != 'USD':
+                raise ValueError(f'{path}: moneda inesperada {spend.group(1).upper()} (se espera USD)')
+            columns[column] = 'spend'
+    frame = frame.rename(columns=columns)
+    require(path, frame, ['campaign', 'spend', 'day'], 'Dia, Importe o Monto gastado, Nombre de la campana')
     frame = frame[frame['campaign'].notna()]
     for column in ['spend', 'impressions', 'reach', 'clicks', 'interactions', 'results']:
         frame[column] = pd.to_numeric(frame[column], errors='coerce').fillna(0)
@@ -147,6 +163,7 @@ def tiktok_from_excel(path):
         'Visualizaciones de vídeo': 'views', 'Seguidores de pago': 'followers', 'Visitas al perfil pagadas': 'profileVisits',
         'Por día': 'day', 'Moneda': 'currency',
     })
+    require(path, frame, ['campaign', 'spend', 'day', 'currency'], 'Por dia, Gasto, Moneda, Nombre de la campana')
     frame['campaign'] = frame['campaign'].astype(str).str.strip()
     # La exportacion agrega una fila "Total: N resultados" (y solo esa fila si el mes esta vacio).
     frame = frame[~frame['campaign'].str.startswith('Total')]
@@ -335,7 +352,7 @@ def build(drive):
     tiktok_dir = os.path.join(drive, 'Tik Tok Files - Rekluta')
     reports_dir = os.path.join(drive, 'Reportes Rekluta')
     ids = report_ids()
-    months, cutoff = [], None
+    months, warnings_list, cutoff = [], [], None
     for index, month in enumerate(MONTHS):
         report_path, report = latest_report(reports_dir, month)
         entry = {'name': month, 'status': 'sin-datos', 'period': None, 'report': None, 'platforms': {}, 'checks': []}
@@ -345,7 +362,17 @@ def build(drive):
             entry['period'] = report['period']
         for platform, folder, reader in (('tiktok', tiktok_dir, tiktok_from_excel), ('meta', meta_dir, meta_from_excel)):
             path = month_file(folder, month)
-            campaigns, days = reader(path) if path else ([], (None, None))
+            campaigns, days = [], (None, None)
+            # Una hoja mal formada no detiene la sincronizacion: el mes queda con aviso (y con el reporte
+            # PDF si lo hay) y el resto se sigue actualizando.
+            try:
+                if path:
+                    campaigns, days = reader(path)
+            except (ValueError, KeyError, zipfile.BadZipFile) as error:
+                name = 'TikTok Ads' if platform == 'tiktok' else 'Meta Ads'
+                detail = str(error).split(': ', 1)[-1] if isinstance(error, ValueError) else f'falta la columna {error}'
+                warnings_list.append(f'{month}: la hoja de {name} "{os.path.basename(path)}" no se pudo leer ({detail}).')
+                entry['notice'] = f'La hoja de {name} no se pudo leer'
             source = 'excel'
             if not campaigns and report and report['campaigns'][platform]:
                 campaigns, source = report['campaigns'][platform], 'reporte'
@@ -422,6 +449,7 @@ def build(drive):
             'meta': {'label': 'Meta Ads', 'currency': 'USD', 'symbol': 'US$'},
         },
         'months': months,
+        'warnings': warnings_list,
     }
 
 
@@ -441,6 +469,8 @@ def main():
         parts = [f"{key} {p['kpis']['spend']:>9,.2f} ({p['source']})" for key, p in month['platforms'].items()]
         bad = [f"{c['platform']}.{c['metric']} {c['diff']:+}" for c in month['checks'] if not c['ok']]
         print(f"{month['name']:<11} {month['status']:<8} {' | '.join(parts)}  {'descuadres: ' + ', '.join(bad) if bad else 'cuadra con el reporte'}")
+    for warning in data['warnings']:
+        print(f'[aviso] {warning}')
     print(f'[ads] escrito {os.path.relpath(OUT, ROOT)} (corte {data["cutoff"]})')
 
 
