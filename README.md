@@ -97,6 +97,11 @@ Si un Excel de un mes no se puede leer (por ejemplo, Meta cambia el nombre de un
 con un aviso en el tablero (y con el reporte PDF si lo hay) y el resto se sigue actualizando. En octubre
 de 2026 Meta renombro "Importe gastado (USD)" a "Monto gastado (USD)": se aceptan los dos.
 
+Cada descarga de Drive se intenta hasta tres veces (con 5 y 15 segundos de espera). Si un archivo sigue sin
+bajar, la sincronizacion sigue con el resto y el tablero muestra un aviso con su nombre; se vuelve a
+intentar en la corrida siguiente. Solo se detiene si no se puede leer una carpeta entera o no baja ningun
+archivo de ella.
+
 | Carpeta | ID de Drive |
 | --- | --- |
 | Meta Files - Rekluta | `1IKTFtTRaUjPomB_KgeVzer7D5iWPEl3p` |
@@ -105,7 +110,8 @@ de 2026 Meta renombro "Importe gastado (USD)" a "Monto gastado (USD)": se acepta
 
 Configuracion (una sola vez): el propietario de las tres carpetas las comparte en Drive como
 **"Cualquier persona con el enlace" > Lector** (Compartir > Acceso general). Luego se prueba con
-Actions > Run workflow. Si falla en "Descargar carpetas de Drive", alguna carpeta sigue restringida.
+Actions > Run workflow. Si falla en "Descargar carpetas de Drive", alguna carpeta sigue restringida (un solo archivo
+restringido no la detiene: sale como aviso en el tablero).
 
 Notas:
 

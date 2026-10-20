@@ -340,6 +340,18 @@ def report_ids():
     return {f['title']: f['id'] for f in files}
 
 
+def download_warnings(drive):
+    """Avisos por los archivos que drive-download.py no pudo bajar (marcados con "error" en su manifest)."""
+    try:
+        with open(os.path.join(drive, 'manifest.json'), encoding='utf-8') as handle:
+            manifest = json.load(handle)
+    except FileNotFoundError:
+        return []
+    return [f'"{item["name"]}" (carpeta {folder}) no se pudo descargar de Drive en esta sincronizacion '
+            f'({item["error"]}); se vuelve a intentar en la proxima.'
+            for folder, info in manifest.items() for item in info.get('files', []) if item.get('error')]
+
+
 def check(name, ours, theirs):
     if theirs is None:
         return None
@@ -352,7 +364,7 @@ def build(drive):
     tiktok_dir = os.path.join(drive, 'Tik Tok Files - Rekluta')
     reports_dir = os.path.join(drive, 'Reportes Rekluta')
     ids = report_ids()
-    months, warnings_list, cutoff = [], [], None
+    months, warnings_list, cutoff = [], download_warnings(drive), None
     for index, month in enumerate(MONTHS):
         report_path, report = latest_report(reports_dir, month)
         entry = {'name': month, 'status': 'sin-datos', 'period': None, 'report': None, 'platforms': {}, 'checks': []}
